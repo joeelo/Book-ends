@@ -4,6 +4,7 @@ const router = express.Router();
 const userRoutes = require("./routes/userRoutes")
 const todoRoutes = require("./routes/todoRoutes");
 const bodyParser = require("body-parser");
+require("dotenv").config();
 
 require("./mongoose/mongooseDB");
 
@@ -18,5 +19,5 @@ app.use(userRoutes)
 app.use(todoRoutes);
 
 app.listen(port, () => {
-    console.log("listening on port " + port);
+    console.log("listening on port " + process.env.PORT);
 })
