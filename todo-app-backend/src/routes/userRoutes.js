@@ -23,12 +23,12 @@ router.post("/users", async (req, res) => {
 router.post("/user-todos", async (req, res) => {
     try {
         const user = await User.findOne({name: req.body.name}).populate("todo").exec((err, todo) => {
-            console.log(todo)
+            if (err) {
+                res.send(err);
+            }
+
+            res.send(todo)
         })
-        // user.populate("todo").exec((err, todo) => {
-        //     console.log(todo);
-        // })
-        res.send(user)
     } catch (error) {
         res.status(400).send(error); 
     }
