@@ -8,8 +8,14 @@ const userSchema = new mongoose.Schema({
     },
 
     email :{
-        type: String
-    }
+        type: String,
+        required: true,
+        unique: true
+    },
+
+    todo: [{
+        type: mongoose.Schema.Types.ObjectId, ref: "Todo"
+    }]
 })
 
 const User = new mongoose.model("User", userSchema);

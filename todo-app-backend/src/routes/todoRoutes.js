@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Todo = require("../models/Todo");
+const User = require("../models/User")
 
 router.get("/todos", async (req, res) => {
     res.send("connected");
@@ -18,7 +19,6 @@ router.get("/todo", async (req, res) => {
 
 router.post("/todos", async (req, res) => {
     try {        
-        console.log("working")
         const todo = new Todo(req.body);
         await todo.save();
         res.send(todo);
