@@ -29,9 +29,16 @@ router.post("/todos", async (req, res) => {
 
 router.patch("/todo/:id", async (req, res) => {
     try {
-        const todo = await Todo.findOne({_id: req.params.id})
-        console.log(req.body)
-        res.send(todo);
+        const todo = await Todo.findOne({_id: req.params.id}, (err, todo) => {
+            todo.set(req.body)
+
+            todo.save((err, newTodo) => {
+                console.log(newTodo);
+                res.send(newTodo);
+            })
+        })
+        // console.log(req.body)
+        // res.send(todo);
     } catch (error) {
         res.status(400).send(error);
     }
