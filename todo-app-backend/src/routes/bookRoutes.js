@@ -1,31 +1,31 @@
 const express = require("express");
 const router = express.Router();
 const Book = require("../models/Book");
-const User = require("../models/User")
+const User = require("../models/User");
+const request = require("request");
 
-router.get("/book", async (req, res) => {
+router.get("/books", async (req, res) => {
     res.send("connected");
 })
 
 router.get("/book", async (req, res) => {
     try {
-        const book = await Book.findOne({title: req.body.title});
-        console.log(req.body.title);
-        res.send(book)
+        // const book = await Book.findOne({title: req.body.title});
+        console.log(process.env.GOOGLEBOOKS_API_KEY);
+        const url = `https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=${GOOGLEBOOKS_API_KEY}&country=US`;
+        request(url, (error, response) => {
+            console.log(response.body)
+        })
+        res.send("json");
     } catch (error) {
         res.status(404).send(error);
     }
 })
 
 router.post("/books", async (req, res) => {
-    try {
-        console.log(process.env.GOOGLE_API_KEY)        
+    try {  
         const book = new Book(req.body);
-        const user = await User.findOne({_id: req.body.user})
-        const existingTask = await Book.find({title: req.body.title, user: user});
-        if (!!existingTask[0]) {
-            return res.send("this already exists!")
-        }
+        console.log(book);
         await book.save(); 
         res.send(book);
     } catch (error) {
