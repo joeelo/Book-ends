@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const router = express.Router();
 const userRoutes = require("./routes/userRoutes")
-const todoRoutes = require("./routes/todoRoutes");
+const bookRoutes = require("./routes/bookRoutes");
 const bodyParser = require("body-parser");
 require("dotenv").config();
 
@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const port = process.env.PORT || 3000;
 
 app.use(userRoutes)
-app.use(todoRoutes);
+app.use(bookRoutes);
 
 app.listen(port, () => {
     console.log("listening on port " + process.env.PORT);

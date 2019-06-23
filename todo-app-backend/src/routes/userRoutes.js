@@ -20,7 +20,7 @@ router.post("/users", async (req, res) => {
     }
 })
 
-router.post("/user-todos", async (req, res) => {
+router.post("/user-books", async (req, res) => {
     try {
         const user = await User.findOne({name: req.body.name}).populate("todo").exec((err, todo) => {
             if (err) {

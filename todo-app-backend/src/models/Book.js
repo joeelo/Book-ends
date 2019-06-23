@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const User = require("./User")
 
-const TodoSchema = new mongoose.Schema({
+const BookSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
@@ -9,6 +9,11 @@ const TodoSchema = new mongoose.Schema({
     },
 
     description: {
+        type: String,
+        default: ""
+    },
+
+    author: {
         type: String,
         default: ""
     },
@@ -25,20 +30,22 @@ const TodoSchema = new mongoose.Schema({
     },
 
     user: {
-        type: mongoose.Schema.Types.ObjectId, ref: "User"
+        type: mongoose.Schema.Types.ObjectId, ref: "User",
+        required: true
     }
 })
 
-TodoSchema.pre("save", async function(next) {
+BookSchema.pre("save", async function(next) {
 
     const self = this;
-    const user = await User.findOne({_id: "5d0d01a9286b52046c33ba99"});
-    user.todo.push(this);
+    const user = await User.findOne({_id: this.user});
+    
+    user.book.push(this);
     await user.save();
 
     next();
 })
 
-const Todo = new mongoose.model("Todo", TodoSchema);
+const Book = new mongoose.model("Book", BookSchema);
 
-module.exports = Todo;
+module.exports = Book;

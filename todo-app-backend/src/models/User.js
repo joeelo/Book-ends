@@ -15,8 +15,8 @@ const userSchema = new mongoose.Schema({
         unique: true
     },
 
-    todo: [{
-        type: mongoose.Schema.Types.ObjectId, ref: "Todo"
+    books: [{
+        type: mongoose.Schema.Types.ObjectId, ref: "Book"
     }]
 })
 
