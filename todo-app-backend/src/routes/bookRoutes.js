@@ -3,16 +3,18 @@ const router = express.Router();
 const Book = require("../models/Book");
 const User = require("../models/User");
 const request = require("request");
+const fetch = require("node-fetch")
 
 router.get("/books", async (req, res) => {
-    res.send("connected");
+    const url = `https://www.googleapis.com/books/v1/volumes?q=allthelightwecannotsee&key=${process.env.GOOGLEBOOKS_API_KEY}`
+    const response = await fetch(url);
+    const json = await response.json();
+
+    res.send(json.items[0]);
 })
 
 router.get("/book", async (req, res) => {
     try {
-        // const book = await Book.findOne({title: req.body.title});
-        console.log(process.env.GOOGLEBOOKS_API_KEY);
-        const url = `https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=${GOOGLEBOOKS_API_KEY}&country=US`;
         request(url, (error, response) => {
             console.log(response.body)
         })
