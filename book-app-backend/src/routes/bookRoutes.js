@@ -5,10 +5,10 @@ const User = require("../models/User");
 const request = require("request");
 const fetch = require("node-fetch")
 
-router.get("/books/:bookTitle", async (req, res) => {
+router.get("/book/:bookTitle", async (req, res) => {
     try {
         const book = req.params.bookTitle;
-        const url = `https://www.googleapis.com/books/v1/volumes?q=allthelightwecannotsee&key=${process.env.GOOGLE_BOOKS_API}`
+        const url = `https://www.googleapis.com/books/v1/volumes?q=${book}&key=${process.env.GOOGLE_BOOKS_API}`
         const response = await fetch(url);
         const json = await response.json();
         res.send(json.items[0]);

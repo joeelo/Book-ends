@@ -2,25 +2,18 @@ const mongoose = require("mongoose");
 const User = require("./User")
 
 const BookSchema = new mongoose.Schema({
-    title: {
-        type: String,
-        required: true,
-        unique: true
+    any: {
+        type: {}
     },
-
-    description: {
-        type: String,
-        default: ""
-    },
-
-    author: {
-        type: String,
-        default: ""
-    },
-
+    
     finished: {
         type: Boolean,
         default: false,
+    },
+
+    rating: {
+        type: Number,
+        default: 0
     },
 
     created_at: {
