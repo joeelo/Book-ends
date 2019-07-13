@@ -17,17 +17,6 @@ router.get("/book/:bookTitle", async (req, res) => {
     }
 })
 
-router.get("/book", async (req, res) => {
-    try {
-        request(url, (error, response) => {
-            console.log(response.body)
-        })
-        res.send("json");
-    } catch (error) {
-        res.status(404).send(error);
-    }
-})
-
 router.post("/books", async (req, res) => {
     try {  
         const book = new Book(req.body);
