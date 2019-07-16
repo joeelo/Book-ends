@@ -26,7 +26,6 @@ router.get("/user/:id/books", async (req, res) => {
             const user = await User.findOne({_id: req.params.id})
             .populate("books")
             .exec((err, book) => res.send(book)); 
-            console.log(user)
     } catch (error) {
         res.status(400).send(error); 
     }

@@ -2,8 +2,10 @@ const express = require("express");
 const router = express.Router();
 const Book = require("../models/Book");
 const User = require("../models/User");
-const request = require("request");
-const fetch = require("node-fetch")
+const Post = require("../models/Post");
+const fetch = require("node-fetch");
+
+
 
 router.get("/book/:bookTitle", async (req, res) => {
     try {
@@ -40,6 +42,18 @@ router.patch("/book/:id", async (req, res) => {
                 res.send(newBook);
             })
         })
+    } catch (error) {
+        res.status(400).send(error);
+    }
+})
+
+router.post("/book/review/:bookId", async (req, res) => {
+    try {
+        const post = new Post(req.body);
+        post.book = req.params.bookId;
+        console.log(post);
+        await post.save();
+        res.send(post)
     } catch (error) {
         res.status(400).send(error);
     }
