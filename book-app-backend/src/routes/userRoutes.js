@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../models/User")
+const User = require("../models/User");
+const Post = require("../models/Post");
 
 router.get("/user", async (req, res) => {
     try {
@@ -24,8 +25,7 @@ router.get("/user/:id/books", async (req, res) => {
     try {
         const user = await User.findOne({_id: req.params.id})
             .populate("books")
-            .exec((err, book) => res.send(book));
-        // res.send(user)
+            .exec((err, book) => res.send(user)); 
     } catch (error) {
         res.status(400).send(error); 
     }
