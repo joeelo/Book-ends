@@ -22,6 +22,10 @@ const BookSchema = new mongoose.Schema({
         default: Date.now
     },
 
+    notes: [{
+        type: String
+    }],
+
     user: {
         type: mongoose.Schema.Types.ObjectId, ref: "User",
         required: true

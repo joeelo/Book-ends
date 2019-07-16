@@ -13,7 +13,7 @@ router.get("/book/:bookTitle", async (req, res) => {
         const url = `https://www.googleapis.com/books/v1/volumes?q=${book}&key=${process.env.GOOGLE_BOOKS_API}`
         const response = await fetch(url);
         const json = await response.json();
-        res.send(json.items[0]);
+        res.send(json.items);
     } catch (error) {
         res.status(400).send(error);
     }
