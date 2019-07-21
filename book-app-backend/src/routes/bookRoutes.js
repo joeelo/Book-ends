@@ -5,8 +5,6 @@ const User = require("../models/User");
 const Post = require("../models/Post");
 const fetch = require("node-fetch");
 
-
-
 router.get("/book/:bookTitle", async (req, res) => {
     try {
         const book = req.params.bookTitle;
