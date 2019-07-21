@@ -33,7 +33,6 @@ export default class BookSearchForm extends Component {
                 books: []
             })
         }
-
     }
 
     renderBooks = () => {

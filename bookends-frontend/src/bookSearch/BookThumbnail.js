@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
+import BookDetails from "./BookDetails";
+
 
 const BookThumbnail = (props) => {
+    const [renderBook, setRenderBook] = useState(false);
     const { book } = props
-    console.log(book)
         return (
-            <div>
-                    <p>{book.volumeInfo.title}</p> 
+            <div onClick={() => setRenderBook(!renderBook)}>
+
+                {!renderBook ? <p>{book.volumeInfo.title}</p> : <BookDetails book={book}/>}
+                 
             </div>
         )
 }
