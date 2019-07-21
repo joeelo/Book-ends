@@ -10,6 +10,10 @@ const noteSchema = new mongoose.Schema({
         type: String, 
         required: true
     },
+    private: {
+        type: Boolean,
+        default: true
+    },
 
     book: {
         type: mongoose.Schema.Types.ObjectId, ref: "Book",
@@ -25,7 +29,8 @@ const noteSchema = new mongoose.Schema({
         type: Date,
         required: true,
         default: Date.now
-    }
+    } 
+
 })
 
 const Note = new mongoose.model("Note", noteSchema);
