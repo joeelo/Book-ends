@@ -1,5 +1,7 @@
-import React, { Component } from 'react'
-import BookThumbnail from "./BookThumbnail"
+import React, { Component } from 'react';
+import BookThumbnail from "./BookThumbnail";
+import { BrowserRouter as Router, Link } from "react-router-dom";
+// import { BrowserRouter as Link } from "react-router-dom"
 
 export default class BookSearchForm extends Component {
 
@@ -37,9 +39,9 @@ export default class BookSearchForm extends Component {
 
     renderBooks = () => {
         try { 
-            const books = this.state.books.map((book, index) => {
-                return <BookThumbnail key={index} book={book} />
-            })
+            const books = this.state.books.map((book, index) => (
+                    <BookThumbnail key={index} book={book} />
+            ))
             return books
         } catch (error) {
             console.log(error);
