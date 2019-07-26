@@ -1,6 +1,10 @@
 import React, { Component } from "react"
 
 class BookDetails extends Component {
+
+    state = {
+        bookObj: {}
+    }
     
     componentDidMount() {
         this.fetchBookById();
@@ -12,7 +16,9 @@ class BookDetails extends Component {
             const url = `http://localhost:3000/book/id/${bookId}`
             const response = await fetch(url);
             const json = await response.json();
-            console.log(json);
+            this.setState({
+                bookObj: json
+            })
         } catch (error) {
             console.log("error", error)
         }
@@ -21,8 +27,8 @@ class BookDetails extends Component {
     render(){
         return (
             <div>
-            <p>working</p>
-        </div>
+                {/* <h2>{this.state.bookObj.volumeInfo.title}</h2> */}
+            </div>
         )
     }
 
