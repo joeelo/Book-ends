@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Link, Route, Switch} from "react-router-dom"
 import './App.css';
 import BookSearchForm from "./bookSearch/BookSearchForm"
 import BookDetails from './bookSearch/BookDetails';
-import BookThumbail from "./bookSearch/BookThumbnail"
+import ReviewPage from "./review/ReviewPage"
+
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Switch>
       <Route exact path="/books" component={BookSearchForm} />
       <Route path="/book/:title" component={BookDetails}/>
+      <Route path="/book/:id/review" component={ReviewPage} />
 
       </Switch>
       </Fragment>

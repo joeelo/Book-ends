@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import { Link } from "react-router-dom"
 
 class BookDetails extends Component {
 
@@ -32,7 +33,7 @@ class BookDetails extends Component {
                 ?   
                     <div>
                         <h2>{this.state.bookObj.volumeInfo.title}</h2>
-                        <button></button>
+                        <Link to={`book/${this.state.bookObj.id}/review}`} ><button> Add review </button></Link>
                     </div>
                 : 
                     null
