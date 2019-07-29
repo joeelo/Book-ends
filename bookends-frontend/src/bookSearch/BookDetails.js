@@ -3,7 +3,7 @@ import React, { Component } from "react"
 class BookDetails extends Component {
 
     state = {
-        bookObj: {}
+        bookObj: null
     }
     
     componentDidMount() {
@@ -25,9 +25,18 @@ class BookDetails extends Component {
     }
 
     render(){
+        console.log(this.state.bookObj);
         return (
             <div>
-                {/* <h2>{this.state.bookObj.volumeInfo.title}</h2> */}
+                {this.state.bookObj !== null 
+                ?   
+                    <div>
+                        <h2>{this.state.bookObj.volumeInfo.title}</h2>
+                        <button></button>
+                    </div>
+                : 
+                    null
+                }
             </div>
         )
     }
