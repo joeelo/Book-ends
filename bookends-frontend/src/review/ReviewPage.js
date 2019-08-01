@@ -3,33 +3,24 @@ import React, { Component } from 'react'
 export default class ReviewPage extends Component {
 
     state = {
-        bookObj: null
+        user: {email: "josephClorenzo@gmail.com"},
+        bookObj: this.props.location.state, 
+        textValue: ""
     }
 
-    componentDidMount() {
-        this.fetchBookById();
+    changeHandler = (event) => {
+        this.setState({
+            textValue: event.target.value
+        })
     }
 
-    fetchBookById = async () => {
-        try {
-            const bookId = this.props.location.pathname.replace("/book/", "");
-            const url = `http://localhost:3000/book/id/${bookId}`;
-            const response = await fetch(url);
-            const json = await response.json();
-            this.setState({
-                bookObj: json
-            })
-        } catch (error) {
-            console.log("error", error);
-        }
-    }
 
     render() {
-        console.log(this.props.location.state);
         return (
             <div>
                 <form>
-                    <input type="text"/>
+                    <textarea value={this.state.textValue} onChange={this.changeHandler}/>
+                    <button> Post </button>
                 </form>
             </div>
         )
