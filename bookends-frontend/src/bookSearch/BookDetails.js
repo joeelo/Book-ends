@@ -4,7 +4,8 @@ import { Link } from "react-router-dom"
 class BookDetails extends Component {
 
     state = {
-        bookObj: null
+        bookObj: null,
+        showForm: false
     }
     
     componentDidMount() {
@@ -33,7 +34,9 @@ class BookDetails extends Component {
                 ?   
                     <div>
                         <h2>{this.state.bookObj.volumeInfo.title}</h2>
-                        <Link to={`book/${this.state.bookObj.id}/review}`} ><button> Add review </button></Link>
+                        <Link to={{
+                            pathname:`/book/${this.state.bookObj.id}/review`,
+                            state: this.state.bookObj}}><button> Add review </button></Link>
                     </div>
                 : 
                     null

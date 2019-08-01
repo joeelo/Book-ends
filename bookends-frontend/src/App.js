@@ -14,12 +14,12 @@ function App() {
       <div className="App">
         <p>working</p>
 
-        <Link to="books"> Book </Link>
+        <Link to="/books"> Book </Link>
       </div>
       <Switch>
+      <Route path="/book/:id/review" component={ReviewPage} />
       <Route exact path="/books" component={BookSearchForm} />
       <Route path="/book/:title" component={BookDetails}/>
-      <Route path="/book/:id/review" component={ReviewPage} />
 
       </Switch>
       </Fragment>
