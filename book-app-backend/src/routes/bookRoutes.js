@@ -57,8 +57,9 @@ router.patch("/book/:id", async (req, res) => {
     }
 })
 
-router.post("/book/review/:bookId", async (req, res) => {
+router.post("/book/:bookId/review", async (req, res) => {
     try {
+        console.log("working");
         const post = new Post(req.body);
         post.book = req.params.bookId;
         console.log(post);
