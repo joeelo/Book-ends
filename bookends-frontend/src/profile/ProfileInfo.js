@@ -7,12 +7,15 @@ export default class ProfileInfo extends Component {
     }
 
     componentDidMount() {
-
+        this.fetchAllUserBooks();
     }
 
     fetchAllUserBooks = async () => {
         try {
-                
+            const url = `http://localhost:3000/user/show/${this.props.user.id}`;
+            const response = await fetch(url);
+            const json = await response.json();   
+            console.log(json);    
         } catch (error) {
             
         }
