@@ -29,6 +29,15 @@ router.get("/book/id/:id", async (req, res) => {
     }
 })
 
+router.get("/book/:id/reviews", async (req, res) => {
+    try {
+        const book = req.params.id;
+        console.log(req.params.id);
+    } catch (error) {
+        
+    }
+})
+
 router.post("/books", async (req, res) => {
     try {  
         const book = new Book(req.body);
@@ -60,12 +69,24 @@ router.patch("/book/:id", async (req, res) => {
 
 router.post("/book/:bookId/review", async (req, res) => {
     try {
-        console.log("working");
-        const post = new Post(req.body);
-        post.book = req.params.bookId;
-        console.log(post);
+        const book = await Book.findOne({"any.id": req.body.book});
+        const user = await User.findOne({ _id: req.body.user });
+        console.log(user);
+        if (book) {
+            const post = new Post(req.body);
+            user.posts.push(post);
+            await user.save();
+            console.log("book");
+            res.send(post)
+        } else {
+            console.log("created");
+            Book.create({any: req.body.bookObj, user: req.body.user.toString()});
+            const post = new Post(req.body);
+            console.log("no book");
+            res.send(post)
+
+        }
         // await post.save();
-        res.send(post)
     } catch (error) {
         res.status(400).send(error);
     }

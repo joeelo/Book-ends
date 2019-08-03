@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export default class ReviewPage extends Component {
 
     state = {
-        user: {id: "5d42d6b70adc7a1fda9f9b95"},
+        user: {id: "5d2924256ea7922d902f02f6"},
         bookObj: this.props.location.state, 
         postTitle: "",
         textValue: ""
@@ -17,26 +17,33 @@ export default class ReviewPage extends Component {
 
     postHandler = async (event) => {
         event.preventDefault();
-        const url = `http://localhost:3000/book/${this.state.bookObj.id}/review`;
-        const data = {
-            user: this.state.user.id,
-            title: this.state.postTitle,
-            content: this.state.textValue,
-            book: this.state.bookObj
+        try {
+            const url = `http://localhost:3000/book/${this.state.bookObj.id}/review`;
+            const data = {
+                user: this.state.user.id,
+                title: this.state.postTitle,
+                content: this.state.textValue,
+                book: this.state.bookObj.id,
+                bookObj: this.state.bookObj
+            }
+            console.log("posted");
+            return fetch(url, {
+                method: "POST",
+                mode: "cors",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+        } catch (error) {
+            console.log(error);
         }
-        return fetch(url, {
-            method: "POST",
-            mode: "cors",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        })
     }
 
     render() {
+
         const book = this.props.location.state
-        console.log(book.volumeInfo.title)
+
         return (
             <div>
 

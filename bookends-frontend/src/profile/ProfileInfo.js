@@ -2,7 +2,25 @@ import React, { Component } from 'react'
 
 export default class ProfileInfo extends Component {
 
+    state = {
 
+    }
+
+    componentDidMount() {
+
+    }
+
+    fetchAllUserBooks = async () => {
+        try {
+                
+        } catch (error) {
+            
+        }
+    }
+
+    fetchAllNotes = async () => {
+
+    }
 
     render() {
         return (
