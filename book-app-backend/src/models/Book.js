@@ -29,11 +29,15 @@ const BookSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId, ref: "User",
         required: true
-    }
+    },
+
+    post: [{
+        type: mongoose.Schema.Types.ObjectId, ref: "Post"
+    }]
 })
 
 BookSchema.pre("save", async function(next) {
-
+    
     const self = this;
     const user = await User.findOne({_id: this.user});
     user.books.push(this);

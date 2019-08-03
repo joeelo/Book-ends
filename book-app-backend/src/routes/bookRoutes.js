@@ -32,8 +32,9 @@ router.get("/book/id/:id", async (req, res) => {
 router.post("/books", async (req, res) => {
     try {  
         const book = new Book(req.body);
-        console.log(book);
+        const user = await User.findOne({_id: req.body.user});
         await book.save(); 
+        user.books.push(book);
         res.send(book);
     } catch (error) {
         res.status(400).send(error);
@@ -63,12 +64,12 @@ router.post("/book/:bookId/review", async (req, res) => {
         const post = new Post(req.body);
         post.book = req.params.bookId;
         console.log(post);
-        await post.save();
+        // await post.save();
         res.send(post)
     } catch (error) {
         res.status(400).send(error);
     }
-})
+});
 
 
 module.exports = router;
