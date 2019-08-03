@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const postSchema = new mongoose.Schema({
+const reviewSchema = new mongoose.Schema({
 
     title: {
         type: String,
@@ -29,7 +29,7 @@ const postSchema = new mongoose.Schema({
 
 })
 
-const Post = new mongoose.model("Post", postSchema);
+const Review = new mongoose.model("Review", reviewSchema);
 
-module.exports = Post
+module.exports = Review
 

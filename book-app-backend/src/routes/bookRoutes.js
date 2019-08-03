@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Book = require("../models/Book");
 const User = require("../models/User");
-const Post = require("../models/Post");
+const Review = require("../models/Review");
 const fetch = require("node-fetch");
 
 router.get("/book/:bookTitle", async (req, res) => {
@@ -34,7 +34,7 @@ router.get("/book/:id/reviews", async (req, res) => {
         const book = req.params.id;
         console.log(req.params.id);
     } catch (error) {
-        
+        console.log(error);
     }
 })
 
@@ -73,20 +73,19 @@ router.post("/book/:bookId/review", async (req, res) => {
         const user = await User.findOne({ _id: req.body.user });
         console.log(user);
         if (book) {
-            const post = new Post(req.body);
-            user.posts.push(post);
+            const review = new Review(req.body);
+            user.reviews.push(review);
             await user.save();
-            console.log("book");
-            res.send(post)
+            Review.create(review);
+            res.send(review)
         } else {
             console.log("created");
             Book.create({any: req.body.bookObj, user: req.body.user.toString()});
-            const post = new Post(req.body);
+            const review = new Review(req.body);
             console.log("no book");
-            res.send(post)
+            res.send(review)
 
         }
-        // await post.save();
     } catch (error) {
         res.status(400).send(error);
     }

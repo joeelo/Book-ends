@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const port = process.env.PORT || 3000;
 
-app.use(userRoutes)
+app.use(userRoutes);
 app.use(bookRoutes);
 
 app.listen(port, () => {
