@@ -35,11 +35,18 @@ export default class ReviewPage extends Component {
     }
 
     render() {
+        const book = this.props.location.state
+        console.log(book.volumeInfo.title)
         return (
             <div>
+
+                <h1> {book.volumeInfo.title} </h1>
+                <span> Post a review </span>
+
                 <form onSubmit={this.postHandler}>
-                    <input type="text" name="postTitle" value={this.state.postTitle} onChange={this.changeHandler}/>
-                    <textarea name="textValue" value={this.state.textValue} onChange={this.changeHandler}/>
+                    <label htmlFor="postTitle"> Title of your post </label> <br/>
+                    <input type="text" name="postTitle" value={this.state.postTitle} onChange={this.changeHandler}/> <br/>
+                    <textarea name="textValue" value={this.state.textValue} placeholder="Write review here" onChange={this.changeHandler}/> <br/>
                     <button> Post </button>
                 </form>
             </div>
