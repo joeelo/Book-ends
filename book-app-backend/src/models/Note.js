@@ -17,7 +17,6 @@ const noteSchema = new mongoose.Schema({
 
     book: {
         type: mongoose.Schema.Types.ObjectId, ref: "Book",
-        required: true
     }, 
 
     user: {
@@ -29,7 +28,12 @@ const noteSchema = new mongoose.Schema({
         type: Date,
         required: true,
         default: Date.now
-    } 
+    }, 
+
+    updated_at: {
+        type: Date,
+        default: Date.now
+    }
 
 })
 

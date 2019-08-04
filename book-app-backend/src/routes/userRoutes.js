@@ -23,9 +23,12 @@ router.post("/users", async (req, res) => {
 
 router.get("/user/show/:id", async (req, res) => {
     try {
-            const user = await User.findOne({_id: req.params.id})
+            const user = await User.findOne({ _id: req.params.id })
             .populate("books")
-            .exec((err, book) => res.send(book));
+            .exec((err, book) => {
+                book.user = null;
+                res.send(book);
+            });
     } catch (error) {
         res.status(400).send(error); 
     }
