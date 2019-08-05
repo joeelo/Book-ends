@@ -91,9 +91,10 @@ router.post("/book/:bookId/review", async (req, res) => {
     }
 });
 
-router.patch("book/rating", async (req, res) => {
+router.patch("/rating", async (req, res) => {
     try {
-        console.log("working");
+        const user = await User.find({ _id: req.body.user.id});
+        console.log(user);
     } catch (error) {
         res.status(400).send(error);
     }

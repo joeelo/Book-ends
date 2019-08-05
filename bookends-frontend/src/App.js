@@ -1,8 +1,8 @@
 import React, {Fragment, Component} from 'react';
 import { BrowserRouter as Router, Link, Route, Switch} from "react-router-dom"
 import './App.css';
-import BookSearchForm from "./bookSearch/BookSearchForm"
-import BookDetails from './bookSearch/BookDetails';
+import BookSearchForm from "./book/BookSearchForm"
+import BookDetails from './book/BookDetails';
 import ReviewPage from "./review/ReviewPage"
 import Profile from "./profile/ProfileInfo"
 
