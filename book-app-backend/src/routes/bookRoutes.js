@@ -93,9 +93,15 @@ router.post("/book/:bookId/review", async (req, res) => {
 
 router.patch("/rating", async (req, res) => {
     try {
+        console.log(req.body)
         const user = await User.find({ _id: req.body.user.id});
-        console.log(user);
+        const book = await Book.findOne({ "any.id" : req.body.bookId, user: req.body.user.id });
+        book.rating = req.body.rating;
+        console.log("book", book);
+        book.save();
+        res.send("patch completed");
     } catch (error) {
+        console.log(error);
         res.status(400).send(error);
     }
 })

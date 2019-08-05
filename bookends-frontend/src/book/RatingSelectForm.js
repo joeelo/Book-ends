@@ -4,7 +4,7 @@ export default class RatingSelectForm extends Component {
 
     state = {
         user: {id: "5d2924256ea7922d902f02f6"},
-        selectValue: ""
+        selectValue: 1
     }
 
     handleSelectChange = (event) => {
@@ -16,7 +16,7 @@ export default class RatingSelectForm extends Component {
         try {
             const data = {
                 user: this.state.user,
-                rating: this.state.selectValue,
+                rating: parseInt(this.state.selectValue),
                 bookId: this.props.book.id
             }
             console.log("posted");
