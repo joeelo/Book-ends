@@ -33,7 +33,7 @@ class App extends Component {
           <Route path="/profile" render={() => <Profile user={this.state.user}/>} />
           <Route path="/book/:id/review" component={ReviewPage} />
           <Route exact path="/books" component={BookSearchForm} />
-          <Route path="/book/:title" component={BookDetails}/>
+          <Route path="/book/:id" component={BookDetails}/>
     
         </Switch>
         </Fragment>

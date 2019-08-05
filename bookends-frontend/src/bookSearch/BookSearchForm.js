@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import BookThumbnail from "./BookThumbnail";
-import { BrowserRouter as Router, Link } from "react-router-dom";
 
 export default class BookSearchForm extends Component {
 

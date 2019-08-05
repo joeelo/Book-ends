@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
-// import BookDetails from "./BookDetails";
-import { BrowserRouter as Router, Link, Route} from "react-router-dom";
-import BookDetails from './BookDetails';
+import React from 'react';
+import { Link } from "react-router-dom";
 
 const BookThumbnail = (props) => {
-
     const { book } = props
+    console.log("book thumbnail")
         return (
 
                 <div>
                     <Link to={`/book/${book.id}`} >
-                    <p> {book.volumeInfo.title} </p>
+                        <p> {book.volumeInfo.title} </p>
+                        <p> </p>
                     </Link>
                 </div>
 

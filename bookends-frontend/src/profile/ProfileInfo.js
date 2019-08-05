@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import UserBook from "./UserBook"
+import UsersBook from "./UsersBook"
 
 export default class ProfileInfo extends Component {
 
@@ -30,7 +30,7 @@ export default class ProfileInfo extends Component {
 
     renderUserBooks = () => {
         const booksArray = this.state.books.books.map((book, index) => {
-           return <UserBook key={index} props={book}/>
+           return <UsersBook key={index} book={book}/>
         })
         return booksArray;
     }
@@ -41,6 +41,7 @@ export default class ProfileInfo extends Component {
                 <h1>{this.props.user.name}</h1>
                 <h2>{this.props.user.email}</h2>
 
+                <h3>My Books</h3>
                 {this.state.books ? this.renderUserBooks() : null}
             </div>
         )

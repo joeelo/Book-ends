@@ -27,6 +27,7 @@ class BookDetails extends Component {
     }
 
     render(){
+        console.log("book details")
         return (
             <div>
                 {this.state.bookObj !== null 

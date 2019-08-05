@@ -39,7 +39,7 @@ const BookSchema = new mongoose.Schema({
 BookSchema.pre("save", async function(next) {
     
     const self = this;
-    const user = await User.findOne({_id: this.user});
+    const user = await User.findOne({ _id: this.user });
     user.books.push(this);
     await user.save();
 
