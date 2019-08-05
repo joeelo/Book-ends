@@ -91,5 +91,13 @@ router.post("/book/:bookId/review", async (req, res) => {
     }
 });
 
+router.patch("book/rating", async (req, res) => {
+    try {
+        console.log("working");
+    } catch (error) {
+        res.status(400).send(error);
+    }
+})
+
 
 module.exports = router;

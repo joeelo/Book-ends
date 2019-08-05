@@ -5,7 +5,8 @@ class BookDetails extends Component {
 
     state = {
         bookObj: null,
-        showForm: false
+        showForm: false,
+        selectValue: ""
     }
     
     componentDidMount() {
@@ -26,8 +27,21 @@ class BookDetails extends Component {
         }
     }
 
+    handleSelectChange = (event) => {
+        this.setState({selectValue: event.target.value});
+    }
+
+    handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            console.log(this.state.selectValue);
+        } catch (error) {
+            console.log(error);
+        }
+
+    }
+
     render(){
-        console.log("book details")
         return (
             <div>
                 {this.state.bookObj !== null 
@@ -36,7 +50,23 @@ class BookDetails extends Component {
                         <h2>{this.state.bookObj.volumeInfo.title}</h2>
                         <Link to={{
                             pathname:`/book/${this.state.bookObj.id}/review`,
-                            state: this.state.bookObj}}><button> Add review </button></Link>
+                            state: this.state.bookObj}}><button> Add review </button>
+                        </Link>
+                        <form onSubmit={this.handleSubmit}>
+                            <label>
+                                <select value={this.state.selectValue} onChange={this.handleSelectChange}> 
+                                    <option value="1"> 1 </option>
+                                    <option value="2"> 2 </option>
+                                    <option value="3"> 3 </option>
+                                    <option value="4"> 4 </option>
+                                    <option value="5"> 5 </option>
+                                </select>
+                                <button> submit </button>
+                            </label>
+
+                        </form>
+                        <p> avg. rating {this.state.bookObj.volumeInfo.averageRating}</p>
+                        
                     </div>
                 : 
                     null
