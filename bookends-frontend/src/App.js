@@ -5,6 +5,8 @@ import BookSearchForm from "./book/BookSearchForm"
 import BookDetails from './book/BookDetails';
 import ReviewPage from "./review/ReviewPage"
 import Profile from "./profile/ProfileInfo"
+import NavBar from "./nav/NavBar"
+import NewUserForm from './login/NewUserForm';
 
 class App extends Component {
 
@@ -23,9 +25,7 @@ class App extends Component {
       <Fragment>
   
         <div className="App">
-
-          <Link to="/books"> Book </Link> <br/>
-          <Link to="/profile" > Profile </Link>
+          <NavBar />
 
         </div>
 
@@ -34,7 +34,7 @@ class App extends Component {
           <Route path="/book/:id/review" component={ReviewPage} />
           <Route exact path="/books" component={BookSearchForm} />
           <Route path="/book/:id" component={BookDetails}/>
-    
+          <Route exact path="/sign-up" render={() => <NewUserForm />} />
         </Switch>
         </Fragment>
   
