@@ -1,5 +1,5 @@
 import React, {Fragment, Component} from 'react';
-import { BrowserRouter as Router, Link, Route, Switch} from "react-router-dom"
+import { BrowserRouter as Router, Route, Switch, withRouter} from "react-router-dom"
 import './App.css';
 import BookSearchForm from "./book/BookSearchForm"
 import BookDetails from './book/BookDetails';
@@ -15,6 +15,14 @@ class App extends Component {
       id: "5d2924256ea7922d902f02f6",
       name: "Joe Lorenzo", 
       email: "same@ail.com"
+    }
+  }
+
+  loginUser = async (user) => {
+    try {
+      console.log(user);
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -34,7 +42,7 @@ class App extends Component {
           <Route path="/book/:id/review" component={ReviewPage} />
           <Route exact path="/books" component={BookSearchForm} />
           <Route path="/book/:id" component={BookDetails}/>
-          <Route exact path="/sign-up" render={() => <NewUserForm />} />
+          <Route exact path="/sign-up" render={() => <NewUserForm loginUser={this.loginUser} history={this.props.history}/>} />
         </Switch>
         </Fragment>
   

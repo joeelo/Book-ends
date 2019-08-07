@@ -6,7 +6,6 @@ const userSchema = new mongoose.Schema({
         required: true,
         min: [2, "name must be longer than that"],
         max: 16,
-        unique: true
     },
 
     email :{
@@ -15,12 +14,21 @@ const userSchema = new mongoose.Schema({
         unique: true
     },
 
+    password: {
+        type: String,
+        required: true
+    },
+
     books: [{
         type: mongoose.Schema.Types.ObjectId, ref: "Book"
     }],
 
     reviews: [{
         type: mongoose.Schema.Types.ObjectId, ref: "Review"
+    }], 
+
+    notes: [{
+        any: Object
     }]
 
 

@@ -13,9 +13,13 @@ router.get("/user", async (req, res) => {
 
 router.post("/users", async (req, res) => {
     try {
-        const user = new User(req.body);
-        await user.save();
-        res.send(user);
+        const user = await User.findOne({email: req.body.email, password: req.body.password});
+        // await user.save();
+        if (user) {
+            res.send(user)
+        } else {
+            res.send({message: "wrong login info please try again"});
+        }
     } catch (error) {
         res.status(400).send(error);
     }
