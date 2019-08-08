@@ -31,8 +31,8 @@ const BookSchema = new mongoose.Schema({
         required: true
     },
 
-    posts: [{
-        type: mongoose.Schema.Types.ObjectId, ref: "Post"
+    reviews: [{
+        type: mongoose.Schema.Types.ObjectId, ref: "Review"
     }]
 })
 

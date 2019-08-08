@@ -1,6 +1,7 @@
-import React, { Component } from "react"
-import { Link } from "react-router-dom"
-import RatingSelectForm from "./RatingSelectForm"
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import RatingSelectForm from "./RatingSelectForm";
+import AddReadBook from "../buttons/AddReadBook"
 
 class BookDetails extends Component {
 
@@ -30,8 +31,6 @@ class BookDetails extends Component {
 
 
     render(){
-        console.log("STATE", this.state);
-        console.log("PROPS", this.props);
         return (
             <div>
                 {this.state.bookObj !== null 
@@ -50,7 +49,7 @@ class BookDetails extends Component {
                         <RatingSelectForm book={this.state.bookObj} user={this.props.user}/>
 
                         <p> avg. rating {this.state.bookObj.volumeInfo.averageRating}</p>
-                        
+                        <AddReadBook book={this.state.bookObj} user={this.props.user}/>
                     </div>
                 : 
                     null

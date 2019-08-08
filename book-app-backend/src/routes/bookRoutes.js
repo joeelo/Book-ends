@@ -40,11 +40,12 @@ router.get("/book/:id/reviews", async (req, res) => {
 
 router.post("/books", async (req, res) => {
     try {  
-        const book = new Book(req.body);
-        const user = await User.findOne({_id: req.body.user});
-        await book.save(); 
-        user.books.push(book);
-        res.send(book);
+        console.log("working");
+        // const book = new Book(req.body);
+        // const user = await User.findOne({_id: req.body.user.id});
+        // await book.save(); 
+        // user.books.push(book);
+        res.send("book");
     } catch (error) {
         res.status(400).send(error);
     }
