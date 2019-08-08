@@ -39,7 +39,11 @@ class BookDetails extends Component {
                         <h2>{this.state.bookObj.volumeInfo.title}</h2>
                         <Link to={{
                             pathname:`/book/${this.state.bookObj.id}/review`,
-                            state: this.state.bookObj}}><button> Add review </button>
+                            state: {
+                                bookObj: this.state.bookObj,
+                                user: this.props.user
+                            }
+                            }}><button> Add review </button>
                         </Link>
 
                         <RatingSelectForm book={this.state.bookObj}/>

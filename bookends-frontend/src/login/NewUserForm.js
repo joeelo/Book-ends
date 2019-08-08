@@ -10,10 +10,6 @@ class NewUserForm extends Component {
         reRender: false
     }
 
-    componentDidUpdate(prevProps, prevState) {
-
-    }
-
     submitHandler = async (event) => {
         event.preventDefault();
         try {
@@ -22,7 +18,7 @@ class NewUserForm extends Component {
                 email: this.state.email,
                 password: this.state.password
             }
-            const url = "http://localhost:3000/users"
+            const url = "http://localhost:3000/users/sign-up";
             this.setState({reRender: true})
             this.props.loginUser(data);
             return fetch(url, {
@@ -71,7 +67,7 @@ class NewUserForm extends Component {
                     <br/>
                     <br/>
 
-                    <button> submit </button>
+                    <button> Sign me up!  </button>
                 </form>
             </div>
         )

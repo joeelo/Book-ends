@@ -12,6 +12,7 @@ export default class ProfileInfo extends Component {
     }
 
     fetchAllUserBooks = async () => {
+        console.log(this.props.user);
         try {
             const url = `http://localhost:3000/user/show/${this.props.user.id}`;
             const response = await fetch(url);

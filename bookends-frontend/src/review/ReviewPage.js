@@ -3,10 +3,13 @@ import React, { Component } from 'react'
 export default class ReviewPage extends Component {
 
     state = {
-        user: {id: "5d2924256ea7922d902f02f6"},
-        bookObj: this.props.location.state, 
+        bookObj: "", 
         postTitle: "",
         textValue: ""
+    }
+
+    componentDidMount() {
+        console.log(this.props);
     }
 
     changeHandler = (event) => {
@@ -18,23 +21,28 @@ export default class ReviewPage extends Component {
     postHandler = async (event) => {
         event.preventDefault();
         try {
-            const url = `http://localhost:3000/book/${this.state.bookObj.id}/review`;
-            const data = {
-                user: this.state.user.id,
-                title: this.state.postTitle,
-                content: this.state.textValue,
-                book: this.state.bookObj.id,
-                bookObj: this.state.bookObj
+            if (this.state.bookObj.id) {
+                const data = {
+                    user: this.props.user.id,
+                    title: this.state.postTitle,
+                    content: this.state.textValue,
+                    book: this.state.bookObj.id,
+                    bookObj: this.state.bookObj
+                }
+                const url = `http://localhost:3000/book/${this.state.bookObj.id}/review`;
+                console.log("posted");
+                return fetch(url, {
+                    method: "POST",
+                    mode: "cors",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                })
+
+            } else {
+                console.log("something went wrong");
             }
-            console.log("posted");
-            return fetch(url, {
-                method: "POST",
-                mode: "cors",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(data)
-            })
         } catch (error) {
             console.log(error);
         }
@@ -42,21 +50,19 @@ export default class ReviewPage extends Component {
 
     render() {
 
-        const book = this.props.location.state
+        return ( 
+                <div>
 
-        return (
-            <div>
+                    {/* <h1> {book.volumeInfo.title} </h1>
+                    <span> Post a review </span>
 
-                <h1> {book.volumeInfo.title} </h1>
-                <span> Post a review </span>
-
-                <form onSubmit={this.postHandler}>
-                    <label htmlFor="postTitle"> Title of your post </label> <br/>
-                    <input type="text" name="postTitle" value={this.state.postTitle} onChange={this.changeHandler}/> <br/>
-                    <textarea name="textValue" value={this.state.textValue} placeholder="Write review here" onChange={this.changeHandler}/> <br/>
-                    <button> Post </button>
-                </form>
-            </div>
+                    <form onSubmit={this.postHandler}>
+                        <label htmlFor="postTitle"> Title of your post </label> <br/>
+                        <input type="text" name="postTitle" value={this.state.postTitle} onChange={this.changeHandler}/> <br/>
+                        <textarea name="textValue" value={this.state.textValue} placeholder="Write review here" onChange={this.changeHandler}/> <br/>
+                        <button> Post </button>
+                    </form> */}
+                </div> 
         )
     }
 }

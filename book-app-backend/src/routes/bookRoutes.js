@@ -71,21 +71,19 @@ router.post("/book/:bookId/review", async (req, res) => {
     try {
         const book = await Book.findOne({"any.id": req.body.book});
         const user = await User.findOne({ _id: req.body.user });
-        console.log(user);
-        if (book) {
-            const review = new Review(req.body);
-            user.reviews.push(review);
-            await user.save();
-            Review.create(review);
-            res.send(review)
-        } else {
-            console.log("created");
-            Book.create({any: req.body.bookObj, user: req.body.user.toString()});
-            const review = new Review(req.body);
-            console.log("no book");
-            res.send(review)
-
-        }
+        const review = new Review(req.body);
+        console.log(review)
+        // if (book) {
+        //     user.reviews.push(review);
+        //     await user.save();
+        //     Review.create(review);
+        //     res.send(review)
+        // } else {
+        //     Book.create({any: req.body.bookObj, user: req.body.user.id});
+        //     user.reviews.push(review);
+        //     Review.create(review)
+        //     res.send(review)
+        // }
     } catch (error) {
         res.status(400).send(error);
     }
