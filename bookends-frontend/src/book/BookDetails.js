@@ -15,7 +15,6 @@ class BookDetails extends Component {
 
     fetchBookById = async () => {
         try {
-            console.log(this.props.props.location.pathname);
             const bookId = this.props.props.location.pathname.replace("/book/", "")
             const url = `http://localhost:3000/book/id/${bookId}`
             const response = await fetch(url);
@@ -31,7 +30,8 @@ class BookDetails extends Component {
 
 
     render(){
-        console.log(this.state.bookObj);
+        console.log("STATE", this.state);
+        console.log("PROPS", this.props);
         return (
             <div>
                 {this.state.bookObj !== null 
@@ -47,7 +47,7 @@ class BookDetails extends Component {
                             }}><button> Add review </button>
                         </Link>
 
-                        <RatingSelectForm book={this.state.bookObj}/>
+                        <RatingSelectForm book={this.state.bookObj} user={this.props.user}/>
 
                         <p> avg. rating {this.state.bookObj.volumeInfo.averageRating}</p>
                         

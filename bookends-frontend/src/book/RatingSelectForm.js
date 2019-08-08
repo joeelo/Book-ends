@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export default class RatingSelectForm extends Component {
 
     state = {
-        user: {id: "5d2924256ea7922d902f02f6"},
+        user: {id: this.props.user.id},
         selectValue: 1
     }
 

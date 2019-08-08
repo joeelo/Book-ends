@@ -50,10 +50,12 @@ export default class ReviewPage extends Component {
 
     render() {
 
+        const book = this.state.bookObj;
+
         return ( 
                 <div>
 
-                    {/* <h1> {book.volumeInfo.title} </h1>
+                    <h1> {book.volumeInfo.title} </h1>
                     <span> Post a review </span>
 
                     <form onSubmit={this.postHandler}>
@@ -61,7 +63,7 @@ export default class ReviewPage extends Component {
                         <input type="text" name="postTitle" value={this.state.postTitle} onChange={this.changeHandler}/> <br/>
                         <textarea name="textValue" value={this.state.textValue} placeholder="Write review here" onChange={this.changeHandler}/> <br/>
                         <button> Post </button>
-                    </form> */}
+                    </form>
                 </div> 
         )
     }

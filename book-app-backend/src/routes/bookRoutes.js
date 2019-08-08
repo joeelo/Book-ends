@@ -69,8 +69,8 @@ router.patch("/book/:id", async (req, res) => {
 
 router.post("/book/:bookId/review", async (req, res) => {
     try {
-        const book = await Book.findOne({"any.id": req.body.book});
-        const user = await User.findOne({ _id: req.body.user });
+        // const book = await Book.findOne({"any.id": req.body.book});
+        // const user = await User.findOne({ _id: req.body.user });
         const review = new Review(req.body);
         console.log(review)
         // if (book) {
@@ -92,8 +92,11 @@ router.post("/book/:bookId/review", async (req, res) => {
 router.patch("/rating", async (req, res) => {
     try {
         const book = await Book.findOne({ "any.id" : req.body.bookId, user: req.body.user.id });
-        book.rating = req.body.rating;
-        book.save();
+        const user = await User.findOne({_id: req.body.user.id})
+        console.log(book)
+        // book.rating = req.body.rating;
+        // book.save();
+        console.log(req.body, book);
         res.send("patch completed");
     } catch (error) {
         console.log(error);
