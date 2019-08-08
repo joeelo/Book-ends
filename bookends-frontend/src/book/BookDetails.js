@@ -15,7 +15,8 @@ class BookDetails extends Component {
 
     fetchBookById = async () => {
         try {
-            const bookId = this.props.location.pathname.replace("/book/", "")
+            console.log(this.props.props.location.pathname);
+            const bookId = this.props.props.location.pathname.replace("/book/", "")
             const url = `http://localhost:3000/book/id/${bookId}`
             const response = await fetch(url);
             const json = await response.json();

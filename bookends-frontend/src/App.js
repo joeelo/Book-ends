@@ -57,7 +57,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/profile" render={() => <Profile user={this.state.user}/>} />
           <Route path="/book/:id/review" component={ReviewPage} />
-          <Route path="/book/:id" render={ () => <BookDetails user={this.state.user}/>}/>
+          <Route path="/book/:id" render={ (props) => <BookDetails user={this.state.user} props={props}/>}/>
           <Route exact path="/books" component={BookSearchForm} />
           <Route exact path="/sign-up" render={() => <NewUserForm loginUser={this.loginUser} />} />
           <Route exact path="/login" render={() => <LoginForm loginUser={this.loginUser}/>}/>
