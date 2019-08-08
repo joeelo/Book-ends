@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
 import { withRouter } from "react-router-dom"
 
-export default class NewUserForm extends Component {
-
+class NewUserForm extends Component {
+    
     state = {
         name: "",
         email: "", 
-        password: ""
+        password: "",
+        reRender: false
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+
     }
 
     submitHandler = async (event) => {
@@ -18,7 +23,9 @@ export default class NewUserForm extends Component {
                 password: this.state.password
             }
             const url = "http://localhost:3000/users"
-            fetch(url, {
+            this.setState({reRender: true})
+            this.props.loginUser(data);
+            return fetch(url, {
                 method: "POST", 
                 mode: "cors",
                 headers: {
@@ -28,8 +35,10 @@ export default class NewUserForm extends Component {
             })
             .then(res => res.json())
             .then(user => {
+                this.props.loginUser(data);
+                this.props.history.push("/profile");
                 if (user._id !== null) {
-                    this.props.loginUser(user);
+
                 }
                 else {
                     this.props.loginUser({error: "cannot find user"});
@@ -68,3 +77,5 @@ export default class NewUserForm extends Component {
         )
     }
 }
+
+export default withRouter(NewUserForm);
