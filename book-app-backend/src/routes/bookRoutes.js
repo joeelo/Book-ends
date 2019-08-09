@@ -40,12 +40,20 @@ router.get("/book/:id/reviews", async (req, res) => {
 
 router.post("/books", async (req, res) => {
     try {  
-        console.log("working");
-        // const book = new Book(req.body);
-        // const user = await User.findOne({_id: req.body.user.id});
-        // await book.save(); 
-        // user.books.push(book);
-        res.send("book");
+        const foundBook = await Book.findOne({"any.id": req.body.any.id, user: req.body.user.id});
+        if (foundBook) {
+            foundBook.finished = true;
+            foundBook.save();
+            res.send({message: "already saved to DB and user"});    
+        } else {
+            console.log("new book");
+            const book = new Book();
+            book.any = req.body.any;
+            book.user = req.body.user.id;
+            book.finished = req.body.finished;
+            await book.save(); 
+            res.send(book);
+        }
     } catch (error) {
         res.status(400).send(error);
     }
@@ -90,15 +98,23 @@ router.post("/book/:bookId/review", async (req, res) => {
     }
 });
 
-router.patch("/rating", async (req, res) => {
+router.put("/rating", async (req, res) => {
     try {
-        const book = await Book.findOne({ "any.id" : req.body.bookId, user: req.body.user.id });
-        const user = await User.findOne({_id: req.body.user.id})
-        console.log(book)
-        // book.rating = req.body.rating;
-        // book.save();
-        console.log(req.body, book);
-        res.send("patch completed");
+        const foundBook = await Book.findOne({ "any.id": req.body.book.id, user: req.body.user.id});
+        if (foundBook) {
+            foundBook.rating = req.body.rating;
+            foundBook.save();
+            console.log("hit");
+            return res.send({message: "updated rating!", foundBook});
+        } else {
+            let newBook = new Book();
+            newBook.any = req.body.book;
+            newBook.user = req.body.user.id;
+            newBook.rating = req.body.rating;
+            // await newBook.save();
+            console.log("working")
+            res.send({message: "created book and rating!", newBook});
+        }
     } catch (error) {
         console.log(error);
         res.status(400).send(error);

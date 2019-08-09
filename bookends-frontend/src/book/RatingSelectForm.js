@@ -17,17 +17,20 @@ export default class RatingSelectForm extends Component {
             const data = {
                 user: this.state.user,
                 rating: parseInt(this.state.selectValue),
-                bookId: this.props.book.id
+                book: this.props.book
             }
-            console.log("posted");
-            return fetch("http://localhost:3000/rating", {
-                method: "PATCH",
+            const url = "http://localhost:3000/rating"
+            const config = {
+                method: "PUT",
                 mode: "cors",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(data)
-            })
+            }
+            let response = await fetch(url, config);
+            let json = await response.json();
+            console.log(json);
         } catch (error) {
             console.log(error);
         }

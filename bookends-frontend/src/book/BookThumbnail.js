@@ -7,6 +7,7 @@ const BookThumbnail = (props) => {
         return (
 
                 <div>
+
                     <Link to={`/book/${book.id}`} >
                         <p> {book.volumeInfo.title} </p>
                     </Link>

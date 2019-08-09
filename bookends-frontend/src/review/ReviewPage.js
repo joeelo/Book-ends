@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
+import BookThumbnail from '../book/BookThumbnail';
 
 export default class ReviewPage extends Component {
 
     state = {
         bookObj: "", 
         postTitle: "",
-        textValue: ""
+        textValue: "", 
     }
 
     componentDidMount() {
@@ -49,12 +50,16 @@ export default class ReviewPage extends Component {
     }
 
     render() {
-
-        const book = this.state.bookObj;
+        console.log(this.props);
+        const book = this.props.location.state.bookObj;
 
         return ( 
-                <div>
+            this.props.location.state.bookObj
 
+            ? 
+                <div>
+                    <BookThumbnail book={book}/>
+                    
                     <h1> {book.volumeInfo.title} </h1>
                     <span> Post a review </span>
 
@@ -65,6 +70,10 @@ export default class ReviewPage extends Component {
                         <button> Post </button>
                     </form>
                 </div> 
+
+            :
+
+            null
         )
     }
 }

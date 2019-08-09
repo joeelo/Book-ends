@@ -1,12 +1,12 @@
 import React from 'react'
 
-const clickHandler = (book) => {
-    console.log(book);
-    const id = book.user.id
+const clickHandler = (props) => {
+    console.log(props.book);
+    console.log(props.user);
     const url = `http://localhost:3000/books` 
     const data = {
-        any: book,
-        user: id,
+        any: props.book,
+        user: props.user,
         finished: true
     };
     return fetch(url, {
@@ -20,7 +20,7 @@ const clickHandler = (book) => {
 }
 
 const AddReadBook = (props) => {
-    console.log(props);
+
     return (
         <div>
 
