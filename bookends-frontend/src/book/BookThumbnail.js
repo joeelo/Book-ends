@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const BookThumbnail = (props) => {
     const { book } = props;
-    console.log(props);
+    // console.log(props);
         return (
 
                 <div>

@@ -18,7 +18,7 @@ const reviewSchema = new mongoose.Schema({
     },
 
     book: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId, ref: "Book",
         required: true
     },
 

@@ -22,13 +22,11 @@ export default class ReviewPage extends Component {
     postHandler = async (event) => {
         event.preventDefault();
         try {
-            if (this.state.bookObj.id) {
                 const data = {
-                    user: this.props.user.id,
+                    user: this.props.location.state.user.id,
                     title: this.state.postTitle,
                     content: this.state.textValue,
-                    book: this.state.bookObj.id,
-                    bookObj: this.state.bookObj
+                    book: this.props.location.state.bookObj
                 }
                 const url = `http://localhost:3000/book/${this.state.bookObj.id}/review`;
                 console.log("posted");
@@ -40,17 +38,13 @@ export default class ReviewPage extends Component {
                     },
                     body: JSON.stringify(data)
                 })
-
-            } else {
-                console.log("something went wrong");
-            }
         } catch (error) {
             console.log(error);
         }
     }
 
     render() {
-        console.log(this.props);
+        // console.log(this.props);
         const book = this.props.location.state.bookObj;
 
         return ( 

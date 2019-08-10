@@ -78,21 +78,28 @@ router.patch("/book/:id", async (req, res) => {
 
 router.post("/book/:bookId/review", async (req, res) => {
     try {
-        // const book = await Book.findOne({"any.id": req.body.book});
-        // const user = await User.findOne({ _id: req.body.user });
-        const review = new Review(req.body);
-        console.log(review)
-        // if (book) {
-        //     user.reviews.push(review);
-        //     await user.save();
-        //     Review.create(review);
-        //     res.send(review)
-        // } else {
-        //     Book.create({any: req.body.bookObj, user: req.body.user.id});
-        //     user.reviews.push(review);
-        //     Review.create(review)
-        //     res.send(review)
-        // }
+        const foundBook = await Book.findOne({"any.id": req.body.book.id, user: req.body.user});
+        const user = await User.findOne({ _id: req.body.user });
+        const review = new Review();
+        console.log(req.body.user);
+        if (foundBook) {
+            review.title = req.body.title, review.content = req.body.content, review.book = req.body.book.id, review.user = req.body.user;
+            await review.save();
+            user.reviews.push(review);
+            await user.save();
+            foundBook.reviews.push(review);
+            await foundBook.save()
+            res.send(review);
+        } else {
+            let newBook = new Book();
+            newBook.any = req.body.book, newBook.user = req.body.user
+            await book.save();
+            review.title = req.body.title, review.content = req.body.content, review.book = req.body.book.id, review.user = req.body.user;
+            await review.save();
+            newBook.reviews.push(review), newBook.save();
+            user.reviews.push(review);
+            res.send(review);
+        }
     } catch (error) {
         res.status(400).send(error);
     }
