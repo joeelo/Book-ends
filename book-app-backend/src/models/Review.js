@@ -12,11 +12,6 @@ const reviewSchema = new mongoose.Schema({
         required: true
     },
 
-    likes: {
-        type: Number,
-        default: 0
-    },
-
     book: {
         type: mongoose.Schema.Types.ObjectId, ref: "Book",
         required: true

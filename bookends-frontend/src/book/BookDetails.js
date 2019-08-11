@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import RatingSelectForm from "./RatingSelectForm";
-import AddReadBook from "../buttons/AddReadBook"
+import AddReadBook from "../buttons/AddReadBook";
+import UserReviews from "../review/UserReviews"
 
 class BookDetails extends Component {
 
     state = {
         bookObj: null,
         showForm: false,
+        reviews: []
     }
     
     componentDidMount() {
@@ -31,18 +33,25 @@ class BookDetails extends Component {
             }
             const response = await fetch(url, config);
             const json = await response.json();
+            console.log(json)
             this.setState({
-                bookObj: json
+                bookObj: json.data, 
+                reviews: json.reviews.reviews
             })
         } catch (error) {
             console.log("error", error)
         }
     }
 
-
+    renderReviews = () => {
+        const reviewDivs = this.state.reviews.map(review => {
+            return <UserReviews key={review._id} review={review}/>
+        })
+        return reviewDivs;
+    }
 
     render(){
-        console.log(this.props);
+        console.log(this.state);
         return (
             <div>
                 {this.state.bookObj !== null 
@@ -62,6 +71,7 @@ class BookDetails extends Component {
 
                         <p> avg. rating {this.state.bookObj.volumeInfo.averageRating}</p>
                         <AddReadBook book={this.state.bookObj} user={this.props.user}/>
+                        {this.renderReviews()}
                     </div>
                 : 
                     null

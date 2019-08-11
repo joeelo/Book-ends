@@ -23,11 +23,11 @@ router.post("/book/id/:id", async (req, res) => {
         const url = `https://www.googleapis.com/books/v1/volumes?q=${book}&key=${process.env.GOOGLE_BOOKS_API}`;
         const response = await fetch(url);
         const json = await response.json();
-        res.send(json.items[0]);  
-        const foundBook = await Book.findOne({ "any.id": req.body.book })
+        // res.send(json.items[0]);  
+        const foundBookReviews = await Book.findOne({ "any.id": req.body.book })
         .populate("reviews")
-        .exec((err, data) => console.log(data));
-
+        .exec()
+        res.send({data: json.items[0], reviews: foundBookReviews});
     } catch (error) {
         res.status(400).send(error);
     }
