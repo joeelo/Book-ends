@@ -17,19 +17,23 @@ router.get("/book/:bookTitle", async (req, res) => {
     }
 })
 
-router.get("/book/id/:id", async (req, res) => {
+router.post("/book/id/:id", async (req, res) => {
     try {
         const book = req.params.id;
         const url = `https://www.googleapis.com/books/v1/volumes?q=${book}&key=${process.env.GOOGLE_BOOKS_API}`;
         const response = await fetch(url);
         const json = await response.json();
         res.send(json.items[0]);  
+        const foundBook = await Book.findOne({ "any.id": req.body.book })
+        .populate("reviews")
+        .exec((err, data) => console.log(data));
+
     } catch (error) {
         res.status(400).send(error);
     }
 })
 
-router.get("/book/:id/reviews", async (req, res) => {
+router.post("/book/:id/user/reviews", async (req, res) => {
     try {
         const book = req.params.id;
         console.log(req.params.id);
@@ -86,9 +90,7 @@ router.post("/book/:bookId/review", async (req, res) => {
             review.title = req.body.title, review.content = req.body.content, review.book = req.body.book.id, review.user = req.body.user;
             await review.save();
             user.reviews.push(review);
-            await user.save();
             foundBook.reviews.push(review);
-            await foundBook.save()
             res.send(review);
         } else {
             let newBook = new Book();

@@ -17,8 +17,19 @@ class BookDetails extends Component {
     fetchBookById = async () => {
         try {
             const bookId = this.props.props.location.pathname.replace("/book/", "")
+            const data = {
+                user: this.props.user,
+                book: bookId
+            }
             const url = `http://localhost:3000/book/id/${bookId}`
-            const response = await fetch(url);
+            const config = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                }, 
+                body: JSON.stringify(data)
+            }
+            const response = await fetch(url, config);
             const json = await response.json();
             this.setState({
                 bookObj: json
@@ -31,6 +42,7 @@ class BookDetails extends Component {
 
 
     render(){
+        console.log(this.props);
         return (
             <div>
                 {this.state.bookObj !== null 

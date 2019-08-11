@@ -1,6 +1,5 @@
 import React, {Fragment, Component} from 'react';
-import { Router, Route, Switch} from "react-router-dom";
-import history from "./history";
+import { Route, Switch} from "react-router-dom";
 import './App.css';
 import BookSearchForm from "./book/BookSearchForm";
 import BookDetails from './book/BookDetails';

@@ -23,28 +23,30 @@ export default class ReviewPage extends Component {
         event.preventDefault();
         try {
                 const data = {
-                    user: this.props.location.state.user.id,
+                    user: this.props.location.state.user,
                     title: this.state.postTitle,
                     content: this.state.textValue,
                     book: this.props.location.state.bookObj
                 }
                 const url = `http://localhost:3000/book/${this.state.bookObj.id}/review`;
-                console.log("posted");
-                return fetch(url, {
+                const config =  {
                     method: "POST",
                     mode: "cors",
                     headers: {
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify(data)
-                })
+                }
+                const response = await fetch(url, config);
+                const json = response.json();
+                console.log(json);
         } catch (error) {
             console.log(error);
         }
     }
 
     render() {
-        // console.log(this.props);
+        console.log(this.props);
         const book = this.props.location.state.bookObj;
 
         return ( 

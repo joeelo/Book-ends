@@ -23,7 +23,7 @@ const BookSchema = new mongoose.Schema({
     },
 
     notes: [{
-        type: String
+        type: mongoose.Schema.Types.ObjectId, ref: "Note"
     }],
 
     user: {
