@@ -9,12 +9,20 @@ class BookDetails extends Component {
     state = {
         bookObj: null,
         showForm: false,
-        reviews: []
+        reviews: [], 
+        hasReviewed: false
     }
     
     componentDidMount() {
         this.fetchBookById();
     }   
+
+    componentDidUpdate(prevProps, prevState) {
+        if (this.state.hasReviewed === false) {
+            this.hasUserReviewed();
+        }
+    }
+
 
     fetchBookById = async () => {
         try {
@@ -32,10 +40,10 @@ class BookDetails extends Component {
                 body: JSON.stringify(data)
             }
             const response = await fetch(url, config);
+            console.log(response);
             const json = await response.json();
-            console.log(json)
             this.setState({
-                bookObj: json.data, 
+                bookObj: json.data,
                 reviews: json.reviews.reviews
             })
         } catch (error) {
@@ -43,29 +51,48 @@ class BookDetails extends Component {
         }
     }
 
+    hasUserReviewed = () => {   
+        if (this.state.reviews !== undefined) {
+            return this.state.reviews.forEach(review => {
+                if (review.user === this.props.user.id) {
+                    this.setState({hasReviewed: true});
+                }
+            })
+        } 
+    }
+
     renderReviews = () => {
-        const reviewDivs = this.state.reviews.map(review => {
-            return <UserReviews key={review._id} review={review}/>
-        })
-        return reviewDivs;
+        if (this.state.reviews !== undefined) {
+            const reviewDivs = this.state.reviews.map(review => {
+                return <UserReviews key={review._id} review={review}/>
+            })
+            return reviewDivs;
+        }
     }
 
     render(){
-        console.log(this.state);
         return (
             <div>
                 {this.state.bookObj !== null 
                 ?   
                     <div>
                         <h2>{this.state.bookObj.volumeInfo.title}</h2>
-                        <Link to={{
-                            pathname:`/book/${this.state.bookObj.id}/review`,
-                            state: {
-                                bookObj: this.state.bookObj,
-                                user: this.props.user
-                            }
-                            }}><button> Add review </button>
-                        </Link>
+                        {!this.state.hasReviewed ? 
+                            <Link to={{
+                                pathname:`/book/${this.state.bookObj.id}/review`,
+                                state: {
+                                    bookObj: this.state.bookObj,
+                                    user: this.props.user
+                                }
+                                }}><button> Add review </button>
+                            </Link>
+                        
+                        : 
+                        
+                            <div>
+                                "you've already reviewed this book!"
+                            </div>
+                        }
 
                         <RatingSelectForm book={this.state.bookObj} user={this.props.user}/>
 

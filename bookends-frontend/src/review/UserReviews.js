@@ -9,13 +9,12 @@ class UserReviews extends Component {
             border: "1px solid black"
         }
 
-        console.log(this.props.review);
         const { review } = this.props
         return (
             <div style={divStyles}>
                 <p>{review.title} </p>
                 <p>{review.content} </p>
-                <button> Like </button>
+                <button>Comment</button>
             </div>
         )
     }

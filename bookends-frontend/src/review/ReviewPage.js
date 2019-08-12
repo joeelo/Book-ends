@@ -38,7 +38,7 @@ export default class ReviewPage extends Component {
                     body: JSON.stringify(data)
                 }
                 const response = await fetch(url, config);
-                const json = response.json();
+                const json = await response.json();
                 console.log(json);
         } catch (error) {
             console.log(error);
@@ -46,7 +46,7 @@ export default class ReviewPage extends Component {
     }
 
     render() {
-        console.log(this.props);
+        // console.log(this.props);
         const book = this.props.location.state.bookObj;
 
         return ( 

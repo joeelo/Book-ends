@@ -23,22 +23,24 @@ router.post("/book/id/:id", async (req, res) => {
         const url = `https://www.googleapis.com/books/v1/volumes?q=${book}&key=${process.env.GOOGLE_BOOKS_API}`;
         const response = await fetch(url);
         const json = await response.json();
+        console.log("beginning of function");
         // res.send(json.items[0]);  
-        const foundBookReviews = await Book.findOne({ "any.id": req.body.book })
-        .populate("reviews")
-        .exec()
-        res.send({data: json.items[0], reviews: foundBookReviews});
+            const foundBookReviews = await Book.findOne({ "any.id": req.body.book })
+            if (foundBookReviews === null ) {
+                // console.log(json.items[0]);
+                console.log("hit if");
+                return res.send({ data: json.items[0], reviews: []});
+            } else {
+                foundBookReviews
+                .populate("reviews")
+                .exec()
+                console.log("hit");
+                console.log(foundBookReviews);
+                return res.send({data: json.items[0], reviews: foundBookReviews});
+            }
+ 
     } catch (error) {
         res.status(400).send(error);
-    }
-})
-
-router.post("/book/:id/user/reviews", async (req, res) => {
-    try {
-        const book = req.params.id;
-        console.log(req.params.id);
-    } catch (error) {
-        console.log(error);
     }
 })
 
@@ -80,32 +82,6 @@ router.patch("/book/:id", async (req, res) => {
     }
 })
 
-router.post("/book/:bookId/review", async (req, res) => {
-    try {
-        const foundBook = await Book.findOne({"any.id": req.body.book.id, user: req.body.user});
-        const user = await User.findOne({ _id: req.body.user });
-        const review = new Review();
-        console.log(req.body.user);
-        if (foundBook) {
-            review.title = req.body.title, review.content = req.body.content, review.book = req.body.book.id, review.user = req.body.user;
-            await review.save();
-            user.reviews.push(review);
-            foundBook.reviews.push(review);
-            res.send(review);
-        } else {
-            let newBook = new Book();
-            newBook.any = req.body.book, newBook.user = req.body.user
-            await book.save();
-            review.title = req.body.title, review.content = req.body.content, review.book = req.body.book.id, review.user = req.body.user;
-            await review.save();
-            newBook.reviews.push(review), newBook.save();
-            user.reviews.push(review);
-            res.send(review);
-        }
-    } catch (error) {
-        res.status(400).send(error);
-    }
-});
 
 router.put("/rating", async (req, res) => {
     try {

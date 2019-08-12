@@ -4,8 +4,8 @@ const userSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
-        min: [2, "name must be longer than that"],
-        max: 16,
+        min: [3, "name must be longer than that"],
+        max: 22,
     },
 
     email :{
