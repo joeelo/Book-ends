@@ -9,24 +9,24 @@ const fetch = require("node-fetch");
 
 router.post("/book/:bookId/review", async (req, res) => {
     try {
-        const foundBook = await Book.findOne({"any.id": req.body.book.id, user: req.body.user});
-        const user = await User.findOne({ _id: req.body.user });
+        const foundBook = await Book.findOne({"any.id": req.body.book.id, user: req.body.user.id});
+        const user = await User.findOne({ _id: req.body.user.id });
         const review = new Review();
-        console.log(req.body.user);
         if (foundBook) {
-            review.title = req.body.title, review.content = req.body.content, review.book = req.body.book.id, review.user = req.body.user;
+            review.title = req.body.title, review.content = req.body.content, review.book = req.body.book.id, review.user = req.body.user.id;
             await review.save();
             user.reviews.push(review);
             foundBook.reviews.push(review);
             res.send(review);
         } else {
             let newBook = new Book();
-            newBook.any = req.body.book, newBook.user = req.body.user
-            await book.save();
-            review.title = req.body.title, review.content = req.body.content, review.book = req.body.book.id, review.user = req.body.user;
-            await review.save();
+            newBook.any = req.body.book ;
+            newBook.user = req.body.user.id;
+            review.title = req.body.title, review.content = req.body.content, review.book = req.body.book.id, review.user = req.body.user.id;
             newBook.reviews.push(review), newBook.save();
             user.reviews.push(review);
+            await review.save();
+            await newBook.save();
             res.send(review);
         }
     } catch (error) {

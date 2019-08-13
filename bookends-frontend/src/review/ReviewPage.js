@@ -4,7 +4,6 @@ import BookThumbnail from '../book/BookThumbnail';
 export default class ReviewPage extends Component {
 
     state = {
-        bookObj: "", 
         postTitle: "",
         textValue: "", 
     }
@@ -28,7 +27,7 @@ export default class ReviewPage extends Component {
                     content: this.state.textValue,
                     book: this.props.location.state.bookObj
                 }
-                const url = `http://localhost:3000/book/${this.state.bookObj.id}/review`;
+                const url = `http://localhost:3000/book/${this.props.location.state.bookObj.id}/review`;
                 const config =  {
                     method: "POST",
                     mode: "cors",
@@ -39,14 +38,13 @@ export default class ReviewPage extends Component {
                 }
                 const response = await fetch(url, config);
                 const json = await response.json();
-                console.log(json);
         } catch (error) {
+            console.log("caught");
             console.log(error);
         }
     }
 
     render() {
-        // console.log(this.props);
         const book = this.props.location.state.bookObj;
 
         return ( 
