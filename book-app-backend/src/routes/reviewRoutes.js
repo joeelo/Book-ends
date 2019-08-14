@@ -17,11 +17,11 @@ router.post("/book/:bookId/review", async (req, res) => {
             await review.save();
             user.reviews.push(review);
             foundBook.reviews.push(review);
+            console.log("hit the if");
             res.send(review);
         } else {
             let newBook = new Book();
-            newBook.any = req.body.book ;
-            newBook.user = req.body.user.id;
+            newBook.any = req.body.book, newBook.user = req.body.user.id;
             review.title = req.body.title, review.content = req.body.content, review.book = req.body.book.id, review.user = req.body.user.id;
             newBook.reviews.push(review), newBook.save();
             user.reviews.push(review);
