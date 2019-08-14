@@ -37,6 +37,7 @@ export default class ProfileInfo extends Component {
     }
 
     render() {
+        console.log(this.state.books);
         return (
             <div>
                 <h1>{this.props.user.name}</h1>

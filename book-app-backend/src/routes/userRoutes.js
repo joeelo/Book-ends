@@ -44,9 +44,8 @@ router.get("/user/show/:id", async (req, res) => {
     try {
             const user = await User.findOne({ _id: req.params.id })
             .populate("books")
-            .exec((err, book) => {
-                res.send(book);
-            });
+            .exec();
+            res.send(user);
     } catch (error) {
         res.status(400).send(error); 
     }

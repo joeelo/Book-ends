@@ -40,7 +40,6 @@ class BookDetails extends Component {
                 body: JSON.stringify(data)
             }
             const response = await fetch(url, config);
-            console.log(response);
             const json = await response.json();
             this.setState({
                 bookObj: json.data,
@@ -71,6 +70,7 @@ class BookDetails extends Component {
     }
 
     render(){
+        console.log(this.state.bookObj);
         return (
             <div>
                 {this.state.bookObj !== null 

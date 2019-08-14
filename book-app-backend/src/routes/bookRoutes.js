@@ -24,20 +24,20 @@ router.post("/book/id/:id", async (req, res) => {
         const response = await fetch(url);
         const json = await response.json();
         console.log("beginning of function");
-        // res.send(json.items[0]);  
-            const foundBookReviews = await Book.findOne({ "any.id": req.body.book })
-            if (foundBookReviews === null ) {
-                // console.log(json.items[0]);
-                console.log("hit if");
-                return res.send({ data: json.items[0], reviews: []});
-            } else {
-                foundBookReviews
-                .populate("reviews")
-                .exec()
-                console.log("hit");
-                console.log(foundBookReviews);
-                return res.send({data: json.items[0], reviews: foundBookReviews});
-            }
+        const foundBookReviews = await Book.findOne({ "returnedBook.any.id": req.body.book });
+        console.log("and hit this too");
+        if (foundBookReviews) {
+            foundBookReviews
+            .populate("reviews")
+            .exec()
+            console.log("hit");
+            console.log(foundBookReviews);
+            return res.send({data: json.items[0], reviews: foundBookReviews});
+        } else {
+            // console.log(json.items[0]);
+            console.log("hit if");
+            return res.send({ data: json.items[0], reviews: []});
+        }
  
     } catch (error) {
         res.status(400).send(error);
