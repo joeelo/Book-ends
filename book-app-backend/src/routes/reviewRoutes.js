@@ -34,7 +34,7 @@ router.post("/book/:bookId/reviews", async (req, res) => {
     }
 });
 
-router.post("book/:bookId/review/comment", async (req, res) => {
+router.post("/book/:bookId/review/comment", async (req, res) => {
     try {
         console.log(req.body);
         res.send({message: "working"});
