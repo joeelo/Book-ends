@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import RatingSelectForm from "./RatingSelectForm";
 import AddReadBook from "../buttons/AddReadBook";
-import UserReviews from "../review/UserReviews"
+import UserReview from "../review/UserReview"
 
 class BookDetails extends Component {
 
@@ -63,7 +63,7 @@ class BookDetails extends Component {
     renderReviews = () => {
         if (this.state.reviews !== undefined) {
             const reviewDivs = this.state.reviews.map(review => {
-                return <UserReviews key={review._id} review={review}/>
+                return <UserReview key={review._id} review={review} user={this.props.user}/>
             })
             return reviewDivs;
         }

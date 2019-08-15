@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReviewComment from "./ReviewComment"
 
-class UserReviews extends Component {
+class UserReview extends Component {
 
     state = {
         renderCommentBox: false
@@ -14,7 +14,7 @@ class UserReviews extends Component {
     }
 
     render() {
-        console.log(this.state.renderCommentBox);
+        console.log(this.props);
         const divStyles = {
             width: "50%", 
             margin: "0 auto", 
@@ -30,11 +30,11 @@ class UserReviews extends Component {
                 ? 
                     <button onClick={this.renderComment}>Comment</button>
                 : 
-                    < ReviewComment renderComment={this.renderComment}/>
+                    < ReviewComment renderComment={this.renderComment} user={this.props.user}/>
                 }
             </div>
         )
     }
 }
 
-export default UserReviews
+export default UserReview;

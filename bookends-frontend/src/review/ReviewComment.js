@@ -12,6 +12,27 @@ export default class ReviewComment extends Component {
         })
     }
 
+    postComment = async () => {
+        try {
+            const data = {
+                content: this.state.textValue
+            }
+
+            const url = ``
+            const config = {
+                method: "POST", 
+                headers: {
+                    "Content-Type": "application/json"
+                }, 
+                body: JSON.stringify(data)
+            }
+
+
+        } catch (error) {
+            
+        }
+    }
+
     submitHandler = (event) => {
         event.preventDefault();
         this.props.renderComment();
@@ -19,6 +40,7 @@ export default class ReviewComment extends Component {
     }
 
     render() {
+        console.log(this.props);
         return (
             <div>
                 <form onSubmit={this.submitHandler}>
