@@ -6,7 +6,12 @@ const commentSchema = new mongoose.Schema({
     },
 
     user: {
-        type: mongoose.Schema.Types.ObjectId, ref: "User"
+        type: mongoose.Schema.Types.ObjectId, ref: "User",
+        required: true
+    },
+
+    review: {
+        type: mongoose.Schema.Types.ObjectId, ref: "Review"
     },
 
     created_at: {

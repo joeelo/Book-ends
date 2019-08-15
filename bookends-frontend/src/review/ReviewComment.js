@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
+import { withRouter } from "react-router-dom"
 
-export default class ReviewComment extends Component {
+class ReviewComment extends Component {
 
     state = {
         textValue: ""
@@ -11,14 +12,15 @@ export default class ReviewComment extends Component {
             textValue: event.target.value
         })
     }
-
+    
     postComment = async () => {
+        const bookId = this.props.match.url.split("/")[2]; // seperate the book id straight from the url. ie giaLDgAAQBAJ === all the light we cannot see
         try {
             const data = {
                 content: this.state.textValue
             }
 
-            const url = ``
+            const url = `http://localhost:3000/book/${bookId}/review/comment`
             const config = {
                 method: "POST", 
                 headers: {
@@ -27,6 +29,9 @@ export default class ReviewComment extends Component {
                 body: JSON.stringify(data)
             }
 
+            const response = await fetch(url, config);
+            const json = await response.json();
+            console.log(json);
 
         } catch (error) {
             
@@ -35,12 +40,12 @@ export default class ReviewComment extends Component {
 
     submitHandler = (event) => {
         event.preventDefault();
+        this.postComment();
         this.props.renderComment();
         console.log(this.state.textValue);
     }
 
     render() {
-        console.log(this.props);
         return (
             <div>
                 <form onSubmit={this.submitHandler}>
@@ -51,3 +56,5 @@ export default class ReviewComment extends Component {
         )
     }
 }
+
+export default withRouter(ReviewComment)
