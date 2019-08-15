@@ -7,7 +7,7 @@ const Review = require("../models/Review");
 const fetch = require("node-fetch");
 
 
-router.post("/book/:bookId/review", async (req, res) => {
+router.post("/book/:bookId/reviews", async (req, res) => {
     try {
         const foundBook = await Book.findOne({"any.id": req.body.book.id, user: req.body.user.id});
         const user = await User.findOne({ _id: req.body.user.id });
@@ -33,6 +33,14 @@ router.post("/book/:bookId/review", async (req, res) => {
         res.status(400).send(error);
     }
 });
+
+router.post("book/:bookId/review/comment", async (req, res) => {
+    try {
+        console.log("heyyyyy");
+    } catch (error) {
+        console.log(error);
+    }
+})
 
 router.post("/book/:id/user/reviews", async (req, res) => {
     try {

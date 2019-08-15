@@ -38,8 +38,8 @@ export default class ReviewPage extends Component {
                 }
                 const response = await fetch(url, config);
                 const json = await response.json();
+                console.log(json);
         } catch (error) {
-            console.log("caught");
             console.log(error);
         }
     }

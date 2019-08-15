@@ -27,11 +27,8 @@ router.post("/book/id/:id", async (req, res) => {
         console.log("why");
         if (foundBook) {
             const reviews = await foundBook.populate("reviews").execPopulate()
-            console.log(reviews);
-            console.log("hit");
             return res.send({data: json.items[0], reviews: reviews});
         } else {
-            console.log("else statement")
             return res.send({ data: json.items[0], reviews: []});
         }
     } catch (error) {

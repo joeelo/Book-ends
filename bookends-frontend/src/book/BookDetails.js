@@ -79,7 +79,7 @@ class BookDetails extends Component {
                         <h2>{this.state.bookObj.volumeInfo.title}</h2>
                         {!this.state.hasReviewed ? 
                             <Link to={{
-                                pathname:`/book/${this.state.bookObj.id}/review`,
+                                pathname:`/book/${this.state.bookObj.id}/reviews`,
                                 state: {
                                     bookObj: this.state.bookObj,
                                     user: this.props.user

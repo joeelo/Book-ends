@@ -1,6 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import ReviewComment from "./ReviewComment"
 
 class UserReviews extends Component {
+
+    
 
     render() {
         const divStyles = {
@@ -15,6 +18,7 @@ class UserReviews extends Component {
                 <p>{review.title} </p>
                 <p>{review.content} </p>
                 <button>Comment</button>
+                < ReviewComment />
             </div>
         )
     }
