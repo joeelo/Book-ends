@@ -14,6 +14,7 @@ export default class ReviewComment extends Component {
 
     submitHandler = (event) => {
         event.preventDefault();
+        this.props.renderComment();
         console.log(this.state.textValue);
     }
 
