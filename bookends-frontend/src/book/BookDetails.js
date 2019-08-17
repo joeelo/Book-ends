@@ -70,7 +70,6 @@ class BookDetails extends Component {
     }
 
     render(){
-        console.log(this.state.bookObj);
         return (
             <div>
                 {this.state.bookObj !== null 

@@ -14,7 +14,6 @@ class UserReview extends Component {
     }
 
     render() {
-        console.log(this.props);
         const divStyles = {
             width: "50%", 
             margin: "0 auto", 
@@ -22,6 +21,8 @@ class UserReview extends Component {
         }
 
         const { review } = this.props
+
+        console.log(review);
         return (
             <div style={divStyles}>
                 <p>{review.title} </p>

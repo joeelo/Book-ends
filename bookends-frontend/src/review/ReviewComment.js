@@ -14,7 +14,7 @@ class ReviewComment extends Component {
     }
     
     postComment = async () => {
-        const bookId = this.props.match.url.split("/")[2]; // seperate the book id straight from the url. ie giaLDgAAQBAJ === all the light we cannot see
+        const bookId = this.props.match.url.split("/")[2]; // seperate the book id straight from the url. ie /book/giaLDgAAQBAJ === book id
         try {
             const data = {
                 content: this.state.textValue
@@ -46,6 +46,7 @@ class ReviewComment extends Component {
     }
 
     render() {
+        console.log(this.props);
         return (
             <div>
                 <form onSubmit={this.submitHandler}>
