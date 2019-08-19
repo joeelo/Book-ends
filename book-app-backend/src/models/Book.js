@@ -37,11 +37,12 @@ const BookSchema = new mongoose.Schema({
 })
 
 BookSchema.pre("save", async function(next) {
-    
     const self = this;
     const user = await User.findOne({ _id: this.user });
-    user.books.push(this);
-    await user.save();
+    let userBooksArray = user.books.filter(book => book !== this._id.toString());
+    userBooksArray.push(this);
+    user.books = userBooksArray
+
 
     next();
 })

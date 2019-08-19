@@ -15,15 +15,14 @@ router.post("/book/:bookId/reviews", async (req, res) => {
         if (foundBook) {
             review.title = req.body.title, review.content = req.body.content, review.book = req.body.book.id, review.user = req.body.user.id;
             await review.save();
-            user.reviews.push(review);
-            foundBook.reviews.push(review);
-            console.log("hit the if");
+            user.reviews.push(review), await user.save();
+            foundBook.reviews.push(review), await foundBook.save();
             res.send(review);
         } else {
             let newBook = new Book();
             newBook.any = req.body.book, newBook.user = req.body.user.id;
             review.title = req.body.title, review.content = req.body.content, review.book = req.body.book.id, review.user = req.body.user.id;
-            newBook.reviews.push(review), newBook.save();
+            newBook.reviews.push(review);
             user.reviews.push(review);
             await review.save();
             await newBook.save();

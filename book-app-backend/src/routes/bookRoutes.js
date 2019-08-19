@@ -81,7 +81,6 @@ router.put("/rating", async (req, res) => {
         if (foundBook) {
             foundBook.rating = req.body.rating;
             foundBook.save();
-            console.log("hit");
             return res.send({message: "updated rating!", foundBook});
         } else {
             let newBook = new Book();
@@ -89,7 +88,6 @@ router.put("/rating", async (req, res) => {
             newBook.user = req.body.user.id;
             newBook.rating = req.body.rating;
             // await newBook.save();
-            console.log("working")
             res.send({message: "created book and rating!", newBook});
         }
     } catch (error) {

@@ -22,7 +22,6 @@ class UserReview extends Component {
 
         const { review } = this.props
 
-        console.log(review);
         return (
             <div style={divStyles}>
                 <p>{review.title} </p>

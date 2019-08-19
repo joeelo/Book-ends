@@ -23,21 +23,6 @@ const userSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId, ref: "Book"
     }],
 
-    // bookArray: [{
-    //     book: {
-    //         any: {},
-
-    //         rating: {
-    //             type: Number, 
-    //             default: 0
-    //         }, 
-
-    //         notes: [{
-    //             type: String
-    //         }]
-    //     }
-    // }],
-
     reviews: [{
         type: mongoose.Schema.Types.ObjectId, ref: "Review"
     }], 

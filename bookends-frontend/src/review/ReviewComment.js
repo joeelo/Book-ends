@@ -42,11 +42,10 @@ class ReviewComment extends Component {
         event.preventDefault();
         this.postComment();
         this.props.renderComment();
-        console.log(this.state.textValue);
+        console.log(this.props.user);
     }
 
     render() {
-        console.log(this.props);
         return (
             <div>
                 <form onSubmit={this.submitHandler}>
