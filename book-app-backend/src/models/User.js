@@ -8,11 +8,17 @@ const userSchema = new mongoose.Schema({
         max: 22,
     },
 
-    email :{
+    email: {
         type: String,
         required: true,
         unique: true
     },
+
+    username: {
+        type: String, 
+        required: true,
+        unique: true
+    }, 
 
     password: {
         type: String,

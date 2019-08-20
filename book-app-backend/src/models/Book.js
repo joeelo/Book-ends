@@ -36,17 +36,6 @@ const BookSchema = new mongoose.Schema({
     }]
 })
 
-BookSchema.pre("save", async function(next) {
-    const self = this;
-    const user = await User.findOne({ _id: this.user });
-    let userBooksArray = user.books.filter(book => book !== this._id.toString());
-    userBooksArray.push(this);
-    user.books = userBooksArray
-
-
-    next();
-})
-
 const Book = new mongoose.model("Book", BookSchema);
 
 module.exports = Book;

@@ -78,16 +78,23 @@ router.patch("/book/:id", async (req, res) => {
 router.put("/rating", async (req, res) => {
     try {
         const foundBook = await Book.findOne({ "any.id": req.body.book.id, user: req.body.user.id});
+        const user = await User.findById(req.body.user.id);
+        // console.log(user)
         if (foundBook) {
+            console.log("hit");
             foundBook.rating = req.body.rating;
             foundBook.save();
+            user.save();
             return res.send({message: "updated rating!", foundBook});
         } else {
+            console.log("hitt")
             let newBook = new Book();
             newBook.any = req.body.book;
             newBook.user = req.body.user.id;
             newBook.rating = req.body.rating;
-            // await newBook.save();
+            await newBook.save();
+            user.books.push(newBook);
+            await user.save();
             res.send({message: "created book and rating!", newBook});
         }
     } catch (error) {
