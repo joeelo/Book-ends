@@ -14,11 +14,14 @@ router.get("/user", async (req, res) => {
 router.post("/users/sign-up", async (req, res) => {
     try {
         const user = await User.findOne({email: req.body.email, password: req.body.password});
-        // await user.save();
         if (user) {
-            res.send(user)
+            res.send({message: "user already exists please check and try again"});
+            return;
         } else {
-            res.send({message: "please make sure all fields are filled and have correct amount of characters"});
+            const newUser = new User();
+            newUser.name = req.body.name, newUser.userName = req.body.userName, newUser.email = req.body.email, newUser.password = req.body.password;
+            newUser.save();
+            res.send(newUser)
         }
     } catch (error) {
         res.status(400).send(error);
