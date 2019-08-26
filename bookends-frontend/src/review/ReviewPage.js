@@ -4,7 +4,7 @@ import BookThumbnail from '../book/BookThumbnail';
 export default class ReviewPage extends Component {
 
     state = {
-        postTitle: "",
+        reviewTitle: "",
         textValue: "", 
     }
 
@@ -23,7 +23,7 @@ export default class ReviewPage extends Component {
         try {
                 const data = {
                     user: this.props.location.state.user,
-                    title: this.state.postTitle,
+                    title: this.state.reviewTitle,
                     content: this.state.textValue,
                     book: this.props.location.state.bookObj
                 }
@@ -58,8 +58,8 @@ export default class ReviewPage extends Component {
                     <span> Post a review </span>
 
                     <form onSubmit={this.postHandler}>
-                        <label htmlFor="postTitle"> Title of your post </label> <br/>
-                        <input type="text" name="postTitle" value={this.state.postTitle} onChange={this.changeHandler}/> <br/>
+                        <label htmlFor="reviewTitle"> Title of your post </label> <br/>
+                        <input type="text" name="reviewTitle" value={this.state.reviewTitle} onChange={this.changeHandler}/> <br/>
                         <textarea name="textValue" value={this.state.textValue} placeholder="Write review here" onChange={this.changeHandler}/> <br/>
                         <button> Post </button>
                     </form>

@@ -14,7 +14,7 @@ class ReviewComment extends Component {
     }
     
     postComment = async () => {
-        const bookId = this.props.match.url.split("/")[2]; // seperate the book id straight from the url. ie /book/giaLDgAAQBAJ === book id
+        const bookId = this.props.match.url.split("/")[2]; // separate the book id straight from the url. ie /book/giaLDgAAQBAJ === book id
         try {
             const data = {
                 content: this.state.textValue
