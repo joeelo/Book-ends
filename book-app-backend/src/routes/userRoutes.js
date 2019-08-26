@@ -19,7 +19,7 @@ router.post("/users/sign-up", async (req, res) => {
             return;
         } else {
             const newUser = new User();
-            newUser.name = req.body.name, newUser.userName = req.body.userName, newUser.email = req.body.email, newUser.password = req.body.password;
+            newUser.name = req.body.name, newUser.username = req.body.userName, newUser.email = req.body.email, newUser.password = req.body.password;
             newUser.save();
             res.send(newUser)
         }

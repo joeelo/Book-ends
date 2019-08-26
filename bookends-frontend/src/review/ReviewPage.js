@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import BookThumbnail from '../book/BookThumbnail';
+import { withRouter } from "react-router-dom";
 
 export default class ReviewPage extends Component {
 
@@ -39,6 +40,7 @@ export default class ReviewPage extends Component {
                 }
                 const response = await fetch(url, config);
                 const json = await response.json();
+                await this.props.history.push("/")
                 console.log(json);
         } catch (error) {
             console.log(error);
