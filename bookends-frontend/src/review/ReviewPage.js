@@ -40,7 +40,7 @@ export default class ReviewPage extends Component {
                 }
                 const response = await fetch(url, config);
                 const json = await response.json();
-                await this.props.history.push("/")
+                await this.props.history.push(`/book/${this.props.location.state.bookObj.id}`)
                 console.log(json);
         } catch (error) {
             console.log(error);
