@@ -10,6 +10,7 @@ import NewUserForm from './login/NewUserForm';
 import LoginForm from "./login/LoginForm";
 import NoteButton from "./notes/NoteButton"
 import Note from "./notes/Note";
+import UserNotes from "./notes/UserNotes";
 
 
 class App extends Component {
@@ -65,7 +66,8 @@ class App extends Component {
           <Route exact path="/books" component={BookSearchForm} />
           <Route exact path="/sign-up" render={() => <NewUserForm loginUser={this.loginUser} />} />
           <Route exact path="/login" render={() => <LoginForm loginUser={this.loginUser}/>}/>
-          <Route path="/note" render={(props) => <Note user={this.state.user}/>}/>
+          <Route exact path="/note" render={(props) => <Note user={this.state.user}/>}/>
+          <Route exact path="/notes/:username" component={UserNotes}/>
         </Switch>
       </Fragment>
 

@@ -5,7 +5,7 @@ class Note extends Component {
     state = {
         noteTitle: "",
         noteContent: "",
-        user: ""
+        user: this.props.user
     }
 
     submitHandler = async (event) => {
@@ -17,7 +17,9 @@ class Note extends Component {
             const config = {
                 method: "POST",
                 mode: "cors",
-                "Content-Type": "application/json",
+                headers: {
+                    "Content-Type": "application/json",
+                },
                 body: JSON.stringify(data)
             }
             
