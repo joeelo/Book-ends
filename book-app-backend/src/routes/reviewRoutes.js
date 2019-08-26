@@ -11,6 +11,7 @@ router.post("/book/:bookId/reviews", async (req, res) => {
     try {
         const foundBook = await Book.findOne({"any.id": req.body.book.id, user: req.body.user.id});
         const user = await User.findOne({ _id: req.body.user.id });
+        console.log(user);
         const review = new Review();
         if (foundBook) {
             review.title = req.body.title, review.content = req.body.content, review.book = req.body.book.id, review.user = req.body.user.id;
@@ -24,8 +25,7 @@ router.post("/book/:bookId/reviews", async (req, res) => {
             review.title = req.body.title, review.content = req.body.content, review.book = req.body.book.id, review.user = req.body.user.id;
             newBook.reviews.push(review);
             user.reviews.push(review);
-            await review.save();
-            await newBook.save();
+            await review.save(), await newBook.save(), await user.save();
             res.send(review);
         }
     } catch (error) {

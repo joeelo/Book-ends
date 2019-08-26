@@ -7,11 +7,15 @@ class UserNotes extends Component {
     }
 
     componentDidMount() {
-        this.fetchNotes();
+        // this.fetchNotes();
     }
     
-    fetchNotes = () => {
-        console.log("fetching notes");
+    fetchNotes = async () => {
+        const username = this.props.match.params.username
+        const url = `http://localhost:3000/notes/${username}`
+        const response = await fetch(url);
+        const json = await response.json();
+        console.log(json);
     }
 
     render() {
