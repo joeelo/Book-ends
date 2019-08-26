@@ -65,7 +65,7 @@ class App extends Component {
           <Route exact path="/books" component={BookSearchForm} />
           <Route exact path="/sign-up" render={() => <NewUserForm loginUser={this.loginUser} />} />
           <Route exact path="/login" render={() => <LoginForm loginUser={this.loginUser}/>}/>
-          <Route path="/note" render={() => <Note />}/>
+          <Route path="/note" render={(props) => <Note user={this.state.user}/>}/>
         </Switch>
       </Fragment>
 

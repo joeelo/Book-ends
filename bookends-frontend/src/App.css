@@ -5,3 +5,13 @@
 textarea {
   resize: none;
 }
+
+.note-button {
+  position: fixed;
+  right: 5%;
+  top: 5%;
+  background-color: blue;
+  border-radius: 100%;
+  padding: 10px;
+  color: white;
+}

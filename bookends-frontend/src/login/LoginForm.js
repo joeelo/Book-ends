@@ -14,7 +14,6 @@ class LoginForm extends Component {
         event.preventDefault();
         try {
             const data = {
-                name: this.state.name,
                 email: this.state.email,
                 password: this.state.password
             }
@@ -60,9 +59,6 @@ class LoginForm extends Component {
         return (
             <div>
                 <form onSubmit={this.submitHandler}>
-
-                    <label htmlFor="name"> Name: </label><br/>
-                    <input name="name" type="text" onChange={this.changeHandler} value={this.state.name}/><br/>
                     
                     <label htmlFor="email"> Email: </label> <br/>
                     <input name="email" type="text"  onChange={this.changeHandler} value={this.state.email}/> <br/>
