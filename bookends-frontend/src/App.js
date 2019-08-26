@@ -8,7 +8,7 @@ import Profile from "./profile/ProfileInfo";
 import NavBar from "./nav/NavBar";
 import NewUserForm from './login/NewUserForm';
 import LoginForm from "./login/LoginForm";
-import NoteButton from "./notes/NoteButton"
+import NoteButton from "./notes/NoteButton";
 import Note from "./notes/Note";
 import UserNotes from "./notes/UserNotes";
 

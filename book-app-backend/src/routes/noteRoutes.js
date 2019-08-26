@@ -3,6 +3,14 @@ const router = express.Router();
 const User = require("../models/User");
 const Note = require("../models/Note");
 
+router.get("/notes/:username", async (req, res) => {
+    try {
+        res.send({message: "working route"})
+    } catch (error) {
+        res.status(400).send({message: error});
+    }
+})
+
 router.post("/notes", async (req, res) => {
     const { user, title, content } = req.body;
     const foundUser = await User.findOne({username: user.userName});

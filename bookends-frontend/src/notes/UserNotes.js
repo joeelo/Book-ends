@@ -7,7 +7,7 @@ class UserNotes extends Component {
     }
 
     componentDidMount() {
-        // this.fetchNotes();
+        this.fetchNotes();
     }
     
     fetchNotes = async () => {
