@@ -28,7 +28,6 @@ export default class ReviewPage extends Component {
                     content: this.state.textValue,
                     book: this.props.location.state.bookObj
                 }
-                console.log(data);
                 const url = `http://localhost:3000/book/${this.props.location.state.bookObj.id}/reviews`;
                 const config =  {
                     method: "POST",

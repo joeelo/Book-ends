@@ -7,7 +7,10 @@ import ReviewPage from "./review/ReviewPage";
 import Profile from "./profile/ProfileInfo";
 import NavBar from "./nav/NavBar";
 import NewUserForm from './login/NewUserForm';
-import LoginForm from "./login/LoginForm"
+import LoginForm from "./login/LoginForm";
+import NoteButton from "./notes/NoteButton"
+import Note from "./notes/Note";
+
 
 class App extends Component {
 
@@ -28,6 +31,8 @@ class App extends Component {
     }
   }
 
+    
+
   loginUser = async (userInfo) => {
     try {
       this.setState({
@@ -41,7 +46,6 @@ class App extends Component {
       console.log(error)
     }
   }
-  
 
   render() {
 
@@ -51,7 +55,7 @@ class App extends Component {
   
         <div className="App">
           <NavBar user={this.state.user}/>
-
+          <NoteButton />
         </div>
 
         <Switch>
@@ -61,6 +65,7 @@ class App extends Component {
           <Route exact path="/books" component={BookSearchForm} />
           <Route exact path="/sign-up" render={() => <NewUserForm loginUser={this.loginUser} />} />
           <Route exact path="/login" render={() => <LoginForm loginUser={this.loginUser}/>}/>
+          <Route path="/note" render={() => <Note />}/>
         </Switch>
       </Fragment>
 

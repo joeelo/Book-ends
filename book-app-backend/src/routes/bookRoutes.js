@@ -81,13 +81,11 @@ router.put("/rating", async (req, res) => {
         const user = await User.findById(req.body.user.id);
         // console.log(user)
         if (foundBook) {
-            console.log("hit");
             foundBook.rating = req.body.rating;
             foundBook.save();
             user.save();
             return res.send({message: "updated rating!", foundBook});
         } else {
-            console.log("hitt")
             let newBook = new Book();
             newBook.any = req.body.book;
             newBook.user = req.body.user.id;
