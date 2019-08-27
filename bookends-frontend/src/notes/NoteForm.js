@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class Note extends Component {
+class NoteForm extends Component {
 
     state = {
         noteTitle: "",
@@ -55,4 +55,4 @@ class Note extends Component {
     }
 }
 
-export default Note
+export default NoteForm

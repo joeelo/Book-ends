@@ -8,7 +8,7 @@ router.get("/notes/:username", async (req, res) => {
         const notes = await User.findOne({username: req.params.username})
         .populate("notes")
         .exec();
-        res.send(notes);
+        res.send(notes.notes);
     } catch (error) {
         res.status(400).send({message: error});
     }
@@ -27,6 +27,20 @@ router.post("/notes", async (req, res) => {
         res.send(newNote);
     } catch (error) {
         res.status(400).send({message: "rejected"});
+    }
+})
+
+router.patch("/notes/:id/edit", async (req, res) => {
+    try {
+        const { title, content } = req.body;
+        console.log(title, content); 
+        const updatedNote = new Note();
+        updatedNote.title = title, updatedNote.content = content;
+        updatedNote._id = req.params.id // must set ID to keep from setting new ID, and must stay constant even though updated. 
+        const note = await Note.findOneAndUpdate({_id: req.params.id}, updatedNote, {upsert: true, useFindAndModify: false});
+        res.send(note);
+    } catch (error) {
+        res.status(400).send(error);
     }
 })
 

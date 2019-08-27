@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import BookThumbnail from '../book/BookThumbnail';
-import { withRouter } from "react-router-dom";
 
 export default class ReviewPage extends Component {
 

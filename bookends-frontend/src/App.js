@@ -9,8 +9,9 @@ import NavBar from "./nav/NavBar";
 import NewUserForm from './login/NewUserForm';
 import LoginForm from "./login/LoginForm";
 import NoteButton from "./notes/NoteButton";
-import Note from "./notes/Note";
+import NoteForm from "./notes/NoteForm";
 import UserNotes from "./notes/UserNotes";
+import NoteEditForm from './notes/NoteEditForm';
 
 
 class App extends Component {
@@ -66,8 +67,9 @@ class App extends Component {
           <Route exact path="/books" component={BookSearchForm} />
           <Route exact path="/sign-up" render={() => <NewUserForm loginUser={this.loginUser} />} />
           <Route exact path="/login" render={() => <LoginForm loginUser={this.loginUser}/>}/>
-          <Route exact path="/note" render={(props) => <Note user={this.state.user}/>}/>
+          <Route exact path="/note" render={(props) => <NoteForm user={this.state.user}/>}/>
           <Route exact path="/notes/:username" component={UserNotes}/>
+          <Route exact path="/notes/:id/edit" component={NoteEditForm}/>
         </Switch>
       </Fragment>
 
