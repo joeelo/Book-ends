@@ -14,13 +14,22 @@ router.get("/notes/:username", async (req, res) => {
     }
 })
 
+router.get("/notes/:id/view", async (req, res) => {
+    try {
+        const note = await Note.findOne({_id: req.params.id});
+        res.send(note);
+    } catch (error) {
+        res.status(400).send(error);
+    }
+})
+
 router.post("/notes", async (req, res) => {
     const { user, title, content } = req.body;
     const foundUser = await User.findOne({username: user.userName});
     console.log("user", foundUser);
     try {
         const newNote = new Note();
-        newNote.user = user.id, newNote.title = title, newNote.content = content
+        newNote.user = user.id, newNote.title = title, newNote.content = content;
         newNote.save();
         foundUser.notes.push(newNote);
         foundUser.save();

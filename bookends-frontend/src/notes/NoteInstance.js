@@ -4,18 +4,16 @@ import { Link } from "react-router-dom";
 class NoteInstance extends Component {
     render() {
         const { note } = this.props;
-        console.log(note);
         return (
             <div>
                 <h2> {note.title} </h2>
                 <p> {note.content} </p>
                 <Link to={{
-                    pathname: `/notes/${note._id}/edit`,
+                    pathname: `/notes/${note._id}/view`,
                     state: {noteTitle: note.title, noteContent: note.content}
                 }}>
-                    <button> edit </button>
+                    <button> view </button>
                 </Link>
-                <button> delete </button>
             </div>
         )
     }

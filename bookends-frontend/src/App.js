@@ -12,6 +12,7 @@ import NoteButton from "./notes/NoteButton";
 import NoteForm from "./notes/NoteForm";
 import UserNotes from "./notes/UserNotes";
 import NoteEditForm from './notes/NoteEditForm';
+import NoteView from "./notes/NoteView";
 
 
 class App extends Component {
@@ -69,6 +70,7 @@ class App extends Component {
           <Route exact path="/login" render={() => <LoginForm loginUser={this.loginUser}/>}/>
           <Route exact path="/note" render={(props) => <NoteForm user={this.state.user}/>}/>
           <Route exact path="/notes/:username" component={UserNotes}/>
+          <Route exact path="/notes/:id/view" component={NoteView}/>
           <Route exact path="/notes/:id/edit" component={NoteEditForm}/>
         </Switch>
       </Fragment>
