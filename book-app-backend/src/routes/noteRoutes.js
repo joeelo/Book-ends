@@ -5,13 +5,10 @@ const Note = require("../models/Note");
 
 router.get("/notes/:username", async (req, res) => {
     try {
-        const user = await User.findOne({username: req.params.username})
-        // .populate("notes")
-        // .exec();
-        console.log(user.notes);
-        // const notes = await user.populate("notes").execPopulate();
-        // console.log(user);
-        res.send({notes: user});
+        const notes = await User.findOne({username: req.params.username})
+        .populate("notes")
+        .exec();
+        res.send(notes);
     } catch (error) {
         res.status(400).send({message: error});
     }

@@ -10,7 +10,6 @@ class Note extends Component {
 
     submitHandler = async (event) => {
         event.preventDefault();
-        console.log(this.state);
         try {
             const url = `http://localhost:3000/notes`
             const data = {user: this.props.user, title: this.state.noteTitle, content: this.state.noteContent}
