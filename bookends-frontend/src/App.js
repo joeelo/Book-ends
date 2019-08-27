@@ -25,10 +25,10 @@ class App extends Component {
 
   state = {
     user: {
-      id: "5d641acdc5068403baf6a1a3", 
-      name: "Joe Lnzo", 
-      email: "same@ai.com",
-      userName: "joeelo"
+      id: "5d656a91ea12f507b1013a41", 
+      name: "Joe Lorenzo", 
+      email: "example@gmail.com",
+      userName: "joeephus"
     }
   }
 
