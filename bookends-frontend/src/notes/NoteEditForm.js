@@ -47,7 +47,7 @@ class NoteEditForm extends Component {
 
                     <input name="noteTitle" value={this.state.noteTitle} onChange={this.changeHandler} placeholder="Title..."/> <br/>
                     <input name="noteContent" value={this.state.noteContent} onChange={this.changeHandler} placeholder="make your note!"/> <br/>
-                    <button> Post Note </button>
+                    <button> Done editing </button>
 
                 </form>
 

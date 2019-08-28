@@ -1,8 +1,11 @@
 import React, {Fragment, Component} from 'react';
 import { Route, Switch} from "react-router-dom";
 import './App.css';
+import { injectGlobal, createGlobalStyle } from "styled-components";
 import BookSearchForm from "./book/BookSearchForm";
+import BookContainer from "./book/BookContainer";
 import BookDetails from './book/BookDetails';
+import UserBookList from "./book/UserBookList"
 import ReviewPage from "./review/ReviewPage";
 import Profile from "./profile/ProfileInfo";
 import NavBar from "./nav/NavBar";
@@ -13,6 +16,17 @@ import NoteForm from "./notes/NoteForm";
 import UserNotes from "./notes/UserNotes";
 import NoteEditForm from './notes/NoteEditForm';
 import NoteView from "./notes/NoteView";
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    background: rgb(2,0,41);
+    background: linear-gradient(135deg, rgba(2,0,41,0.9836309523809523) 0%, rgba(9,121,95,1) 13%, rgba(0,212,255,1) 100%);
+  }
+`
 
 
 class App extends Component {
@@ -26,6 +40,7 @@ class App extends Component {
   // }
 
   state = {
+    searchTerm: "",
     user: {
       id: "5d656a91ea12f507b1013a41", 
       name: "Joe Lorenzo", 
@@ -34,7 +49,11 @@ class App extends Component {
     }
   }
 
-    
+  updateSearchTerm = (term) => {
+    this.setState({
+      searchTerm: term
+    })
+  }  
 
   loginUser = async (userInfo) => {
     try {
@@ -51,21 +70,24 @@ class App extends Component {
   }
 
   render() {
-
+    console.log(this.state.searchTerm);
     return (
 
       <Fragment>
   
         <div className="App">
-          <NavBar user={this.state.user}/>
+          {/* <GlobalStyle /> */}
+          <NavBar user={this.state.user} updateSearchTerm={this.updateSearchTerm}/>
           <NoteButton />
         </div>
 
         <Switch>
           <Route exact path="/profile" render={() => <Profile user={this.state.user}/>} />
+          <Route exact path="/books" render={ (props) => <BookSearchForm updateSearchTerm={this.updateSearchTerm}/>} />
+          <Route path="/books/view" render={(props) => <BookContainer searchTerm={this.state.searchTerm}/>}/>
+          <Route exact path="/book/:id" render={ (props) => <BookDetails user={this.state.user} props={props}/>}/>
           <Route path="/book/:id/reviews" component={ReviewPage} />
-          <Route path="/book/:id" render={ (props) => <BookDetails user={this.state.user} props={props}/>}/>
-          <Route exact path="/books" component={BookSearchForm} />
+          <Route exact path="/review/list/:username" render={() => <UserBookList />}/>
           <Route exact path="/sign-up" render={() => <NewUserForm loginUser={this.loginUser} />} />
           <Route exact path="/login" render={() => <LoginForm loginUser={this.loginUser}/>}/>
           <Route exact path="/note" render={(props) => <NoteForm user={this.state.user}/>}/>

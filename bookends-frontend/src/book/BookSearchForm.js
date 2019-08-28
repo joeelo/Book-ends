@@ -1,7 +1,25 @@
 import React, { Component } from 'react';
 import BookThumbnail from "./BookThumbnail";
+import styled from "styled-components";
+import { withRouter } from "react-router-dom";
 
-export default class BookSearchForm extends Component {
+
+const FormContainer = styled.form`
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+const SearchBar = styled.input`
+    padding: 20px 100px;
+    background: transparent;
+    font-size: 2em;
+    border: 0 0 5px 0;
+`
+
+class BookSearchForm extends Component {
 
     state = {
         title: "",
@@ -17,6 +35,8 @@ export default class BookSearchForm extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         this.fetchBooks();
+        this.props.updateSearchTerm(this.state.title);
+        this.props.history.push("/books/view");
     }
 
     fetchBooks = async () => {
@@ -47,15 +67,16 @@ export default class BookSearchForm extends Component {
     }
 
     render() {
-
         return (
             <div>
-                <form onSubmit={this.handleSubmit}> 
-                    <input name="title" value={this.state.title} onChange={this.handleChange} />
+                <FormContainer onSubmit={this.handleSubmit}> 
+                    <SearchBar name="title" value={this.state.title} onChange={this.handleChange} />
                     <button> search </button>
-                </form>
-                {this.renderBooks()}
+                </FormContainer>
+                {/* {this.renderBooks()} */}
             </div>
         )
     }
 }
+
+export default withRouter(BookSearchForm);

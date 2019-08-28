@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import BookSearchFrom from "../book/BookSearchForm";
 
 
 export default class NavBar extends Component {
@@ -17,6 +18,7 @@ export default class NavBar extends Component {
                 <Link to="/sign-up"> Sign Up </Link>
                 <Link to="/login"> Login </Link>
                 <Link to={`/notes/${user.userName}`}> My notes </Link>
+                <BookSearchFrom updateSearchTerm={this.props.updateSearchTerm}/>
             </div>
         )
     }

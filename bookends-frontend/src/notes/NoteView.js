@@ -31,7 +31,10 @@ class NoteView extends Component {
 
         return (
             <div>
-                Working
+                
+                <h2> {note.title} </h2>
+                <p> {note.content} </p>
+
                 <Link to={{
                     pathname: `/notes/${note._id}/edit`,
                     state: {noteTitle: note.title, noteContent: note.content}
