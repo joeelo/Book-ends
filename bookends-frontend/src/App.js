@@ -1,8 +1,7 @@
 import React, {Fragment, Component} from 'react';
 import { Route, Switch} from "react-router-dom";
 import './App.css';
-import { injectGlobal, createGlobalStyle } from "styled-components";
-import BookSearchForm from "./book/BookSearchForm";
+import { createGlobalStyle } from "styled-components";
 import BookContainer from "./book/BookContainer";
 import BookDetails from './book/BookDetails';
 import UserBookList from "./book/UserBookList"
@@ -11,7 +10,7 @@ import Profile from "./profile/ProfileInfo";
 import NavBar from "./nav/NavBar";
 import NewUserForm from './login/NewUserForm';
 import LoginForm from "./login/LoginForm";
-import NoteButton from "./notes/NoteButton";
+import NoteButton from "./buttons/NoteButton";
 import NoteForm from "./notes/NoteForm";
 import UserNotes from "./notes/UserNotes";
 import NoteEditForm from './notes/NoteEditForm';
@@ -83,7 +82,7 @@ class App extends Component {
 
         <Switch>
           <Route exact path="/profile" render={() => <Profile user={this.state.user}/>} />
-          <Route exact path="/books" render={ (props) => <BookSearchForm updateSearchTerm={this.updateSearchTerm}/>} />
+          {/* <Route exact path="/books" render={ (props) => <BookSearchForm updateSearchTerm={this.updateSearchTerm}/>} /> */}
           <Route path="/books/view" render={(props) => <BookContainer searchTerm={this.state.searchTerm}/>}/>
           <Route exact path="/book/:id" render={ (props) => <BookDetails user={this.state.user} props={props}/>}/>
           <Route path="/book/:id/reviews" component={ReviewPage} />
