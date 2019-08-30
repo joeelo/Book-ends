@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from "react-router-dom";
 
 class NoteEditForm extends Component {
 
@@ -25,6 +26,7 @@ class NoteEditForm extends Component {
             const response = await fetch(url, config);
             const json = await response.json();
             console.log(json);
+            this.props.history.push(`/notes/${id}/view`);
         } 
         catch (error) {
             console.log(error);
@@ -56,4 +58,4 @@ class NoteEditForm extends Component {
     }
 }
 
-export default NoteEditForm
+export default withRouter(NoteEditForm);

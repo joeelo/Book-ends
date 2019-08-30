@@ -13,7 +13,6 @@ export default class NavBar extends Component {
         console.log(user);
         return (
             <div style={divStyle}>
-                <Link to="/books"> Book </Link> <br/>
                 <Link to="/profile" > Profile </Link>
                 <Link to="/sign-up"> Sign Up </Link>
                 <Link to="/login"> Login </Link>
