@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom";
+import PublicButton from "../buttons/PublicButton"
 
 class NoteView extends Component {
 
@@ -39,10 +40,11 @@ class NoteView extends Component {
                     pathname: `/notes/${note._id}/edit`,
                     state: {noteTitle: note.title, noteContent: note.content}
                 }}> 
-                
-                <button>Edit</button>
+                    <button>Edit</button>
                 </Link>
+
                 <button>Delete</button>
+                <PublicButton public={note.private}/>
             </div>
         )
     }

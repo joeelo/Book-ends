@@ -25,7 +25,6 @@ class NoteEditForm extends Component {
             }
             const response = await fetch(url, config);
             const json = await response.json();
-            console.log(json);
             this.props.history.push(`/notes/${id}/view`);
         } 
         catch (error) {
@@ -40,7 +39,6 @@ class NoteEditForm extends Component {
     }
 
     render() {
-        console.log(this.props);
         return (
             <div>
                 <h1> Edit a Note! </h1>
