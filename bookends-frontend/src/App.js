@@ -2,12 +2,12 @@ import React, {Fragment, Component} from 'react';
 import { Route, Switch} from "react-router-dom";
 import './App.css';
 import { createGlobalStyle } from "styled-components";
+import HomePage from "./home/HomePage";
 import BookContainer from "./book/BookContainer";
 import BookDetails from './book/BookDetails';
 import UserBookList from "./book/UserBookList"
 import ReviewPage from "./review/ReviewPage";
 import Profile from "./profile/ProfileInfo";
-import NavBar from "./nav/NavBar";
 import NewUserForm from './login/NewUserForm';
 import LoginForm from "./login/LoginForm";
 import NoteButton from "./buttons/NoteButton";
@@ -15,6 +15,8 @@ import NoteForm from "./notes/NoteForm";
 import UserNotes from "./notes/UserNotes";
 import NoteEditForm from './notes/NoteEditForm';
 import NoteView from "./notes/NoteView";
+import NotLoggedInNavBar from "./nav/NotLoggedInNavBar";
+import LoggedInNavBar from './nav/LoggedInNavBar';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -76,19 +78,25 @@ class App extends Component {
   
         <div className="App">
           {/* <GlobalStyle /> */}
-          <NavBar user={this.state.user} updateSearchTerm={this.updateSearchTerm}/>
+
+          {this.state.user.id !== undefined && this.state.user.id !== "" ?
+            <LoggedInNavBar user={this.state.user} updateSearchTerm={this.updateSearchTerm}/>
+            : 
+            <NotLoggedInNavBar />
+          } 
           <NoteButton />
         </div>
 
         <Switch>
+          <Route exact path="/" component={HomePage}/>
+          <Route exact path="/sign-up" render={() => <NewUserForm loginUser={this.loginUser} />} />
+          <Route exact path="/login" render={() => <LoginForm loginUser={this.loginUser}/>}/>
           <Route exact path="/profile" render={() => <Profile user={this.state.user}/>} />
           {/* <Route exact path="/books" render={ (props) => <BookSearchForm updateSearchTerm={this.updateSearchTerm}/>} /> */}
           <Route path="/books/view" render={(props) => <BookContainer searchTerm={this.state.searchTerm}/>}/>
           <Route exact path="/book/:id" render={ (props) => <BookDetails user={this.state.user} props={props}/>}/>
           <Route path="/book/:id/reviews" component={ReviewPage} />
           <Route exact path="/review/list/:username" render={() => <UserBookList />}/>
-          <Route exact path="/sign-up" render={() => <NewUserForm loginUser={this.loginUser} />} />
-          <Route exact path="/login" render={() => <LoginForm loginUser={this.loginUser}/>}/>
           <Route exact path="/note" render={(props) => <NoteForm user={this.state.user}/>}/>
           <Route exact path="/notes/:username" component={UserNotes}/>
           <Route exact path="/notes/:id/view" component={NoteView}/>
