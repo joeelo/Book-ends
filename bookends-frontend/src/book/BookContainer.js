@@ -13,7 +13,7 @@ class BookContainer extends Component {
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.searchTerm !== this.props.searchTerm) {
-            console.log("updated!");
+            this.fetchBooks();
         }
     }
 
@@ -26,6 +26,7 @@ class BookContainer extends Component {
             this.setState({
                 books: json
             })
+            console.log(json);
         } catch (error) {
             this.setState({
                 books: []

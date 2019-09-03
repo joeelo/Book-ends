@@ -12,6 +12,7 @@ const BookThumbnail = (props) => {
                         <p> {book.volumeInfo.title} </p>
                     </Link>
                         <p>avg rating - {book.volumeInfo.averageRating} </p>
+                        {/* <img alt="book thumbnail" src={book.volumeInfo.imageLinks.smallThumbnail}/> */}
                 </div>
 
         )

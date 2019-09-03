@@ -14,9 +14,9 @@ class LoggedInNavBar extends Component {
         return (
             <div style={divStyle}>
                 <Link to="/profile" > Profile </Link>
-                <Link to="/"> Log Out </Link>
                 <Link to={`/notes/${user.userName}`}> My notes </Link>
                 <BookSearchFrom updateSearchTerm={this.props.updateSearchTerm}/>
+                <Link to="/"> Log Out </Link>
             </div>
         )
     }
