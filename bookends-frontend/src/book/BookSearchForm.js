@@ -10,12 +10,12 @@ const FormContainer = styled.form`
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
+    margin-right: 10px;
 `
 
 const SearchBar = styled.input`
-    padding: 20px 100px;
+    padding: 10px 50px;
     background: transparent;
-    font-size: 2em;
     border: 0 0 5px 0;
 `
 

@@ -11,13 +11,14 @@ const Thumbnail = styled.div`
 `
 
 const Image = styled.img`
-    width: 62px;
+    width: 80px;
     height: 125px;
 `
 
 const DescriptionContainer = styled.p`
     width: 70%;
     margin: 0 50px;
+    font-family: Lato, sans-serif;
 `
 
 const FlexColumn = styled.div`
@@ -26,9 +27,13 @@ const FlexColumn = styled.div`
     width: 20%;
 `
 
+const BookTitle = styled.p`
+    font-family: Playfair Display, serif;
+`
+
 const appendDots = (desc) => {
-    if (desc.length < 160) {
-        return `${desc.substring(0, 160)}...`
+    if (desc.length > 240) {
+        return `${desc.substring(0, 240)}...`
     } else {
         return desc
     }
@@ -44,14 +49,14 @@ const BookThumbnail = (props) => {
                 <Thumbnail>
                     <FlexColumn>
                         <Link to={`/book/${book.id}`} >
-                            <p> {book.volumeInfo.title} </p>
+                            <BookTitle> {book.volumeInfo.title} </BookTitle>
                         </Link>
                         <p>avg rating - {book.volumeInfo.averageRating} </p>
 
                     </FlexColumn>
 
                         <Image alt="book thumbnail" src={book.volumeInfo.imageLinks.smallThumbnail}/>
-                        <DescriptionContainer > {appendDots(bookDescription)}  </DescriptionContainer> 
+                        <DescriptionContainer> {appendDots(bookDescription)}  </DescriptionContainer> 
                 </Thumbnail>
 
         )

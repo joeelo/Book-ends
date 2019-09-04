@@ -20,12 +20,10 @@ import LoggedInNavBar from './nav/LoggedInNavBar';
 
 const GlobalStyle = createGlobalStyle`
   body {
-    height: 100vh;
-    width: 100vw;
-    margin: 0;
-    padding: 0;
-    background: rgb(2,0,41);
-    background: linear-gradient(135deg, rgba(2,0,41,0.9836309523809523) 0%, rgba(9,121,95,1) 13%, rgba(0,212,255,1) 100%);
+    @import url('https://fonts.googleapis.com/css?family=Lato|Playfair+Display&display=swap');
+    font-family: 'Playfair Display', serif;
+    font-family: 'Lato', sans-serif;
+    overflow-x: hidden;
   }
 `
 
@@ -77,7 +75,7 @@ class App extends Component {
       <Fragment>
   
         <div className="App">
-          {/* <GlobalStyle /> */}
+          <GlobalStyle />
 
           {this.state.user.id !== undefined && this.state.user.id !== "" ?
             <LoggedInNavBar user={this.state.user} updateSearchTerm={this.updateSearchTerm}/>
