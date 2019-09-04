@@ -26,7 +26,6 @@ class BookContainer extends Component {
             this.setState({
                 books: json
             })
-            console.log(json);
         } catch (error) {
             this.setState({
                 books: []

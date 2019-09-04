@@ -10,7 +10,6 @@ class LoggedInNavBar extends Component {
             justifyContent: "space-around"
         }
         const user = this.props.user;
-        console.log(user);
         return (
             <div style={divStyle}>
                 <Link to="/profile" > Profile </Link>

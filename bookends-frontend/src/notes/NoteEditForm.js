@@ -25,6 +25,7 @@ class NoteEditForm extends Component {
             }
             const response = await fetch(url, config);
             const json = await response.json();
+            
             this.props.history.push(`/notes/${id}/view`);
         } 
         catch (error) {

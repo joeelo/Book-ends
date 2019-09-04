@@ -9,6 +9,7 @@ const FormContainer = styled.form`
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 20px;
 `
 
 const SearchBar = styled.input`
