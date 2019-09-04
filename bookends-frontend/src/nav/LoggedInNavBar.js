@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import BookSearchFrom from "../book/BookSearchForm";
 import styled from "styled-components";
+import {Button, Logo} from "../styles/styledElements";
 
 const NavBarContainer = styled.div`
     display: flex;
@@ -26,22 +27,6 @@ const RightContainer = styled.div`
     align-items: center;
 `
 
-const Button = styled.button`
-    border: 1px solid black;
-    padding: 5px 10px;
-`
-
-const MarginButton = styled.button`
-    border: 1px solid black;
-    padding: 5px 10px;
-    margin-right: 10px;
-`
-
-const Logo = styled.img`
-    height: 140px;
-    margin-top: 10px;
-`
-
 class LoggedInNavBar extends Component {
     render() {
 
@@ -55,7 +40,7 @@ class LoggedInNavBar extends Component {
                 </LeftContainer>
                 <RightContainer>
                     <BookSearchFrom updateSearchTerm={this.props.updateSearchTerm}/>
-                    <Link to="/"> <MarginButton> Log Out </MarginButton> </Link>
+                    <Link to="/"> <Button> Log Out </Button> </Link>
                 </RightContainer>
             </NavBarContainer>
         )
