@@ -5,6 +5,7 @@ const User = require("../models/User");
 const Review = require("../models/Review");
 const fetch = require("node-fetch");
 
+
 router.get("/book/:bookTitle", async (req, res) => {
     try {
         const book = req.params.bookTitle;
@@ -12,6 +13,14 @@ router.get("/book/:bookTitle", async (req, res) => {
         const response = await fetch(url);
         const json = await response.json();
         res.send(json.items);
+    } catch (error) {
+        res.status(400).send(error);
+    }
+})
+
+router.get("/book/categories/:category", async (req, res) => {
+    try {
+        res.send({message: "working"});
     } catch (error) {
         res.status(400).send(error);
     }

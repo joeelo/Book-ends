@@ -30,23 +30,23 @@ const GlobalStyle = createGlobalStyle`
 
 class App extends Component {
 
-  state = {
-    user: {
-      id: "",
-      name: "", 
-      email: "",
-    }
-  }
-
   // state = {
-  //   searchTerm: "",
   //   user: {
-  //     id: "5d656a91ea12f507b1013a41", 
-  //     name: "Joe Lorenzo", 
-  //     email: "example@gmail.com",
-  //     userName: "joeephus"
+  //     id: "",
+  //     name: "", 
+  //     email: "",
   //   }
   // }
+
+  state = {
+    searchTerm: "",
+    user: {
+      id: "5d656a91ea12f507b1013a41", 
+      name: "Joe Lorenzo", 
+      email: "example@gmail.com",
+      userName: "joeephus"
+    }
+  }
 
   updateSearchTerm = (term) => {
     this.setState({
@@ -78,11 +78,17 @@ class App extends Component {
           <GlobalStyle />
 
           {this.state.user.id !== undefined && this.state.user.id !== "" ?
-            <LoggedInNavBar user={this.state.user} updateSearchTerm={this.updateSearchTerm}/>
+              <LoggedInNavBar user={this.state.user} updateSearchTerm={this.updateSearchTerm}/>
             : 
-            <NotLoggedInNavBar />
+              <NotLoggedInNavBar />
           } 
-          <NoteButton />
+          
+          {this.state.user.id !== undefined && this.state.user.id !== "" ?
+              <NoteButton/>
+            : 
+              null
+          } 
+          
         </div>
 
         <Switch>

@@ -1,11 +1,35 @@
 import React, { Component } from 'react'
+import styled, { keyframes } from "styled-components";
+
+const fadeIn = keyframes`
+    0% { opacity: 0 }
+    20% { opacity: .2 }
+    40% { opacity: .4 }    
+    60% { opacity: .6 }
+    80% { opacity: .8 }
+    100% { opacity: 1 }   
+`
+
+const Wrapper = styled.div`
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+`
+
+const Logo = styled.img`
+    height: 600px;
+    width: 600px;
+    animation: ${fadeIn} 1s linear;
+`
 
 class HomePage extends Component {
+
     render() {
         return (
-            <div>
-                I'm home
-            </div>
+            <Wrapper>
+                <Logo alt="My Reads logo" src="/images/myReadsLogo.png"/>
+            </Wrapper>
         )
     }
 }
