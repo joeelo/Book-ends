@@ -7,23 +7,20 @@ const r = 255 - ((Math.random() + 1) * 100);
 const g = 255 - ((Math.random() + 1) * 100);
 const b = 255 - ((Math.random() + 1) * 100);
 
-const DeleteButton = styled.button`
+const Button = styled.button`
     padding: 10px 15px;
     transition: .5s ease-in-out all;
     background-color: white;
     border: 1px solid black;
-    
+`
+
+const DeleteButton = styled(Button)`   
     &:hover {
         background-color: rgba(255, 100, 100, .7);
     }
 `
 
-const EditButton = styled.button`
-    padding: 10px 15px;
-    transition: .5s ease-in-out all;
-    background-color: white;
-    border: 1px solid black;
-
+const EditButton = styled(Button)`
     &:hover {
         background-color: rgba(50, 255, 255, .5);
     }
@@ -40,6 +37,18 @@ const NoteContainer = styled.div`
 const NoteHeading = styled.h1`
     background-color: white;
     width: 90%;
+    padding: 10px;
+    font-family: Playfair Display, serif; 
+    font-weight: 400;
+`
+
+const NoteContent = styled.p`
+    width: 90%;
+    background-color: white;
+    margin-top: 20px;
+    min-height: 400px;
+    padding: 10px;
+    font-family: Lato, sans-serif;
 `
 
 class NoteView extends Component {
@@ -74,7 +83,7 @@ class NoteView extends Component {
             <NoteContainer>
                 
                 <NoteHeading> {note.title} </NoteHeading>
-                <p> {note.content} </p>
+                <NoteContent> {note.content} </NoteContent>
 
                 <Link to={{
                     pathname: `/notes/${note._id}/edit`,
