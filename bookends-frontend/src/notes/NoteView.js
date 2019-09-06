@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Button } from "../styles/styledElements";
-import PublicButton from "../buttons/PublicButton"
+import { Button, NoteContainer } from "../styles/styledElements";
 import NoteDeletePrompt from "./NoteDeletePrompt";
+// import PublicButton from "../buttons/PublicButton"
 
 const EditButton = styled(Button)`
     &:hover {
@@ -15,15 +15,6 @@ const DeleteButton = styled(Button)`
     &:hover {
         background-color: rgba(255, 100, 100, .7);
     }
-`
-
-const NoteContainer = styled.div`
-    width: 60vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 auto;
-    padding: 10px;
 `
 
 const NoteHeading = styled.h1`

@@ -30,8 +30,18 @@ const Button = styled.button`
     border: 1px solid black;
 `
 
+const NoteContainer = styled.div`
+    width: 60vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    padding: 10px;
+`
+
 export {
     HeaderButton, 
     Button,
-    Logo
+    Logo, 
+    NoteContainer
 }

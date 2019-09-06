@@ -37,34 +37,38 @@ const BookTitle = styled.p`
 `
 
 const appendDots = (desc) => {
-    if (desc.length > 240) {
-        return `${desc.substring(0, 240)}...`
-    } else {
-        return desc
+    if (desc !== undefined) {
+        if (desc.length > 240) {
+            return `${desc.substring(0, 240)}...`
+        } else {
+            return desc
+        }
     }
-
 }
 
-const BookThumbnail = (props) => {
-    const { book } = props;
-    let bookDescription = book.volumeInfo.description
-    // console.log(props);
+function BookThumbnail(props) {
         return (
 
                 <Thumbnail>
                     <FlexColumn>
-                        <Link to={`/book/${book.id}`} >
-                            <BookTitle> {book.volumeInfo.title} </BookTitle>
+                        <Link to={`/book/${props.book.id}`} >
+                            <BookTitle> {props.book.volumeInfo.title || ""} </BookTitle>
                         </Link>
-                        <RatingTag>Avg Rating - {book.volumeInfo.averageRating} </RatingTag>
-
+                        <RatingTag> Avg Rating - {props.book.volumeInfo.averageRating} </RatingTag>
                     </FlexColumn>
-
-                        <Image alt="book thumbnail" src={book.volumeInfo.imageLinks.smallThumbnail}/>
-                        <DescriptionContainer> {appendDots(bookDescription)}  </DescriptionContainer> 
+                        {
+                            props.book.volumeInfo.imageLinks !== undefined 
+                            ? <Image alt="book thumbnail" src={props.book.volumeInfo.imageLinks.smallThumbnail}/>
+                            : null
+                        }
+                        <p> {props.name} </p>
+                        <DescriptionContainer> {appendDots(props.book.volumeInfo.description)}  </DescriptionContainer> 
                 </Thumbnail>
-
         )
+}
+
+BookThumbnail.defaultProps = {
+    name: "JOhn Markus"
 }
 
 export default BookThumbnail;

@@ -91,8 +91,9 @@ router.put("/rating", async (req, res) => {
         // console.log(user)
         if (foundBook) {
             foundBook.rating = req.body.rating;
-            foundBook.save();
-            user.save();
+            await foundBook.save();
+            user.books.push(foundBook);
+            await user.save();
             return res.send({message: "updated rating!", foundBook});
         } else {
             let newBook = new Book();
