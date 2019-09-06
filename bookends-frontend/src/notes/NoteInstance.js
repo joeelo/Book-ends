@@ -22,6 +22,7 @@ const Note = styled.div`
     background-color: rgb(${r}, ${g}, ${b});
     text-align: center;
     margin-top: 2rem;
+    padding: 0 20px;
 
     :hover {
         animation: ${increaseSize} .25s ease-in-out;
@@ -80,7 +81,7 @@ class NoteInstance extends Component {
         return (
             <Note>
                 <TopWrapper>
-                    <NoteHeader> {titleCase(note.content)} </NoteHeader>
+                    <NoteHeader> {titleCase(note.title)} </NoteHeader>
                     <NoteContent> {note.content} </NoteContent>
                 </TopWrapper>
 

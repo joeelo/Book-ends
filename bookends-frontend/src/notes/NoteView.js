@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import PublicButton from "../buttons/PublicButton"
+import NoteDeletePrompt from "./NoteDeletePrompt";
 
 const r = 255 - ((Math.random() + 1) * 100);
 const g = 255 - ((Math.random() + 1) * 100);
@@ -14,17 +15,18 @@ const Button = styled.button`
     border: 1px solid black;
 `
 
+const EditButton = styled(Button)`
+    &:hover {
+        background-color: rgba(50, 255, 255, .5);
+    }
+`
+
 const DeleteButton = styled(Button)`   
     &:hover {
         background-color: rgba(255, 100, 100, .7);
     }
 `
 
-const EditButton = styled(Button)`
-    &:hover {
-        background-color: rgba(50, 255, 255, .5);
-    }
-`
 const NoteContainer = styled.div`
     width: 60vw;
     display: flex;
@@ -55,7 +57,8 @@ const NoteContent = styled.p`
 class NoteView extends Component {
 
     state = {
-        note: {}
+        note: {}, 
+        showPrompt: false
     }
 
     componentDidMount(){
@@ -76,6 +79,10 @@ class NoteView extends Component {
         }
     }
 
+    renderPrompt = () => this.setState({showPrompt: true});
+
+    closePrompt = () => this.setState({showPrompt: false});
+
     render() {
         const { note } = this.state
         console.log(note);
@@ -93,8 +100,15 @@ class NoteView extends Component {
                     <EditButton> Edit </EditButton>
                 </Link>
 
-                <DeleteButton> Delete </DeleteButton>
+                <DeleteButton onClick={this.renderPrompt}> Delete </DeleteButton>
                 {/* <PublicButton public={note.private}/> */}
+                {
+                    this.state.showPrompt 
+                    ?
+                        <NoteDeletePrompt closePrompt={this.closePrompt} noteId={this.state.note._id}/>
+                    :
+                        null
+                }
             </NoteContainer>
         )
     }

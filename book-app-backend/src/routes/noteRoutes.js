@@ -53,4 +53,12 @@ router.patch("/notes/:id/edit", async (req, res) => {
     }
 })
 
+router.delete("/notes/:id", async (req, res) => {
+    try {
+        res.send({message: "working"})
+    } catch (error) {
+        res.send(error);
+    }
+})
+
 module.exports = router;

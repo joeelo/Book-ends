@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class ReviewThumbnail extends Component {
+class ReviewThumbnail extends Component {
     render() {
         return (
             <div>
@@ -9,3 +9,5 @@ export default class ReviewThumbnail extends Component {
         )
     }
 }
+
+export default ReviewThumbnail
