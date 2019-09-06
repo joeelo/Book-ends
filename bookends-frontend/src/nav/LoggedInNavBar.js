@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import BookSearchFrom from "../book/BookSearchForm";
+import BookSearchFrom from "../forms/BookSearchForm";
 import styled from "styled-components";
 import {Button, Logo} from "../styles/styledElements";
 

@@ -96,7 +96,6 @@ class App extends Component {
           <Route exact path="/sign-up" render={() => <NewUserForm loginUser={this.loginUser} />} />
           <Route exact path="/login" render={() => <LoginForm loginUser={this.loginUser}/>}/>
           <Route exact path="/profile" render={() => <Profile user={this.state.user}/>} />
-          {/* <Route exact path="/books" render={ (props) => <BookSearchForm updateSearchTerm={this.updateSearchTerm}/>} /> */}
           <Route path="/books/view" render={(props) => <BookContainer searchTerm={this.state.searchTerm}/>}/>
           <Route exact path="/book/:id" render={ (props) => <BookDetails user={this.state.user} props={props}/>}/>
           <Route path="/book/:id/reviews" component={ReviewPage} />

@@ -1,6 +1,46 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 import PublicButton from "../buttons/PublicButton"
+
+const r = 255 - ((Math.random() + 1) * 100);
+const g = 255 - ((Math.random() + 1) * 100);
+const b = 255 - ((Math.random() + 1) * 100);
+
+const DeleteButton = styled.button`
+    padding: 10px 15px;
+    transition: .5s ease-in-out all;
+    background-color: white;
+    border: 1px solid black;
+    
+    &:hover {
+        background-color: rgba(255, 100, 100, .7);
+    }
+`
+
+const EditButton = styled.button`
+    padding: 10px 15px;
+    transition: .5s ease-in-out all;
+    background-color: white;
+    border: 1px solid black;
+
+    &:hover {
+        background-color: rgba(50, 255, 255, .5);
+    }
+`
+const NoteContainer = styled.div`
+    width: 60vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    background-color: rgba(${r}, ${g}, ${b}, 0.5);
+`
+
+const NoteHeading = styled.h1`
+    background-color: white;
+    width: 90%;
+`
 
 class NoteView extends Component {
 
@@ -31,21 +71,21 @@ class NoteView extends Component {
         console.log(note);
 
         return (
-            <div>
+            <NoteContainer>
                 
-                <h2> {note.title} </h2>
+                <NoteHeading> {note.title} </NoteHeading>
                 <p> {note.content} </p>
 
                 <Link to={{
                     pathname: `/notes/${note._id}/edit`,
                     state: {noteTitle: note.title, noteContent: note.content}
                 }}> 
-                    <button>Edit</button>
+                    <EditButton> Edit </EditButton>
                 </Link>
 
-                <button>Delete</button>
-                <PublicButton public={note.private}/>
-            </div>
+                <DeleteButton> Delete </DeleteButton>
+                {/* <PublicButton public={note.private}/> */}
+            </NoteContainer>
         )
     }
 }

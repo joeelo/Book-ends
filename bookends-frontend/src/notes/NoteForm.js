@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { withRouter } from "react-router-dom";
 
 class NoteForm extends Component {
 
@@ -24,7 +25,8 @@ class NoteForm extends Component {
             
             const response = await fetch(url, config);
             const json = await response.json();
-            console.log(json);    
+            const newNoteUrl = json._id;
+            this.props.history.push(``)
         } 
         catch (error) {
             console.log(error);
