@@ -21,6 +21,11 @@ const DescriptionContainer = styled.p`
     font-family: Lato, sans-serif;
 `
 
+const RatingTag = styled.p`
+    font-family: Lato, sans-serif;
+    font-size: 14px;
+`
+
 const FlexColumn = styled.div`
     display: flex;
     flex-direction: column;
@@ -51,7 +56,7 @@ const BookThumbnail = (props) => {
                         <Link to={`/book/${book.id}`} >
                             <BookTitle> {book.volumeInfo.title} </BookTitle>
                         </Link>
-                        <p>avg rating - {book.volumeInfo.averageRating} </p>
+                        <RatingTag>Avg Rating - {book.volumeInfo.averageRating} </RatingTag>
 
                     </FlexColumn>
 

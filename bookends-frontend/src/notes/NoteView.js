@@ -32,12 +32,13 @@ const NoteContainer = styled.div`
     align-items: center;
     margin: 0 auto;
     background-color: rgba(${r}, ${g}, ${b}, 0.5);
+    padding: 10px;
 `
 
 const NoteHeading = styled.h1`
     background-color: white;
     width: 90%;
-    padding: 10px;
+    padding: 15px;
     font-family: Playfair Display, serif; 
     font-weight: 400;
 `
@@ -47,7 +48,7 @@ const NoteContent = styled.p`
     background-color: white;
     margin-top: 20px;
     min-height: 400px;
-    padding: 10px;
+    padding: 10px 15px;;
     font-family: Lato, sans-serif;
 `
 

@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 
+const r = 255 - ((Math.random() + 1) * 60);
+const g = 255 - ((Math.random() + 1) * 60);
+const b = 255 - ((Math.random() + 1) * 60);
+
 const increaseSize = keyframes`
     0% {tranform: scale(1.0125) }
     50% {transforma: scale(1.025)}
@@ -15,7 +19,7 @@ const Note = styled.div`
     flex-direction: column;
     align-content: space-between;
     justify-content: space-around;
-    background-color: rgb(240, 240, 240);
+    background-color: rgb(${r}, ${g}, ${b});
     text-align: center;
     margin-top: 2rem;
 

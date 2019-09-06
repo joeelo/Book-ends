@@ -20,6 +20,8 @@ import LoggedInNavBar from './nav/LoggedInNavBar';
 
 const GlobalStyle = createGlobalStyle`
   body {
+    padding: 0; 
+    margin: 0;
     @import url('https://fonts.googleapis.com/css?family=Lato|Playfair+Display&display=swap');
     font-family: 'Playfair Display', serif;
     font-family: 'Lato', sans-serif;
