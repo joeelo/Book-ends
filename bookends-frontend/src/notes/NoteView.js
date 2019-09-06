@@ -1,19 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { Button } from "../styles/styledElements";
 import PublicButton from "../buttons/PublicButton"
 import NoteDeletePrompt from "./NoteDeletePrompt";
-
-const r = 255 - ((Math.random() + 1) * 100);
-const g = 255 - ((Math.random() + 1) * 100);
-const b = 255 - ((Math.random() + 1) * 100);
-
-const Button = styled.button`
-    padding: 10px 15px;
-    transition: .5s ease-in-out all;
-    background-color: white;
-    border: 1px solid black;
-`
 
 const EditButton = styled(Button)`
     &:hover {
@@ -33,7 +23,6 @@ const NoteContainer = styled.div`
     flex-direction: column;
     align-items: center;
     margin: 0 auto;
-    background-color: rgba(${r}, ${g}, ${b}, 0.5);
     padding: 10px;
 `
 
@@ -50,7 +39,7 @@ const NoteContent = styled.p`
     background-color: white;
     margin-top: 20px;
     min-height: 400px;
-    padding: 10px 15px;;
+    padding: 10px 15px;
     font-family: Lato, sans-serif;
 `
 
@@ -58,11 +47,13 @@ class NoteView extends Component {
 
     state = {
         note: {}, 
-        showPrompt: false
+        showPrompt: false,
+        randomColor: ""
     }
 
     componentDidMount(){
         this.fetchNote();
+        this.generateRandomColor();
     }
 
     fetchNote = async () => {
@@ -83,12 +74,25 @@ class NoteView extends Component {
 
     closePrompt = () => this.setState({showPrompt: false});
 
+    generateRandomColor = () => {
+        const r = 255 - ((Math.random() + 1) * 60);
+        const g = 255 - ((Math.random() + 1) * 60);
+        const b = 255 - ((Math.random() + 1) * 60);
+
+        const color = `rgb(${r}, ${g}, ${b})`
+        this.setState({randomColor: color});
+    }
+
     render() {
         const { note } = this.state
-        console.log(note);
+        console.log(this.state);
+
+        const style = {
+            backgroundColor: this.state.randomColor
+        }
 
         return (
-            <NoteContainer>
+            <NoteContainer style={style}>
                 
                 <NoteHeading> {note.title} </NoteHeading>
                 <NoteContent> {note.content} </NoteContent>

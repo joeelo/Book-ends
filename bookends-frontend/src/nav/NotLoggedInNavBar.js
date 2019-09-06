@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Button, Logo } from "../styles/styledElements";
+import { HeaderButton, Logo } from "../styles/styledElements";
 
 const Wrapper = styled.div`
     display: flex;
@@ -33,8 +33,8 @@ class NotLoggedInNavBar extends Component {
                 </LeftContainer>
 
                 <RightContainer>
-                    <Link to="/sign-up"> <Button> Sign Up </Button></Link>
-                    <Link to="/login"> <Button> Login </Button></Link>
+                    <Link to="/sign-up"> <HeaderButton> Sign Up </HeaderButton></Link>
+                    <Link to="/login"> <HeaderButton> Login </HeaderButton></Link>
 
                 </RightContainer>
             </Wrapper>

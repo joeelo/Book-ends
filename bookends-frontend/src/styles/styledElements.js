@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Button = styled.button`
+const HeaderButton = styled.button`
     padding: 0;
     margin: 5px 15px;
     border: none;
@@ -23,7 +23,15 @@ const Logo = styled.img`
     margin-top: 10px;
 `
 
+const Button = styled.button`
+    padding: 10px 15px;
+    transition: .5s ease-in-out all;
+    background-color: white;
+    border: 1px solid black;
+`
+
 export {
-    Button, 
+    HeaderButton, 
+    Button,
     Logo
 }

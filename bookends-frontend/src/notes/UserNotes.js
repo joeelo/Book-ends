@@ -33,9 +33,19 @@ class UserNotes extends Component {
         })
     }
 
+    generateRandomColor = () => {
+        const r = 255 - ((Math.random() + 1) * 60);
+        const g = 255 - ((Math.random() + 1) * 60);
+        const b = 255 - ((Math.random() + 1) * 60);
+
+        const colors = `rgb(${r}, ${g}, ${b})`
+        return colors;
+    }
+
     renderNotes = () => {
         const notes = this.state.notes.map((note) => {
-            return <NoteInstance key={note._id} note={note}/>
+            let randomColor = this.generateRandomColor();
+            return <NoteInstance key={note._id} note={note} randomColor={randomColor}/>
         })
         return notes;
     }

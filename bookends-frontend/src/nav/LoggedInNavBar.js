@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import BookSearchFrom from "../forms/BookSearchForm";
 import styled from "styled-components";
-import {Button, Logo} from "../styles/styledElements";
+import { HeaderButton, Logo } from "../styles/styledElements";
 
 const NavBarContainer = styled.div`
     display: flex;
@@ -35,12 +35,12 @@ class LoggedInNavBar extends Component {
             <NavBarContainer>
                 <LeftContainer>
                     <Logo alt="My Reads logo" src="/images/myReadsLogo.png"/>
-                    <Link to="/profile" > <Button> Profile </Button> </Link>
-                    <Link to={`/notes/${user.userName}`}> <Button> My notes </Button> </Link>
+                    <Link to="/profile" > <HeaderButton> Profile </HeaderButton> </Link>
+                    <Link to={`/notes/${user.userName}`}> <HeaderButton> My notes </HeaderButton> </Link>
                 </LeftContainer>
                 <RightContainer>
                     <BookSearchFrom updateSearchTerm={this.props.updateSearchTerm}/>
-                    <Link to="/"> <Button> Log Out </Button> </Link>
+                    <Link to="/"> <HeaderButton> Log Out </HeaderButton> </Link>
                 </RightContainer>
             </NavBarContainer>
         )

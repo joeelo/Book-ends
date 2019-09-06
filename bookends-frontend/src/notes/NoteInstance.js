@@ -6,6 +6,8 @@ const r = 255 - ((Math.random() + 1) * 60);
 const g = 255 - ((Math.random() + 1) * 60);
 const b = 255 - ((Math.random() + 1) * 60);
 
+
+
 const increaseSize = keyframes`
     0% {tranform: scale(1.0125) }
     50% {transforma: scale(1.025)}
@@ -19,7 +21,6 @@ const Note = styled.div`
     flex-direction: column;
     align-content: space-between;
     justify-content: space-around;
-    background-color: rgb(${r}, ${g}, ${b});
     text-align: center;
     margin-top: 2rem;
     padding: 0 20px;
@@ -76,20 +77,23 @@ const titleCase = (str) => {
 
 class NoteInstance extends Component {
 
+    
     render() {
+
+        const style = {
+            backgroundColor: this.props.randomColor
+        }
+
         const { note } = this.props;
         return (
-            <Note>
+            <Note style={style}>
                 <TopWrapper>
                     <NoteHeader> {titleCase(note.title)} </NoteHeader>
                     <NoteContent> {note.content} </NoteContent>
                 </TopWrapper>
 
                 <BottomWrapper>
-                    <Link to={{
-                        pathname: `/notes/${note._id}/view`,
-                        state: {noteTitle: note.title, noteContent: note.content}
-                    }}>
+                    <Link to={`/notes/${note._id}/view`}>
                         <ViewButton> view </ViewButton>
                     </Link>
                 </BottomWrapper>

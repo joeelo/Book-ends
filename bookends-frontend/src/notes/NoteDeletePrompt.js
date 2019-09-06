@@ -67,7 +67,6 @@ const ButtonContainer = styled.div`
     margin-top: 20px;
 `
 
-
 class NoteDeletePrompt extends Component {
 
     deleteHandler = async () => {
