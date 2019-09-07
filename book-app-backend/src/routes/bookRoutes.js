@@ -53,12 +53,10 @@ router.post("/books", async (req, res) => {
             foundBook.save();
             res.send({message: "already saved to DB and user"});    
         } else {
-            console.log("new book");
-            const book = new Book();
-            book.any = req.body.any;
-            book.user = req.body.user.id;
-            book.finished = req.body.finished;
-            await book.save(); 
+            const { any, finished } = req.body;
+            const { id } = req.body.user;
+            const book = { any, user: id, finished };
+            Book.create(book);
             res.send(book);
         }
     } catch (error) {

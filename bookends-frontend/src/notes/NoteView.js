@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Button, NoteContainer } from "../styles/styledElements";
+import { NoteHeading, NoteContent } from "../styles/styledElements"
 import NoteDeletePrompt from "./NoteDeletePrompt";
+import randomColorGenerator from "../styles/randomColorGenerator";
 // import PublicButton from "../buttons/PublicButton"
 
 const EditButton = styled(Button)`
@@ -17,34 +19,19 @@ const DeleteButton = styled(Button)`
     }
 `
 
-const NoteHeading = styled.h1`
-    background-color: white;
-    width: 90%;
-    padding: 15px;
-    font-family: Playfair Display, serif; 
-    font-weight: 400;
-`
 
-const NoteContent = styled.p`
-    width: 90%;
-    background-color: white;
-    margin-top: 20px;
-    min-height: 400px;
-    padding: 10px 15px;
-    font-family: Lato, sans-serif;
-`
 
 class NoteView extends Component {
 
     state = {
         note: {}, 
         showPrompt: false,
-        randomColor: ""
+        backgroundColor: ""
     }
 
     componentDidMount(){
         this.fetchNote();
-        this.generateRandomColor();
+        this.setState({backgroundColor: randomColorGenerator()});
     }
 
     fetchNote = async () => {
@@ -65,21 +52,11 @@ class NoteView extends Component {
 
     closePrompt = () => this.setState({showPrompt: false});
 
-    generateRandomColor = () => {
-        const r = 255 - ((Math.random() + 1) * 60);
-        const g = 255 - ((Math.random() + 1) * 60);
-        const b = 255 - ((Math.random() + 1) * 60);
-
-        const color = `rgb(${r}, ${g}, ${b})`
-        this.setState({randomColor: color});
-    }
-
     render() {
         const { note } = this.state
-        console.log(this.state);
 
         const style = {
-            backgroundColor: this.state.randomColor
+            backgroundColor: this.state.backgroundColor
         }
 
         return (
@@ -92,6 +69,8 @@ class NoteView extends Component {
                     pathname: `/notes/${note._id}/edit`,
                     state: {noteTitle: note.title, noteContent: note.content}
                 }}> 
+
+
                     <EditButton> Edit </EditButton>
                 </Link>
 

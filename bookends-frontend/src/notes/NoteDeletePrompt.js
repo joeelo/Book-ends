@@ -73,9 +73,15 @@ class NoteDeletePrompt extends Component {
         console.log(this.props);
     }
 
+    wrapperEscape = (event) => {
+        if (event.target.id === "wrapper") {
+            this.props.closePrompt();
+        }
+    }
+
     render() {
         return (
-            <FullPageWrapper>
+            <FullPageWrapper id="wrapper" onClick={this.wrapperEscape}>
                 <Prompt>
 
                     <Header> Are you sure you want to delete this note?</Header> 

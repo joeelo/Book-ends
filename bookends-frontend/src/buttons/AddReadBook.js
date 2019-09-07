@@ -23,9 +23,7 @@ const AddReadBook = (props) => {
 
     return (
         <div>
-
             <button onClick={() => clickHandler(props)}> Read </button>
-
         </div>
     )
 } 

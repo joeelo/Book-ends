@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
+import styled from "styled-components";
+import { NoteContainer, Button } from "../styles/styledElements";
+import { NoteForm, NoteHeadingInput, NoteContentInput} from "../styles/styledforms"
 
-class NoteForm extends Component {
+const Header = styled.h1`
+    
+`
+
+class NewNoteForm extends Component {
 
     state = {
         noteTitle: "",
@@ -40,21 +47,29 @@ class NoteForm extends Component {
     }
 
     render() {
+
+        const style = {
+            backgroundColor: `rgb(190, 184, 191)`
+        }
+
         return (
             <div>
-                <h1> Write a Note! </h1>
+                {/* <h1> Write a Note! </h1> */}
+                <NoteContainer style={style}>
 
-                <form onSubmit={this.submitHandler}>
+                    <NoteForm onSubmit={this.submitHandler}>
 
-                    <input name="noteTitle" value={this.state.noteTitle} onChange={this.changeHandler} placeholder="Title..."/> <br/>
-                    <input name="noteContent" value={this.state.noteContent} onChange={this.changeHandler} placeholder="make your note!"/> <br/>
-                    <button> Post Note </button>
+                        <NoteHeadingInput name="noteTitle" value={this.state.noteTitle} onChange={this.changeHandler} placeholder="Title..."/> <br/>
+                        <NoteContentInput name="noteContent" value={this.state.noteContent} onChange={this.changeHandler} placeholder="Speak your mind!"/> <br/>
+                        <Button> Post Note </Button>
 
-                </form>
+                    </NoteForm>
+                </NoteContainer>
+
 
             </div>
         )
     }
 }
 
-export default NoteForm
+export default NewNoteForm

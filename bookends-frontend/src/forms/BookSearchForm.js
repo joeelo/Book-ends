@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 
 
 const FormContainer = styled.form`
-    margin: 0 auto;
+    margin: 5px auto 0 auto;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -14,9 +14,32 @@ const FormContainer = styled.form`
 `
 
 const SearchBar = styled.input`
-    padding: 10px 50px;
+    padding: 10px;
+    width: 250px;
     background: transparent;
-    border: 0 0 5px 0;
+    border: none;
+    margin-top: 20px;
+    border-bottom: 3px solid teal;
+    font-size: 16px;
+    font-family: Lato, sans-serif;
+
+    :focus {
+        outline: none;
+    }
+`
+
+const MagButton = styled.button`
+    border: 0;
+    padding: 0;
+    margin-top: 30px;
+`
+
+const MagnifyingGlassImg = styled.img`
+    height: 25px;
+    width: 25px;
+    margin-left: 5px;
+    background-color: inherit;
+    cursor: pointer;
 `
 
 class BookSearchForm extends Component {
@@ -42,8 +65,8 @@ class BookSearchForm extends Component {
         return (
             <div>
                 <FormContainer onSubmit={this.handleSubmit}> 
-                    <SearchBar name="title" value={this.state.title} onChange={this.handleChange} />
-                    <button> search </button>
+                    <SearchBar name="title" value={this.state.title} onChange={this.handleChange} placeholder={"search your book"}/>
+                    <MagButton> <MagnifyingGlassImg alt="magnifying glass icon" src="/images/magnifyingGlass.png"/> </MagButton>
                 </FormContainer>
             </div>
         )

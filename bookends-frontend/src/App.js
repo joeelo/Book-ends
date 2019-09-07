@@ -11,7 +11,7 @@ import Profile from "./profile/ProfileInfo";
 import NewUserForm from './login/NewUserForm';
 import LoginForm from "./login/LoginForm";
 import NoteButton from "./buttons/NoteButton";
-import NoteForm from "./notes/NoteForm";
+import NewNoteForm from "./notes/NewNoteForm";
 import UserNotes from "./notes/UserNotes";
 import NoteEditForm from './notes/NoteEditForm';
 import NoteView from "./notes/NoteView";
@@ -102,7 +102,7 @@ class App extends Component {
           <Route exact path="/book/:id" render={ (props) => <BookDetails user={this.state.user} props={props}/>}/>
           <Route path="/book/:id/reviews" component={ReviewPage} />
           <Route exact path="/review/list/:username" render={() => <UserBookList />}/>
-          <Route exact path="/note" render={(props) => <NoteForm user={this.state.user}/>}/>
+          <Route exact path="/note" render={(props) => <NewNoteForm user={this.state.user}/>}/>
           <Route exact path="/notes/:username" component={UserNotes}/>
           <Route exact path="/notes/:id/view" component={NoteView}/>
           <Route exact path="/notes/:id/edit" component={NoteEditForm}/>

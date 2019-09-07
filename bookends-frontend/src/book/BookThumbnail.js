@@ -61,7 +61,6 @@ function BookThumbnail(props) {
                             ? <Image alt="book thumbnail" src={props.book.volumeInfo.imageLinks.smallThumbnail}/>
                             : null
                         }
-                        <p> {props.name} </p>
                         <DescriptionContainer> {appendDots(props.book.volumeInfo.description)}  </DescriptionContainer> 
                 </Thumbnail>
         )

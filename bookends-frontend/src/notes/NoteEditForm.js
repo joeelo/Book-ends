@@ -1,12 +1,20 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
+import { NoteContainer, Button } from "../styles/styledElements";
+import { NoteForm, NoteHeadingInput, NoteContentInput} from "../styles/styledforms"
+import randomColorGenerator from "../styles/randomColorGenerator";
 
 class NoteEditForm extends Component {
 
     state = {
         noteTitle: this.props.history.location.state.noteTitle,
         noteContent: this.props.history.location.state.noteContent,
-        user: this.props.user
+        user: this.props.user,
+        backgroundColor: ""
+    }
+
+    componentDidMount() {
+        this.setState({backgroundColor: randomColorGenerator()});
     }
 
     submitHandler = async (event) => {
@@ -40,17 +48,21 @@ class NoteEditForm extends Component {
     }
 
     render() {
+
+        const style = {
+            backgroundColor: this.state.backgroundColor
+        }
+
         return (
-            <div>
-                <h1> Edit a Note! </h1>
+            <NoteContainer style={style}>
 
-                <form onSubmit={this.submitHandler}>
-                    <input name="noteTitle" value={this.state.noteTitle} onChange={this.changeHandler} placeholder="Title..."/> <br/>
-                    <input name="noteContent" value={this.state.noteContent} onChange={this.changeHandler} placeholder="make your note!"/> <br/>
-                    <button> Done editing </button>
-                </form>
+                <NoteForm onSubmit={this.submitHandler}>
+                    <NoteHeadingInput name="noteTitle" value={this.state.noteTitle} onChange={this.changeHandler} placeholder="Title..." autoFocus={true}/> <br/>
+                    <NoteContentInput name="noteContent" value={this.state.noteContent} onChange={this.changeHandler} placeholder="make your note!"/> <br/>
+                    <Button> Done editing </Button>
+                </NoteForm>
 
-            </div>
+            </NoteContainer>
         )
     }
 }

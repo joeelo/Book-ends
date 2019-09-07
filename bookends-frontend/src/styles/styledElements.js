@@ -39,9 +39,28 @@ const NoteContainer = styled.div`
     padding: 10px;
 `
 
+const NoteHeading = styled.h1`
+    background-color: white;
+    width: 90%;
+    padding: 15px;
+    font-family: Playfair Display, serif; 
+    font-weight: 400;
+`
+
+const NoteContent = styled.p`
+    width: 90%;
+    background-color: white;
+    margin-top: 20px;
+    min-height: 400px;
+    padding: 10px 15px;
+    font-family: Lato, sans-serif;
+`
+
 export {
     HeaderButton, 
     Button,
     Logo, 
-    NoteContainer
+    NoteContainer, 
+    NoteHeading,
+    NoteContent, 
 }
