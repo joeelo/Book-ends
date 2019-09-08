@@ -7,6 +7,13 @@ import NoteDeletePrompt from "./NoteDeletePrompt";
 import randomColorGenerator from "../styles/randomColorGenerator";
 // import PublicButton from "../buttons/PublicButton"
 
+const ButtonContainer = styled.div`
+    display: flex;
+    width: 150px;
+    margin: 0 auto;
+    justify-content: space-between;
+`
+
 const EditButton = styled(Button)`
     &:hover {
         background-color: rgba(50, 255, 255, .5);
@@ -65,16 +72,15 @@ class NoteView extends Component {
                 <NoteHeading> {note.title} </NoteHeading>
                 <NoteContent> {note.content} </NoteContent>
 
-                <Link to={{
-                    pathname: `/notes/${note._id}/edit`,
-                    state: {noteTitle: note.title, noteContent: note.content}
-                }}> 
-
-
-                    <EditButton> Edit </EditButton>
-                </Link>
-
-                <DeleteButton onClick={this.renderPrompt}> Delete </DeleteButton>
+                <ButtonContainer>
+                    <Link to={{
+                        pathname: `/notes/${note._id}/edit`,
+                        state: {noteTitle: note.title, noteContent: note.content}
+                    }}> 
+                        <EditButton> Edit </EditButton>
+                    </Link>
+                    <DeleteButton onClick={this.renderPrompt}> Delete </DeleteButton>
+                </ButtonContainer>
                 {/* <PublicButton public={note.private}/> */}
                 {
                     this.state.showPrompt 

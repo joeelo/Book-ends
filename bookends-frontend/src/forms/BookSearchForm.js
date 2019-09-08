@@ -19,12 +19,18 @@ const SearchBar = styled.input`
     background: transparent;
     border: none;
     margin-top: 20px;
-    border-bottom: 3px solid teal;
+    border-bottom: 2px solid teal;
     font-size: 16px;
     font-family: Lato, sans-serif;
+    transition: .5s ease-in-out;
 
     :focus {
         outline: none;
+        border-bottom: 2px solid #FF7561;
+    }
+
+    :hover {
+        border-bottom: 2px solid #FF7561;
     }
 `
 

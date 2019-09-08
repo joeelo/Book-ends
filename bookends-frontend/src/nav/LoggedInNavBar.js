@@ -25,6 +25,7 @@ const RightContainer = styled.div`
     justify-self: flex-end;
     height: 70px;
     align-items: center;
+    margin-right: 50px;
 `
 
 class LoggedInNavBar extends Component {

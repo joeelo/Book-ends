@@ -17,7 +17,7 @@ const Prompt = styled.div`
     top: 50%;  
     left: 50%; 
     transform: translate(-50%, -50%);
-    background-color: rgba(210, 255, 210);
+    background-color: rgba(255, 162, 161);
     z-index: 3;
     width: 40vw;
     height: 50vh;
@@ -62,7 +62,6 @@ const DeleteButton = styled(Button)`
     }
 `
 
-
 const ButtonContainer = styled.div`
     margin-top: 20px;
 `
@@ -70,7 +69,22 @@ const ButtonContainer = styled.div`
 class NoteDeletePrompt extends Component {
 
     deleteHandler = async () => {
-        console.log(this.props);
+        try {
+            console.log(this.props);
+            const id = this.props.noteId;
+            const url = `http://localhost:3000/notes/${id}`;
+            const config = {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }
+            const response = await fetch(url, config);
+            const json = await response.json();
+            console.log(json);
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     wrapperEscape = (event) => {
