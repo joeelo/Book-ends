@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Button, NoteContainer } from "../styles/styledElements";
+import { Container as NoteContainer, Button } from "../styles/styledElements";
 import { NoteHeading, NoteContent } from "../styles/styledElements"
 import NoteDeletePrompt from "./NoteDeletePrompt";
 import randomColorGenerator from "../styles/randomColorGenerator";

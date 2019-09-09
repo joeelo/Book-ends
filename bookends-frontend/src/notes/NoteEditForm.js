@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
-import { NoteContainer, Button } from "../styles/styledElements";
+import { Container as NoteContainer, Button } from "../styles/styledElements";
 import { NoteForm, NoteHeadingInput, NoteContentInput} from "../styles/styledforms"
 import randomColorGenerator from "../styles/randomColorGenerator";
 

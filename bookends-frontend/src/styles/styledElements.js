@@ -30,7 +30,7 @@ const Button = styled.button`
     border: 1px solid black;
 `
 
-const NoteContainer = styled.div`
+const Container = styled.div`
     width: 60vw;
     display: flex;
     flex-direction: column;
@@ -60,7 +60,7 @@ export {
     HeaderButton, 
     Button,
     Logo, 
-    NoteContainer, 
+    Container, 
     NoteHeading,
     NoteContent, 
 }

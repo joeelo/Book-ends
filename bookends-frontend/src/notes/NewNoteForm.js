@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 import styled from "styled-components";
-import { NoteContainer, Button } from "../styles/styledElements";
+import { Container as NoteContainer, Button } from "../styles/styledElements";
 import { NoteForm, NoteHeadingInput, NoteContentInput} from "../styles/styledforms"
 
 const Header = styled.h1`
