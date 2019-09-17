@@ -43,9 +43,10 @@ class UserNotes extends Component {
     }
 
     renderNotes = () => {
+        const username = this.props.match.params.username;
         const notes = this.state.notes.map((note) => {
             let randomColor = this.generateRandomColor();
-            return <NoteInstance key={note._id} note={note} randomColor={randomColor}/>
+            return <NoteInstance key={note._id} note={note} randomColor={randomColor} username={username}/>
         })
         return notes;
     }

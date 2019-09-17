@@ -61,7 +61,7 @@ class NoteView extends Component {
 
     render() {
         const { note } = this.state
-
+        const username = this.props.location.state.username;
         const style = {
             backgroundColor: this.state.backgroundColor
         }
@@ -85,7 +85,7 @@ class NoteView extends Component {
                 {
                     this.state.showPrompt 
                     ?
-                        <NoteDeletePrompt closePrompt={this.closePrompt} noteId={this.state.note._id}/>
+                        <NoteDeletePrompt closePrompt={this.closePrompt} noteId={this.state.note._id} username={username}/>
                     :
                         null
                 }

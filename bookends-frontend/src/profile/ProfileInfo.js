@@ -6,6 +6,7 @@ import randomColorGenerator from "../styles/randomColorGenerator";
 
 const ProfileContainer = styled(Container)`
     width: 100vw;
+    padding: 0;
 `
 
 const Header = styled.div`
@@ -19,8 +20,7 @@ const Header = styled.div`
 
 const BaseLineH1 = styled.h1`
     align-self: flex-end;
-    padding-left: 10%;
-    margin: 0;
+    margin: 0 0 0 10%;
     font-family: Playfair Display, serif;
     font-size: 48px;
 `

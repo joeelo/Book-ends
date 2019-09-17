@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
+import { withRouter } from "react-router-dom";
 
 const FullPageWrapper = styled.div`
     width: 100vw;
@@ -69,6 +70,7 @@ const ButtonContainer = styled.div`
 class NoteDeletePrompt extends Component {
 
     deleteHandler = async () => {
+        const username = this.props.username
         try {
             console.log(this.props);
             const id = this.props.noteId;
@@ -81,7 +83,7 @@ class NoteDeletePrompt extends Component {
             }
             const response = await fetch(url, config);
             const json = await response.json();
-            console.log(json);
+            this.props.history.push(`/notes/${username}`);
         } catch (error) {
             console.log(error);
         }
@@ -111,4 +113,4 @@ class NoteDeletePrompt extends Component {
     }
 }
 
-export default NoteDeletePrompt
+export default withRouter(NoteDeletePrompt)

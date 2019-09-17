@@ -71,7 +71,6 @@ const titleCase = (str) => {
 
 class NoteInstance extends Component {
 
-    
     render() {
 
         const style = {
@@ -79,6 +78,7 @@ class NoteInstance extends Component {
         }
 
         const { note } = this.props;
+        console.log(this.props.username)
         return (
             <Note style={style}>
                 <TopWrapper>
@@ -87,7 +87,8 @@ class NoteInstance extends Component {
                 </TopWrapper>
 
                 <BottomWrapper>
-                    <Link to={`/notes/${note._id}/view`}>
+                    {/* Links to noteView */}
+                    <Link to={{pathname:`/notes/${note._id}/view`, state: {username: this.props.username}}}>
                         <ViewButton> view </ViewButton>
                     </Link>
                 </BottomWrapper>
