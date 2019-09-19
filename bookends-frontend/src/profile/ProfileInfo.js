@@ -29,6 +29,19 @@ const LeftContainer = styled.div`
 
 `
 
+const Image = styled.img`
+    border-radius: 50%;
+    position: relative;
+    top: 5px; 
+    left: 5px;
+`
+
+const BorderCircle = styled.div`
+    height: 266px;
+    width: 266px;
+    border-radius: 50%;
+`
+
 class ProfileInfo extends Component {
 
     state = {
@@ -72,13 +85,16 @@ class ProfileInfo extends Component {
         const style = {
             backgroundColor: this.state.backgroundColor
         }
+
         return (
             <ProfileContainer>
-
                 <Header style={style}>
                     <BaseLineH1> Your Profile </BaseLineH1>
                 </Header>
 
+                <BorderCircle style={{border: `3px solid ${this.state.backgroundColor}`}}>
+                    <Image src="https://miro.medium.com/fit/c/256/256/2*YV7osFJW-MqQ4cqDsBIRPQ.jpeg"/>
+                </BorderCircle>
                 <h2>{this.props.user.name}</h2>
                 <h2>{this.props.user.email}</h2>
 
