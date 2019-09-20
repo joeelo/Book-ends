@@ -33,7 +33,8 @@ class NewNoteForm extends Component {
             const response = await fetch(url, config);
             const json = await response.json();
             const newNoteUrl = json._id;
-            this.props.history.push(``)
+            console.log(data.user)
+            this.props.history.push(`/notes/${data.user.userName}`)
         } 
         catch (error) {
             console.log(error);
@@ -72,4 +73,4 @@ class NewNoteForm extends Component {
     }
 }
 
-export default NewNoteForm
+export default withRouter(NewNoteForm);

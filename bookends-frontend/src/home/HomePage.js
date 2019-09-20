@@ -9,6 +9,7 @@ const fadeIn = keyframes`
     80% { opacity: .8 }
     100% { opacity: 1 }   
 `
+//give this duration time rather than percentages says steven;
 
 const Wrapper = styled.div`
     width: 100vw;

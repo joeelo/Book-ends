@@ -70,7 +70,7 @@ class BookSearchForm extends Component {
     render() {
         return (
             <div>
-                <FormContainer onSubmit={this.handleSubmit}> 
+                <FormContainer onSubmit={this.handleSubmit} autoComplete="off"> 
                     <SearchBar name="title" value={this.state.title} onChange={this.handleChange} placeholder={"search your book"}/>
                     <MagButton> <MagnifyingGlassImg alt="magnifying glass icon" src="/images/magnifyingGlass.png"/> </MagButton>
                 </FormContainer>

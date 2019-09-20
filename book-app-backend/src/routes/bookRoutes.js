@@ -50,6 +50,8 @@ router.post("/books", async (req, res) => {
         const foundBook = await Book.findOne({"any.id": req.body.any.id, user: req.body.user.id});
         if (foundBook) {
             foundBook.finished = true;
+            //TODO: fix issue with saving
+            console.log(foundBook);
             foundBook.save();
             res.send({message: "already saved to DB and user"});    
         } else {

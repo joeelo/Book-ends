@@ -34,7 +34,10 @@ class NoteEditForm extends Component {
             const response = await fetch(url, config);
             const json = await response.json();
             
-            this.props.history.push(`/notes/${id}/view`);
+            this.props.history.push({
+                pathname: `/notes/${id}/view`, 
+                state: { username: this.props.user }
+            });
         } 
         catch (error) {
             console.log(error);

@@ -25,8 +25,18 @@ const BaseLineH1 = styled.h1`
     font-size: 48px;
 `
 
-const LeftContainer = styled.div`
+const FlexContainer = styled.div`
+    width: 80vw;
+    margin: 0 auto;
+    display: flex;
+`
 
+const LeftContainer = styled.div`
+    width: 50%;
+`
+
+const RightContainer = styled.div`
+    width: 50%;
 `
 
 const Image = styled.img`
@@ -69,9 +79,9 @@ class ProfileInfo extends Component {
         }
     }
 
-    fetchAllNotes = async () => {
-
-    }
+    // fetchAllNotes = async () => {
+        // display number of notes user has created. 
+    // }
 
     renderUsersBookList = () => {
         const booksArray = this.state.books.books.map((book, index) => {
@@ -92,14 +102,21 @@ class ProfileInfo extends Component {
                     <BaseLineH1> Your Profile </BaseLineH1>
                 </Header>
 
-                <BorderCircle style={{border: `3px solid ${this.state.backgroundColor}`}}>
-                    <Image src="https://miro.medium.com/fit/c/256/256/2*YV7osFJW-MqQ4cqDsBIRPQ.jpeg"/>
-                </BorderCircle>
-                <h2>{this.props.user.name}</h2>
-                <h2>{this.props.user.email}</h2>
+                <FlexContainer>
+                    <LeftContainer>
+                        <BorderCircle style={{border: `3px solid ${this.state.backgroundColor}`}}>
+                            <Image src="https://miro.medium.com/fit/c/256/256/2*YV7osFJW-MqQ4cqDsBIRPQ.jpeg"/>
+                        </BorderCircle>
+                        <h2>{this.props.user.name}</h2>
+                        <h2>{this.props.user.email}</h2>
+                    </LeftContainer>
+                    
+                    <RightContainer>
+                        <h3>My Books</h3>
+                        {this.state.books ? this.renderUsersBookList() : null}
+                    </RightContainer>
 
-                <h3>My Books</h3>
-                {this.state.books ? this.renderUsersBookList() : null}
+                </FlexContainer>
             </ProfileContainer>
         )
     }

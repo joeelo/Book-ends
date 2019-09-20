@@ -8,6 +8,7 @@ const increaseSize = keyframes`
     75% {transforma: scale(1.0375)}
     100%{transform: scale(1.05)}
 `
+// can do this with time duration rather than percentages; 
 
 const Note = styled.div`
     display: flex;
@@ -78,7 +79,6 @@ class NoteInstance extends Component {
         }
 
         const { note } = this.props;
-        console.log(this.props.username)
         return (
             <Note style={style}>
                 <TopWrapper>
