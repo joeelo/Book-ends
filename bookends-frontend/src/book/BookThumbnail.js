@@ -49,7 +49,6 @@ const appendDots = (desc) => {
 
 function BookThumbnail(props) {
         return (
-
                 <Thumbnail>
                     <FlexColumn>
                         <Link to={`/book/${props.book.id}`} >

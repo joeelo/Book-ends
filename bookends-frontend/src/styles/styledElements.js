@@ -56,6 +56,10 @@ const NoteContent = styled.p`
     font-family: Lato, sans-serif;
 `
 
+const PlayfairHeading = styled.h2`
+    font-family: Playfair Display, serif; 
+`
+
 export {
     HeaderButton, 
     Button,
@@ -63,4 +67,5 @@ export {
     Container, 
     NoteHeading,
     NoteContent, 
+    PlayfairHeading
 }

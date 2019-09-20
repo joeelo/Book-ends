@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import RatingSelectForm from "./RatingSelectForm";
 import AddReadBook from "../buttons/AddReadBook";
-import UserReview from "../review/UserReview"
+import UserReview from "../review/UserReview";
+import { PlayfairHeading } from "../styles/styledElements";
 
 class BookDetails extends Component {
 
@@ -70,12 +71,14 @@ class BookDetails extends Component {
     }
 
     render(){
+        console.log(this.state.bookObj)
         return (
             <div>
                 {this.state.bookObj !== null 
                 ?   
                     <div>
-                        <h2>{this.state.bookObj.volumeInfo.title}</h2>
+                        <PlayfairHeading>{this.state.bookObj.volumeInfo.title}</PlayfairHeading>
+                        <img src={this.state.bookObj.volumeInfo.imageLinks.smallThumbnail} alt="book cover"/>
                         {!this.state.hasReviewed ? 
                             <Link to={{
                                 pathname:`/book/${this.state.bookObj.id}/reviews`,
