@@ -45,6 +45,7 @@ router.post("/users/login", async (req, res) => {
 
 router.get("/user/show/:id", async (req, res) => {
     try {
+        // TODO: Make sure whole user object is not being sent back;
             const user = await User.findOne({ _id: req.params.id })
             .populate("books")
             .exec();

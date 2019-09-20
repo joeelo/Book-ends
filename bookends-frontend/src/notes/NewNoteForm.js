@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
-import styled from "styled-components";
+// import styled from "styled-components";
 import { Container as NoteContainer, Button } from "../styles/styledElements";
 import { NoteForm, NoteHeadingInput, NoteContentInput} from "../styles/styledforms"
 
-const Header = styled.h1`
+// const Header = styled.h1`
     
-`
+// `
 
 class NewNoteForm extends Component {
 

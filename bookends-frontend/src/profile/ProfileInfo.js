@@ -7,6 +7,8 @@ import randomColorGenerator from "../styles/randomColorGenerator";
 const ProfileContainer = styled(Container)`
     width: 100vw;
     padding: 0;
+    font-family: Playfair Display, serif;
+    font-weight: 300;
 `
 
 const Header = styled.div`
@@ -29,14 +31,27 @@ const FlexContainer = styled.div`
     width: 80vw;
     margin: 0 auto;
     display: flex;
+    flex-wrap: wrap;
 `
 
 const LeftContainer = styled.div`
     width: 50%;
+    min-width: 300px
 `
 
 const RightContainer = styled.div`
     width: 50%;
+    min-width: 300px;
+    flex-wrap: wrap;
+`
+
+const BookContainer = styled.div`
+    width: 50%;
+    min-width: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0; 
+    margin: 0;
 `
 
 const Image = styled.img`
@@ -50,6 +65,11 @@ const BorderCircle = styled.div`
     height: 266px;
     width: 266px;
     border-radius: 50%;
+`
+
+const MyBooksHeading = styled.h2`
+    padding: 0;
+    margin: 0;
 `
 
 class ProfileInfo extends Component {
@@ -91,7 +111,6 @@ class ProfileInfo extends Component {
     }
 
     render() {
-        console.log(randomColorGenerator());
         const style = {
             backgroundColor: this.state.backgroundColor
         }
@@ -112,8 +131,11 @@ class ProfileInfo extends Component {
                     </LeftContainer>
                     
                     <RightContainer>
-                        <h3>My Books</h3>
-                        {this.state.books ? this.renderUsersBookList() : null}
+                        <MyBooksHeading>My Books</MyBooksHeading>
+                        <BookContainer>
+                            {this.state.books ? this.renderUsersBookList() : null}
+                        </BookContainer>
+
                     </RightContainer>
 
                 </FlexContainer>

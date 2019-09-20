@@ -81,8 +81,7 @@ class NoteDeletePrompt extends Component {
                     "Content-Type": "application/json"
                 }
             }
-            const response = await fetch(url, config);
-            const json = await response.json();
+            fetch(url, config);
             this.props.history.push(`/notes/${username}`);
         } catch (error) {
             console.log(error);
