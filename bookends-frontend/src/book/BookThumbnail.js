@@ -34,6 +34,7 @@ const FlexColumn = styled.div`
 
 const BookTitle = styled.p`
     font-family: Playfair Display, serif;
+    padding-right: 5px;
 `
 
 const appendDots = (desc) => {
