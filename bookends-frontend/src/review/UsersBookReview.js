@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReviewComment from "./ReviewComment"
 
-class UserReview extends Component {
+class UsersBookReview extends Component {
 
     state = {
         renderCommentBox: false
@@ -37,4 +37,4 @@ class UserReview extends Component {
     }
 }
 
-export default UserReview;
+export default UsersBookReview;

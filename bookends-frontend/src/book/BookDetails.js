@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import RatingSelectForm from "./RatingSelectForm";
 import AddReadBook from "../buttons/AddReadBook";
-import UserReview from "../review/UserReview";
+import UsersBookReview from "../review/UsersBookReview";
 import { PlayfairHeading } from "../styles/styledElements";
+import styled from "styled-components";
 
 class BookDetails extends Component {
 
@@ -11,7 +12,8 @@ class BookDetails extends Component {
         bookObj: null,
         showForm: false,
         reviews: [], 
-        hasReviewed: false
+        hasReviewed: false, 
+        userReview: {}
     }
     
     componentDidMount() {
@@ -20,7 +22,7 @@ class BookDetails extends Component {
 
     componentDidUpdate(prevProps, prevState) {
         if (this.state.hasReviewed === false) {
-            this.hasUserReviewed();
+            this.hasUsersBookReviewed();
         }
     }
 
@@ -51,11 +53,12 @@ class BookDetails extends Component {
         }
     }
 
-    hasUserReviewed = () => {   
+    hasUsersBookReviewed = () => {   
         if (this.state.reviews !== undefined) {
             return this.state.reviews.forEach(review => {
                 if (review.user === this.props.user.id) {
                     this.setState({hasReviewed: true});
+                    this.setState({userReview: review});
                 }
             })
         } 
@@ -64,30 +67,33 @@ class BookDetails extends Component {
     renderReviews = () => {
         if (this.state.reviews !== undefined) {
             const reviewDivs = this.state.reviews.map(review => {
-                return <UserReview key={review._id} review={review} user={this.props.user}/>
+                return <UsersBookReview key={review._id} review={review} user={this.props.user}/>
             })
             return reviewDivs;
         }
     }
 
     render(){
-        console.log(this.state.bookObj)
+        console.log(this.state.userReview);
         return (
             <div>
                 {this.state.bookObj !== null 
                 ?   
                     <div>
-                        <PlayfairHeading>{this.state.bookObj.volumeInfo.title}</PlayfairHeading>
-                        <img src={this.state.bookObj.volumeInfo.imageLinks.smallThumbnail} alt="book cover"/>
-                        {!this.state.hasReviewed ? 
-                            <Link to={{
-                                pathname:`/book/${this.state.bookObj.id}/reviews`,
-                                state: {
-                                    bookObj: this.state.bookObj,
-                                    user: this.props.user
-                                }
-                                }}><button> Add review </button>
-                            </Link>
+                        <ReviewContainer>
+                            <PlayfairHeading>{this.state.bookObj.volumeInfo.title}</PlayfairHeading>
+                            <img src={this.state.bookObj.volumeInfo.imageLinks.smallThumbnail} alt="book cover"/>
+                            {/* {this.state.userReview} */}
+                        </ReviewContainer>
+                            {!this.state.hasReviewed ? 
+                                <Link to={{
+                                    pathname:`/book/${this.state.bookObj.id}/reviews`,
+                                    state: {
+                                        bookObj: this.state.bookObj,
+                                        user: this.props.user
+                                    }
+                                    }}><button> Add review </button>
+                                </Link>
                         
                         : 
                         
@@ -112,3 +118,7 @@ class BookDetails extends Component {
 } 
 
 export default BookDetails;
+
+const ReviewContainer = styled.div`
+    display: flex;
+`
