@@ -48,17 +48,18 @@ router.post("/book/id/:id", async (req, res) => {
 router.post("/books", async (req, res) => {
     try {  
         const foundBook = await Book.findOne({"any.id": req.body.any.id, user: req.body.user.id});
+        const user = await User.findOne({_id: req.body.user.id});
         if (foundBook) {
             foundBook.finished = true;
             //TODO: fix issue with saving
-            console.log(foundBook);
             foundBook.save();
             res.send({message: "already saved to DB and user"});    
         } else {
             const { any, finished } = req.body;
             const { id } = req.body.user;
             const book = { any, user: id, finished };
-            Book.create(book);
+            const newBook = await Book.create(book);
+            user.books.push(newBook._id), await user.save();
             res.send(book);
         }
     } catch (error) {

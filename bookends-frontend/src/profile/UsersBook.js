@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Image = styled.img`
-    width: 50px;
+    width: 75px;
+    margin: 10px;
 `
 
 const UsersBook = (props) => {
