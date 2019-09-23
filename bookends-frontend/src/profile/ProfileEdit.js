@@ -6,16 +6,30 @@ import { withRouter } from "react-router-dom"
 class ProfileEdit extends Component {
 
     state = {
-        name: this.props.location.state.user.name, 
-        username: this.props.location.state.user.username, 
-        email: this.props.location.state.user.email,
-        password: this.props.location.state.user.password
+        name: this.props.user.name, 
+        username: this.props.user.username, 
+        email: this.props.user.email,
     }
     
-    submitHandler = async () => {
+    submitHandler = async (event) => {
+        event.preventDefault();
         try {
-            const user = this.props.location.state.user;
-            console.log(user);
+
+            const data = {
+                user: this.state
+            };
+            const url = `http://localhost:3000/user/profile/edit`;
+            const config = {
+                method: "PATCH", 
+                mode: "cors",
+                headers: {
+                    "Content-Type": "application/json"
+                }, 
+                body: JSON.stringify(data)
+            }
+            const response = await fetch(url, config);
+            const json = await response.json();
+            console.log(json);
         } catch (error) {
             console.log(error);
         }
@@ -35,8 +49,8 @@ class ProfileEdit extends Component {
 
                 <h1> Update profile info </h1>
 
-                <form>
-                    <label htmlFor="name"> Name: </label><br/>
+                <form onSubmit={this.submitHandler}>
+                    <label htmlFor="name"> Full Name: </label><br/>
                     <input name="name" type="text" onChange={this.changeHandler} value={this.state.name}/><br/>
 
                     <label htmlFor="username"> User Name: </label><br/>
@@ -44,7 +58,7 @@ class ProfileEdit extends Component {
                     
                     <label htmlFor="email"> Email: </label> <br/>
                     <input name="email" type="text"  onChange={this.changeHandler} value={this.state.email}/> <br/>
-
+                    <button> submit </button>
                 </form>
             </div>
         )

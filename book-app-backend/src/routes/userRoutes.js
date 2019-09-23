@@ -57,7 +57,8 @@ router.get("/user/show/:id", async (req, res) => {
 
 router.patch("/user/profile/edit", async (req, res) => {
     try {
-        res.send({message: "working"});
+        const { user } = req.body;
+        res.send(user);
     } catch (error) {
         res.status(400).send(error);
     }

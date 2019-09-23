@@ -59,11 +59,8 @@ class ProfileInfo extends Component {
                         <h2>{this.props.user.username}</h2>
                         <h2>{this.props.user.email}</h2>
                         <h2>Password: *********</h2>
-                        <Link to={{
-                            pathname: "/profile/edit", 
-                            state: {user: this.props.user}
-                        }}> <button> edit my info </button> </Link>
-                        
+                        <Link to="/profile/edit"> <button> edit my info </button> </Link>
+
                         <Link to={{
                             pathname: "/profile/change-password", 
                             state: {user: this.props.user}
