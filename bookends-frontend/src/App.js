@@ -18,6 +18,7 @@ import NoteView from "./notes/NoteView";
 import NotLoggedInNavBar from "./nav/NotLoggedInNavBar";
 import LoggedInNavBar from './nav/LoggedInNavBar';
 import ProfileEdit from "./profile/ProfileEdit";
+import PasswordChangeForm from "./profile/PasswordChangeForm";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -99,12 +100,13 @@ class App extends Component {
           <Route exact path="/login" render={() => <LoginForm loginUser={this.loginUser}/>}/>
           <Route exact path="/profile" render={() => <Profile user={this.state.user}/>} />
           <Route exact path="/profile/edit" component={ProfileEdit}/> 
-          <Route path="/books/view" render={(props) => <BookContainer searchTerm={this.state.searchTerm}/>}/>
+          <Route exact path="/profile/change-password" render={(props) => <PasswordChangeForm user={this.state.user}/>}/>
+          <Route exact path="/books/view" render={(props) => <BookContainer searchTerm={this.state.searchTerm}/>}/>
           <Route exact path="/book/:id" render={ (props) => <BookDetails user={this.state.user} props={props}/>}/>
-          <Route path="/book/:id/reviews" component={ReviewPage} />
+          <Route exact path="/book/:id/reviews" component={ReviewPage} />
           <Route exact path="/review/list/:username" render={() => <UserBookList />}/>
           <Route exact path="/note" render={(props) => <NewNoteForm user={this.state.user}/>}/>
-          <Route exact path="/notes/:username" component={UserNotes}/>
+          <Route exact path="/notes/:username" render={(props) => <UserNotes user={this.state.user}/> }/>
           <Route exact path="/notes/:id/view" component={NoteView}/>
           <Route exact path="/notes/:id/edit" component={NoteEditForm}/>
         </Switch>

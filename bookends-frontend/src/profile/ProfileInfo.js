@@ -32,10 +32,6 @@ class ProfileInfo extends Component {
         }
     }
 
-    // fetchAllNotes = async () => {
-        // display number of notes user has created. 
-    // }
-
     renderUsersBookList = () => {
         const booksArray = this.state.books.books.map((book, index) => {
            return <UsersBook key={index} book={book}/>
@@ -60,12 +56,18 @@ class ProfileInfo extends Component {
                             <Image src="https://miro.medium.com/fit/c/256/256/2*YV7osFJW-MqQ4cqDsBIRPQ.jpeg"/>
                         </BorderCircle>
                         <h2>{this.props.user.name}</h2>
+                        <h2>{this.props.user.username}</h2>
                         <h2>{this.props.user.email}</h2>
                         <h2>Password: *********</h2>
                         <Link to={{
                             pathname: "/profile/edit", 
                             state: {user: this.props.user}
-                        }}> <button> edit Profile </button> </Link> 
+                        }}> <button> edit my info </button> </Link>
+                        
+                        <Link to={{
+                            pathname: "/profile/change-password", 
+                            state: {user: this.props.user}
+                        }}> <button> change password </button></Link> 
                     </ContentContainer>
                     
                     <ContentContainer>

@@ -24,7 +24,7 @@ class UserNotes extends Component {
     }
     
     fetchNotes = async () => {
-        const username = this.props.match.params.username
+        const username = this.props.user.username
         const url = `http://localhost:3000/notes/${username}`
         const response = await fetch(url);
         const json = await response.json();
@@ -43,7 +43,7 @@ class UserNotes extends Component {
     }
 
     renderNotes = () => {
-        const username = this.props.match.params.username;
+        const username = this.props.user.username;
         const notes = this.state.notes.map((note) => {
             let randomColor = this.generateRandomColor();
             return <NoteInstance key={note._id} note={note} randomColor={randomColor} username={username}/>

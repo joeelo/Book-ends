@@ -46,12 +46,20 @@ router.post("/users/login", async (req, res) => {
 router.get("/user/show/:id", async (req, res) => {
     try {
         // TODO: Make sure whole user object is not being sent back;
-            const user = await User.findOne({ _id: req.params.id })
-            .populate("books")
-            .exec();
-            res.send(user);
+        const user = await User.findOne({ _id: req.params.id })
+        .populate("books")
+        .exec();
+        res.send(user);
     } catch (error) {
         res.status(400).send(error); 
+    }
+})
+
+router.patch("/user/profile/edit", async (req, res) => {
+    try {
+        res.send({message: "working"});
+    } catch (error) {
+        res.status(400).send(error);
     }
 })
 
