@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 import UsersBook from "./UsersBook";
 import styled from "styled-components";
 import { Container } from "../styles/styledElements";
@@ -60,6 +61,11 @@ class ProfileInfo extends Component {
                         </BorderCircle>
                         <h2>{this.props.user.name}</h2>
                         <h2>{this.props.user.email}</h2>
+                        <h2>Password: *********</h2>
+                        <Link to={{
+                            pathname: "/profile/edit", 
+                            state: {user: this.props.user}
+                        }}> <button> edit Profile </button> </Link> 
                     </ContentContainer>
                     
                     <ContentContainer>

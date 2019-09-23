@@ -5,7 +5,7 @@ class NewUserForm extends Component {
     
     state = {
         name: "",
-        userName: "",
+        username: "",
         email: "", 
         password: "",
         reRender: false
@@ -17,7 +17,7 @@ class NewUserForm extends Component {
             const data = {
                 name: this.state.name,
                 email: this.state.email,
-                userName: this.state.userName,
+                username: this.state.username,
                 password: this.state.password
             }
             const url = "http://localhost:3000/users/sign-up";
@@ -61,8 +61,8 @@ class NewUserForm extends Component {
                     <label htmlFor="name"> Name: </label><br/>
                     <input name="name" type="text" onChange={this.changeHandler} value={this.state.name}/><br/>
 
-                    <label htmlFor="userName"> User Name: </label><br/>
-                    <input name="userName" type="text" onChange={this.changeHandler} value={this.state.name}/> <br/>
+                    <label htmlFor="username"> User Name: </label><br/>
+                    <input name="username" type="text" onChange={this.changeHandler} value={this.state.name}/> <br/>
                     
                     <label htmlFor="email"> Email: </label> <br/>
                     <input name="email" type="text"  onChange={this.changeHandler} value={this.state.email}/> <br/>

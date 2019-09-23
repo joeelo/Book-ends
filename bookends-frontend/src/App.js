@@ -17,6 +17,7 @@ import NoteEditForm from './notes/NoteEditForm';
 import NoteView from "./notes/NoteView";
 import NotLoggedInNavBar from "./nav/NotLoggedInNavBar";
 import LoggedInNavBar from './nav/LoggedInNavBar';
+import ProfileEdit from "./profile/ProfileEdit";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -45,7 +46,7 @@ class App extends Component {
       id: "5d656a91ea12f507b1013a41", 
       name: "Joe Lorenzo", 
       email: "example@gmail.com",
-      userName: "joeephus"
+      username: "joeephus"
     }
   }
 
@@ -97,6 +98,7 @@ class App extends Component {
           <Route exact path="/sign-up" render={() => <NewUserForm loginUser={this.loginUser} />} />
           <Route exact path="/login" render={() => <LoginForm loginUser={this.loginUser}/>}/>
           <Route exact path="/profile" render={() => <Profile user={this.state.user}/>} />
+          <Route exact path="/profile/edit" component={ProfileEdit}/> 
           <Route path="/books/view" render={(props) => <BookContainer searchTerm={this.state.searchTerm}/>}/>
           <Route exact path="/book/:id" render={ (props) => <BookDetails user={this.state.user} props={props}/>}/>
           <Route path="/book/:id/reviews" component={ReviewPage} />
