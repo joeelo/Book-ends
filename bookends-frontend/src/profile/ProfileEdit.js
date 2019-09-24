@@ -29,7 +29,9 @@ class ProfileEdit extends Component {
             }
             const response = await fetch(url, config);
             const json = await response.json();
-            console.log(json);
+            this.props.updateUser(this.state)
+            // console.log(json);
+            this.props.history.push("/profile");
         } catch (error) {
             console.log(error);
         }
@@ -42,8 +44,7 @@ class ProfileEdit extends Component {
     }
 
     render() {
-        const user = this.props.location.state.user
-        console.log(user);
+        const user = this.props.user
         return (
             <div>
 
@@ -54,7 +55,7 @@ class ProfileEdit extends Component {
                     <input name="name" type="text" onChange={this.changeHandler} value={this.state.name}/><br/>
 
                     <label htmlFor="username"> User Name: </label><br/>
-                    <input name="username" type="text" onChange={this.changeHandler} value={this.state.name}/> <br/>
+                    <input name="username" type="text" onChange={this.changeHandler} value={this.state.username}/> <br/>
                     
                     <label htmlFor="email"> Email: </label> <br/>
                     <input name="email" type="text"  onChange={this.changeHandler} value={this.state.email}/> <br/>

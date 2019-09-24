@@ -72,11 +72,24 @@ class App extends Component {
   }
 
   updateUser = async (userInfo) => {
-
+    const { name, username, email} = userInfo;
+    const newUser = {...this.state.user}
+    newUser.name = name;
+    newUser.username = username;
+    newUser.email = email;
+    console.log(newUser);
+    try {
+      this.setState({
+        user: newUser
+      })
+      // this.setState();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   render() {
-    console.log(this.state.searchTerm);
+    console.log(this.state.user);
     return (
 
       <Fragment>
