@@ -21,12 +21,18 @@ import ProfileEdit from "./profile/ProfileEdit";
 import PasswordChangeForm from "./profile/PasswordChangeForm";
 
 const GlobalStyle = createGlobalStyle`
-  body {
+
+body, html {
+  width: 100vw;
+}
+
+body {
     padding: 0; 
     margin: 0;
     @import url('https://fonts.googleapis.com/css?family=Lato|Playfair+Display&display=swap');
     font-family: 'Lato', sans-serif;
     overflow-x: hidden;
+    min-width: 100vw;
   }
 `
 

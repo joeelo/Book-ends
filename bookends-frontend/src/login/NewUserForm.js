@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "../styles/styledElements";
-import { NoteHeadingInput } from "../styles/styledforms";
 
 class NewUserForm extends Component {
     
@@ -58,8 +57,8 @@ class NewUserForm extends Component {
 
     render() {
         return (
-            <div>
-                <form onSubmit={this.submitHandler}>
+            <FormContainer>
+                <Form onSubmit={this.submitHandler}>
 
                     <label htmlFor="name"> Name: </label><br/>
                     <input name="name" type="text" onChange={this.changeHandler} value={this.state.name}/><br/>
@@ -76,8 +75,8 @@ class NewUserForm extends Component {
                     <br/>
 
                     <Button> Sign me up!  </Button>
-                </form>
-            </div>
+                </Form>
+            </FormContainer>
         )
     }
 }
@@ -86,4 +85,21 @@ export default withRouter(NewUserForm);
 
 const Input = styled.input`
 
+`
+
+const FormContainer = styled.div`
+    width: 100vw;
+    height: 100vh;
+    background-color: blue;
+    justify-content: center;
+    align-items: center;
+`
+
+const Form = styled.form`
+    width: 50%;
+    height: 50%;
+    background-color: antiquewhite;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
 `
