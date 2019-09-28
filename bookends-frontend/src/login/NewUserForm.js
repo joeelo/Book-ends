@@ -36,8 +36,8 @@ class NewUserForm extends Component {
             })
             .then(res => res.json())
             .then(user => {
-                this.props.loginUser(data);
-                this.props.history.push("/profile");
+                this.props.loginUser(user);
+                // this.props.history.push("/profile");
                 if (user._id !== null) {
 
                 }
@@ -60,10 +60,10 @@ class NewUserForm extends Component {
         return (
             <FormContainer>
                 <Form onSubmit={this.submitHandler}>
-                    <h1>Sign up Form</h1>
+                    <FormHeading>Sign Up</FormHeading>
 
                     <FormLabel htmlFor="name"> Full Name: </FormLabel>
-                    <FormInput name="name" type="text" onChange={this.changeHandler} placeholder="Full Name Here" value={this.state.name} autoFocus="true"/><br/>
+                    <FormInput name="name" type="text" onChange={this.changeHandler} placeholder="Full Name Here" value={this.state.name} autoFocus/><br/>
 
                     <FormLabel htmlFor="username"> User Name: </FormLabel>
                     <FormInput name="username" type="text" onChange={this.changeHandler} placeholder="Username Here" value={this.state.username}/> <br/>
@@ -119,4 +119,10 @@ const FormInput = styled.input`
 
 const FormLabel = styled.label`
     font-family: Playfair Display, serif;
+`
+
+const FormHeading = styled.h2`
+    font-size: 2em;
+    font-family: Playfair Display, serif;
+    text-align: center;
 `

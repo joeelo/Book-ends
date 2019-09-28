@@ -20,8 +20,7 @@ router.post("/users/sign-up", async (req, res) => {
         } else {
             const newUser = new User();
             newUser.name = req.body.name, newUser.username = req.body.username, newUser.email = req.body.email, newUser.password = req.body.password;
-            console.log(newUser);
-            // newUser.save();
+            await newUser.save();
             res.send(newUser)
         }
     } catch (error) {
