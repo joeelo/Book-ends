@@ -59,18 +59,19 @@ class NewUserForm extends Component {
         return (
             <FormContainer>
                 <Form onSubmit={this.submitHandler}>
+                    <h1>Sign up Form</h1>
 
-                    <label htmlFor="name"> Name: </label><br/>
-                    <input name="name" type="text" onChange={this.changeHandler} value={this.state.name}/><br/>
+                    <FormLabel htmlFor="name"> Name: </FormLabel>
+                    <FormInput name="name" type="text" onChange={this.changeHandler} value={this.state.name} autoFocus="true"/><br/>
 
-                    <label htmlFor="username"> User Name: </label><br/>
-                    <input name="username" type="text" onChange={this.changeHandler} value={this.state.username}/> <br/>
+                    <FormLabel htmlFor="username"> User Name: </FormLabel>
+                    <FormInput name="username" type="text" onChange={this.changeHandler} value={this.state.username}/> <br/>
                     
-                    <label htmlFor="email"> Email: </label> <br/>
-                    <input name="email" type="text"  onChange={this.changeHandler} value={this.state.email}/> <br/>
+                    <FormLabel htmlFor="email"> Email: </FormLabel> 
+                    <FormInput name="email" type="text"  onChange={this.changeHandler} value={this.state.email}/> <br/>
 
-                    <label htmlFor="password"> Password: </label> <br/>
-                    <input name="password" type="password"  onChange={this.changeHandler} value={this.state.password}/>
+                    <FormLabel htmlFor="password"> Password: </FormLabel>
+                    <FormInput name="password" type="password"  onChange={this.changeHandler} value={this.state.password}/>
                     <br/>
                     <br/>
 
@@ -88,18 +89,30 @@ const Input = styled.input`
 `
 
 const FormContainer = styled.div`
+    display: flex;
     width: 100vw;
-    height: 100vh;
-    background-color: blue;
     justify-content: center;
     align-items: center;
 `
 
 const Form = styled.form`
-    width: 50%;
-    height: 50%;
+    width: 40%;
+    height: 40%;
     background-color: antiquewhite;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+    margin-top: 10vh;
+    padding: 50px;
+`
+
+const FormInput = styled.input`
+    padding: 10px;
+    font-size: 16px;
+    font-family: lato, sans-serif;
+`
+
+const FormLabel = styled.label`
+    font-family: Playfair Display, serif;
+    font-size: 1.2em;
 `
