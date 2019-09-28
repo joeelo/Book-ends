@@ -10,6 +10,7 @@ class NewUserForm extends Component {
         username: "",
         email: "", 
         password: "",
+        confirmPassword: "",
         reRender: false
     }
 
@@ -61,17 +62,21 @@ class NewUserForm extends Component {
                 <Form onSubmit={this.submitHandler}>
                     <h1>Sign up Form</h1>
 
-                    <FormLabel htmlFor="name"> Name: </FormLabel>
-                    <FormInput name="name" type="text" onChange={this.changeHandler} value={this.state.name} autoFocus="true"/><br/>
+                    <FormLabel htmlFor="name"> Full Name: </FormLabel>
+                    <FormInput name="name" type="text" onChange={this.changeHandler} placeholder="Full Name Here" value={this.state.name} autoFocus="true"/><br/>
 
                     <FormLabel htmlFor="username"> User Name: </FormLabel>
-                    <FormInput name="username" type="text" onChange={this.changeHandler} value={this.state.username}/> <br/>
+                    <FormInput name="username" type="text" onChange={this.changeHandler} placeholder="Username Here" value={this.state.username}/> <br/>
                     
                     <FormLabel htmlFor="email"> Email: </FormLabel> 
-                    <FormInput name="email" type="text"  onChange={this.changeHandler} value={this.state.email}/> <br/>
+                    <FormInput name="email" type="text"  onChange={this.changeHandler} placeholder="Email Here" value={this.state.email}/> <br/>
 
                     <FormLabel htmlFor="password"> Password: </FormLabel>
-                    <FormInput name="password" type="password"  onChange={this.changeHandler} value={this.state.password}/>
+                    <FormInput name="password" type="password"  onChange={this.changeHandler} placeholder="Password Here" value={this.state.password}/>
+                    <br/>
+
+                    <FormLabel htmlFor="confirmPassword"> Retype Password </FormLabel>
+                    <FormInput name="confirmPassword" type="password" onChange={this.changeHandler} placeholder="retype password" value={this.state.confirmPassword}/>
                     <br/>
                     <br/>
 
@@ -103,16 +108,15 @@ const Form = styled.form`
     display: flex;
     flex-direction: column;
     margin-top: 10vh;
-    padding: 50px;
+    padding: 25px;
 `
 
 const FormInput = styled.input`
-    padding: 10px;
-    font-size: 16px;
+    padding: 5px;
+    font-size: 14px;
     font-family: lato, sans-serif;
 `
 
 const FormLabel = styled.label`
     font-family: Playfair Display, serif;
-    font-size: 1.2em;
 `

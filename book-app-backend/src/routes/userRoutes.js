@@ -19,8 +19,9 @@ router.post("/users/sign-up", async (req, res) => {
             return;
         } else {
             const newUser = new User();
-            newUser.name = req.body.name, newUser.username = req.body.userName, newUser.email = req.body.email, newUser.password = req.body.password;
-            newUser.save();
+            newUser.name = req.body.name, newUser.username = req.body.username, newUser.email = req.body.email, newUser.password = req.body.password;
+            console.log(newUser);
+            // newUser.save();
             res.send(newUser)
         }
     } catch (error) {
