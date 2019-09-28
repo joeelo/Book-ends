@@ -1,5 +1,8 @@
-import React, { Component } from 'react'
-import { withRouter } from "react-router-dom"
+import React, { Component } from 'react';
+import { withRouter } from "react-router-dom";
+import styled from "styled-components";
+import { Button } from "../styles/styledElements";
+import { NoteHeadingInput } from "../styles/styledforms";
 
 class NewUserForm extends Component {
     
@@ -62,7 +65,7 @@ class NewUserForm extends Component {
                     <input name="name" type="text" onChange={this.changeHandler} value={this.state.name}/><br/>
 
                     <label htmlFor="username"> User Name: </label><br/>
-                    <input name="username" type="text" onChange={this.changeHandler} value={this.state.name}/> <br/>
+                    <input name="username" type="text" onChange={this.changeHandler} value={this.state.username}/> <br/>
                     
                     <label htmlFor="email"> Email: </label> <br/>
                     <input name="email" type="text"  onChange={this.changeHandler} value={this.state.email}/> <br/>
@@ -72,7 +75,7 @@ class NewUserForm extends Component {
                     <br/>
                     <br/>
 
-                    <button> Sign me up!  </button>
+                    <Button> Sign me up!  </Button>
                 </form>
             </div>
         )
@@ -80,3 +83,7 @@ class NewUserForm extends Component {
 }
 
 export default withRouter(NewUserForm);
+
+const Input = styled.input`
+
+`
