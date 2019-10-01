@@ -40,7 +40,7 @@ const BookTitle = styled.p`
 const appendDots = (desc) => {
     if (desc !== undefined) {
         if (desc.length > 240) {
-            return `${desc.substring(0, 240)}...`
+            return `${desc.substring(0, 480)}...`
         } else {
             return desc
         }

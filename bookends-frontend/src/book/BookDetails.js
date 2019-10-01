@@ -74,18 +74,19 @@ class BookDetails extends Component {
     }
 
     render(){
-        console.log(this.state.userReview);
+        console.log(this.state.bookObj);
         return (
-            <div>
+            <PageContainer>
                 {this.state.bookObj !== null 
                 ?   
                     <div>
                         <ReviewContainer>
                             <PlayfairHeading>{this.state.bookObj.volumeInfo.title}</PlayfairHeading>
-                            <img src={this.state.bookObj.volumeInfo.imageLinks.smallThumbnail} alt="book cover"/>
+                            <Image src={this.state.bookObj.volumeInfo.imageLinks.smallThumbnail} alt="book cover"/>
                             {/* {this.state.userReview} */}
                         </ReviewContainer>
-                            {!this.state.hasReviewed ? 
+                            {
+                                !this.state.hasReviewed ? 
                                 <Link to={{
                                     pathname:`/book/${this.state.bookObj.id}/reviews`,
                                     state: {
@@ -95,12 +96,12 @@ class BookDetails extends Component {
                                     }}><button> Add review </button>
                                 </Link>
                         
-                        : 
+                            : 
                         
-                            <div>
-                                "you've already reviewed this book!"
-                            </div>
-                        }
+                                <div>
+                                    "you've already reviewed this book!"
+                                </div>
+                            }
 
                         <RatingSelectForm book={this.state.bookObj} user={this.props.user}/>
 
@@ -111,7 +112,7 @@ class BookDetails extends Component {
                 : 
                     null
                 }
-            </div>
+            </PageContainer>
         )
     }
 
@@ -121,4 +122,17 @@ export default BookDetails;
 
 const ReviewContainer = styled.div`
     display: flex;
+    flex-direction: column;
+`
+
+const Image = styled.img`
+    width: 150px;
+    height: 227px;
+`
+
+const PageContainer = styled.div`
+    display: flex;
+    width: 80vw;
+    margin: 0 auto;
+    flex-direction: column;
 `
