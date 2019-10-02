@@ -25,7 +25,7 @@ const Logo = styled.img`
 
 const Button = styled.button`
     padding: 10px 15px;
-    transition: .5s ease-in-out all;
+    transition: .3s ease-in-out all;
     background-color: white;
     border: 1px solid black;
 `
@@ -56,7 +56,7 @@ const NoteContent = styled.p`
     font-family: Lato, sans-serif;
 `
 
-const PlayfairHeading = styled.h2`
+const PlayfairHeading = styled.h1`
     font-family: Playfair Display, serif; 
 `
 

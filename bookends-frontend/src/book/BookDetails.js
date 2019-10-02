@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import RatingSelectForm from "./RatingSelectForm";
 import AddReadBook from "../buttons/AddReadBook";
 import UsersBookReview from "../review/UsersBookReview";
-import { PlayfairHeading } from "../styles/styledElements";
+import { PlayfairHeading, Button } from "../styles/styledElements";
 import styled from "styled-components";
 
 class BookDetails extends Component {
@@ -13,7 +13,8 @@ class BookDetails extends Component {
         showForm: false,
         reviews: [], 
         hasReviewed: false, 
-        userReview: {}
+        userReview: {},
+        readMore: false
     }
     
     componentDidMount() {
@@ -73,27 +74,29 @@ class BookDetails extends Component {
         }
     }
 
+    renderBookDescription = () => this.setState({readMore: true});
+
     render(){
         console.log(this.state.bookObj);
+        const book = this.state.bookObj
+        let bookDescription = this.state.bookObj ? book.volumeInfo.description : null;
         return (
             <PageContainer>
                 {this.state.bookObj !== null 
                 ?   
                     <div>
-                        <ReviewContainer>
-                            <PlayfairHeading>{this.state.bookObj.volumeInfo.title}</PlayfairHeading>
-                            <Image src={this.state.bookObj.volumeInfo.imageLinks.smallThumbnail} alt="book cover"/>
-                            {/* {this.state.userReview} */}
-                        </ReviewContainer>
-                            {
-                                !this.state.hasReviewed ? 
-                                <Link to={{
-                                    pathname:`/book/${this.state.bookObj.id}/reviews`,
+                        <DetailsContainer>
+                            <LeftContainer>
+                                <Image src={book.volumeInfo.imageLinks.smallThumbnail} alt="book cover"/>
+                                {
+                                    !this.state.hasReviewed ? 
+                                    <Link to={{
+                                    pathname:`/book/${book.id}/reviews`,
                                     state: {
-                                        bookObj: this.state.bookObj,
+                                        bookObj: book,
                                         user: this.props.user
                                     }
-                                    }}><button> Add review </button>
+                                    }}><AddReviewButton> Add review </AddReviewButton>
                                 </Link>
                         
                             : 
@@ -103,11 +106,27 @@ class BookDetails extends Component {
                                 </div>
                             }
 
-                        <RatingSelectForm book={this.state.bookObj} user={this.props.user}/>
-
-                        <p> avg. rating {this.state.bookObj.volumeInfo.averageRating}</p>
-                        <AddReadBook book={this.state.bookObj} user={this.props.user}/>
+                        <RatingSelectForm book={book} user={this.props.user}/>
+                        <p> avg. rating {book.volumeInfo.averageRating}</p>
+                        <AddReadBook book={book} user={this.props.user}/>
                         {this.renderReviews()}
+                            </LeftContainer>
+
+
+                            <RightContainer>
+                                <PlayfairHeading>{book.volumeInfo.title}</PlayfairHeading>
+                                <Author> By: {book.volumeInfo.authors[0]}</Author>
+                                {!this.state.readMore?                         
+                                    <section>{bookDescription.substring(0, 600)} <ReadMoreButton onClick={this.renderBookDescription}> ...more </ReadMoreButton></section>
+                                    : 
+                                    <section>{bookDescription}</section>
+                                }
+
+                            </RightContainer>
+                            
+                            {/* {this.state.userReview} */}
+                        </DetailsContainer>
+                            
                     </div>
                 : 
                     null
@@ -120,9 +139,8 @@ class BookDetails extends Component {
 
 export default BookDetails;
 
-const ReviewContainer = styled.div`
+const DetailsContainer = styled.div`
     display: flex;
-    flex-direction: column;
 `
 
 const Image = styled.img`
@@ -135,4 +153,45 @@ const PageContainer = styled.div`
     width: 80vw;
     margin: 0 auto;
     flex-direction: column;
+`
+
+const LeftContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding-top: 50px;
+`
+
+const RightContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding-top: 25px;
+    padding-left: 25px;
+`
+
+const Author = styled.h4`
+    font-family: Playfair Display, serif;
+    padding: 0; 
+    margin-top: -20px;
+`
+
+const ReadMoreButton = styled.button`
+    padding: 0; 
+    font-size: 14px;
+    background: none;
+    border: 0;
+    color: blue;
+
+    :hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+`
+
+const AddReviewButton = styled(Button)`
+    margin-top: 10px;
+
+    :hover {
+        color: white;
+        background-color: lightseagreen;
+    }
 `
