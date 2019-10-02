@@ -74,7 +74,7 @@ class BookDetails extends Component {
         }
     }
 
-    renderBookDescription = () => this.setState({readMore: true});
+    renderBookDescription = () => this.setState({readMore: !this.state.readMore});
 
     render(){
         console.log(this.state.bookObj);
@@ -119,7 +119,7 @@ class BookDetails extends Component {
                                 {!this.state.readMore?                         
                                     <section>{bookDescription.substring(0, 600)} <ReadMoreButton onClick={this.renderBookDescription}> ...more </ReadMoreButton></section>
                                     : 
-                                    <section>{bookDescription}</section>
+                                    <section>{bookDescription} <ReadMoreButton onClick={this.renderBookDescription}>...less</ReadMoreButton></section>
                                 }
 
                             </RightContainer>
