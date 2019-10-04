@@ -41,7 +41,7 @@ class LoggedInNavBar extends Component {
                 </LeftContainer>
                 <RightContainer>
                     <BookSearchFrom updateSearchTerm={this.props.updateSearchTerm}/>
-                    <Link to="/"> <HeaderButton> Log Out </HeaderButton> </Link>
+                    <Link to="/"> <HeaderButton onClick={this.props.logoutUser}> Log Out </HeaderButton> </Link>
                 </RightContainer>
             </NavBarContainer>
         )

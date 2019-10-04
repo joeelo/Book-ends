@@ -11,7 +11,8 @@ class NewUserForm extends Component {
         email: "", 
         password: "",
         confirmPassword: "",
-        reRender: false
+        reRender: false, 
+        showPassword: false
     }
 
     submitHandler = async (event) => {
@@ -56,6 +57,8 @@ class NewUserForm extends Component {
         })
     }
 
+    showPassword = () => this.setState({showPassword: !this.state.showPassword});
+
     render() {
         return (
             <FormContainer>
@@ -72,11 +75,14 @@ class NewUserForm extends Component {
                     <FormInput name="email" type="text"  onChange={this.changeHandler} placeholder="Email Here" value={this.state.email}/> <br/>
 
                     <FormLabel htmlFor="password"> Password: </FormLabel>
-                    <FormInput name="password" type="password"  onChange={this.changeHandler} placeholder="Password Here" value={this.state.password}/>
-                    <br/>
+                    <FormInput name="password"  type={this.state.showPassword ? "text": "password"}  onChange={this.changeHandler} placeholder="Password Here" value={this.state.password}/>
 
-                    <FormLabel htmlFor="confirmPassword"> Retype Password </FormLabel>
-                    <FormInput name="confirmPassword" type="password" onChange={this.changeHandler} placeholder="retype password" value={this.state.confirmPassword}/>
+                    <ShowPasswordContainer>
+
+                    <PasswordCheckbox type="checkbox" onChange={this.showPassword}/><ShowPasswordLabel>Show password</ShowPasswordLabel> 
+                    </ShowPasswordContainer>
+                    <FormLabel htmlFor="confirmPassword"> Re-type Password: </FormLabel>
+                    <FormInput name="confirmPassword" type={this.state.showPassword ? "text": "password"} onChange={this.changeHandler} placeholder="retype password" value={this.state.confirmPassword}/>
                     <br/>
                     <br/>
 
@@ -88,10 +94,6 @@ class NewUserForm extends Component {
 }
 
 export default withRouter(NewUserForm);
-
-const Input = styled.input`
-
-`
 
 const FormContainer = styled.div`
     display: flex;
@@ -125,4 +127,20 @@ const FormHeading = styled.h2`
     font-size: 2em;
     font-family: Playfair Display, serif;
     text-align: center;
+`
+
+const ShowPasswordContainer = styled.div`
+    display: flex;
+`
+
+const ShowPasswordLabel = styled.label`
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    font-size: 12px;
+    margin-bottom: 4px;
+`
+
+const PasswordCheckbox = styled.input`
+    display: inline-block;
 `

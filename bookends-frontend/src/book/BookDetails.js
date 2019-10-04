@@ -101,15 +101,12 @@ class BookDetails extends Component {
                         
                             : 
                         
-                                <div>
-                                    "you've already reviewed this book!"
-                                </div>
+                                null
                             }
 
                         <RatingSelectForm book={book} user={this.props.user}/>
                         <p> avg. rating {book.volumeInfo.averageRating}</p>
                         <AddReadBook book={book} user={this.props.user}/>
-                        {this.renderReviews()}
                             </LeftContainer>
 
 
@@ -122,6 +119,7 @@ class BookDetails extends Component {
                                     <section>{bookDescription} <ReadMoreButton onClick={this.renderBookDescription}>...less</ReadMoreButton></section>
                                 }
 
+                                {this.renderReviews()}
                             </RightContainer>
                             
                             {/* {this.state.userReview} */}

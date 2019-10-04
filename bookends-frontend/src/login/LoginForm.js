@@ -1,5 +1,7 @@
-import React, { Component } from 'react'
-import { withRouter } from "react-router-dom"
+import React, { Component } from 'react';
+import { withRouter } from "react-router-dom";
+import styled from "styled-components";
+import { Button } from "../styles/styledElements"
 
 class LoginForm extends Component {
     
@@ -57,22 +59,70 @@ class LoginForm extends Component {
 
     render() {
         return (
-            <div>
-                <form onSubmit={this.submitHandler}>
-                    
-                    <label htmlFor="email"> Email: </label> <br/>
-                    <input name="email" type="text"  onChange={this.changeHandler} value={this.state.email}/> <br/>
+            <FormContainer>
+                <Form onSubmit={this.submitHandler}>
+                    <FormHeading> Log In </FormHeading>
 
-                    <label htmlFor="password"> Password: </label> <br/>
-                    <input name="password" type="password"  onChange={this.changeHandler} value={this.state.password}/>
+                    <FormLabel htmlFor="email"> Email: </FormLabel> <br/>
+                    <FormInput name="email" type="text"  onChange={this.changeHandler} value={this.state.email} autoFocus/> <br/>
+
+                    <FormLabel htmlFor="password"> Password: </FormLabel> <br/>
+                    <FormInput name="password" type="password"  onChange={this.changeHandler} value={this.state.password} />
+                    <br/>
+                    <br/>
                     <br/>
                     <br/>
 
-                    <button> Log me in!  </button>
-                </form>
-            </div>
+                    <FormButton> Log me in!  </FormButton>
+                </Form>
+            </FormContainer>
         )
     }
 }
 
 export default withRouter(LoginForm);
+
+const FormContainer = styled.div`
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+`
+
+const Form = styled.form`
+    width: 40%;
+    height: 40%;
+    background-color: antiquewhite;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10vh;
+    padding: 25px;
+`
+
+const FormInput = styled.input`
+    padding: 5px;
+    font-size: 14px;
+    font-family: lato, sans-serif;
+`
+
+const FormLabel = styled.label`
+    font-family: Playfair Display, serif;
+`
+
+const FormHeading = styled.h2`
+    font-size: 2em;
+    font-family: Playfair Display, serif;
+    text-align: center;
+`
+
+const FormButton = styled(Button)`
+    
+    width: 33%;
+    margin: 0 auto;
+
+    :hover {
+        background-color: teal;
+        color: white;
+    }
+`

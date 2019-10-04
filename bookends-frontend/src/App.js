@@ -94,6 +94,8 @@ class App extends Component {
     }
   }
 
+  logoutUser = () => this.setState({user: {}})
+
   render() {
     console.log(this.state.user);
     return (
@@ -104,7 +106,7 @@ class App extends Component {
           <GlobalStyle />
 
           {this.state.user.id !== undefined && this.state.user.id !== "" ?
-              <LoggedInNavBar user={this.state.user} updateSearchTerm={this.updateSearchTerm}/>
+              <LoggedInNavBar user={this.state.user} updateSearchTerm={this.updateSearchTerm} logoutUser={this.logoutUser}/>
             : 
               <NotLoggedInNavBar />
           } 
