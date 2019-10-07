@@ -39,12 +39,6 @@ class LoginForm extends Component {
                     this.props.loginUser(user);
                     this.props.history.push("/profile");
                 }
-                // if (user._id !== null) {
-
-                // }
-                // else {
-                //     this.props.loginUser({error: "cannot find user"});
-                // }
             });
         } catch (error) {
             console.log(error);

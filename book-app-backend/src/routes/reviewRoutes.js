@@ -33,15 +33,6 @@ router.post("/book/:bookId/reviews", async (req, res) => {
     }
 });
 
-router.post("/book/:bookId/review/comment", async (req, res) => {
-    try {
-        console.log(req.body);
-        res.send({message: "working"});
-    } catch (error) {
-        console.log(error);
-    }
-})
-
 router.post("/book/:id/user/reviews", async (req, res) => {
     try {
         const book = req.params.id;

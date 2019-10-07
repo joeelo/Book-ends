@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReviewComment from "./ReviewComment"
 
 class UsersBookReview extends Component {
 
@@ -20,19 +19,15 @@ class UsersBookReview extends Component {
             border: "1px solid black"
         }
 
-        const { review } = this.props
-
+        const { review, user } = this.props
+        console.log(this.props)
         return (
             <div style={divStyles}>
                 <p>{review.title} </p>
                 <p>{review.content} </p> 
-                { !this.state.renderCommentBox 
-                ? 
-                    <button onClick={this.renderComment}>Comment</button>
-                : 
-                    < ReviewComment renderComment={this.renderComment} user={this.props.user}/>
-                }
-            </div>
+                <p>{user.username}</p>
+
+                </div>
         )
     }
 }
