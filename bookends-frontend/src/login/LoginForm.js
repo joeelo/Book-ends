@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 import styled from "styled-components";
-import { Button } from "../styles/styledElements"
+import { Button } from "../styles/styledElements";
+import validator from "email-validator";
 
 class LoginForm extends Component {
     
     state = {
         email: "", 
         password: "",
-        reRender: false
     }
 
     submitHandler = async (event) => {
         event.preventDefault();
         try {
+
             const dataPresent = this.checkInput();
             console.log(dataPresent);
             if (!dataPresent) return;
@@ -23,7 +24,6 @@ class LoginForm extends Component {
                 password: this.state.password
             }
             const url = "http://localhost:3000/users/login";
-            this.setState({reRender: true})
             this.props.loginUser(data);
             return fetch(url, {
                 method: "POST", 
@@ -55,9 +55,15 @@ class LoginForm extends Component {
     }
 
     checkInput = () => {
+        const email = validator.validate(this.state.email);
+        console.log(email);
         if (this.state.email === "" || this.state.password === "") {
             return false;
         } 
+        if (!email) {
+            return false;
+        }
+        return true;
     }
 
     render() {

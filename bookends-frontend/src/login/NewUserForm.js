@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "../styles/styledElements";
+import validator from "email-validator";
 
 class NewUserForm extends Component {
     
@@ -18,6 +19,11 @@ class NewUserForm extends Component {
     submitHandler = async (event) => {
         event.preventDefault();
         try {
+            const isValidInfo = this.validateEmail();
+            if (!isValidInfo) {
+                console.log("not a valid email");
+                return false
+            }
             const data = {
                 name: this.state.name,
                 email: this.state.email,
@@ -55,6 +61,13 @@ class NewUserForm extends Component {
         this.setState({
             [event.target["name"]]: event.target.value
         })
+    }
+
+    validateEmail = () => {
+        const isValid = validator.validate(this.state.email);
+        if (!isValid) return false;
+
+        return true
     }
 
     showPassword = () => this.setState({showPassword: !this.state.showPassword});
