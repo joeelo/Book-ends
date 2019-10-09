@@ -6,7 +6,6 @@ import { Button } from "../styles/styledElements"
 class LoginForm extends Component {
     
     state = {
-        name: "",
         email: "", 
         password: "",
         reRender: false
@@ -15,6 +14,10 @@ class LoginForm extends Component {
     submitHandler = async (event) => {
         event.preventDefault();
         try {
+            const dataPresent = this.checkInput();
+            console.log(dataPresent);
+            if (!dataPresent) return;
+
             const data = {
                 email: this.state.email,
                 password: this.state.password
@@ -51,23 +54,28 @@ class LoginForm extends Component {
         })
     }
 
+    checkInput = () => {
+        if (this.state.email === "" || this.state.password === "") {
+            return false;
+        } 
+    }
+
     render() {
         return (
             <FormContainer>
                 <Form onSubmit={this.submitHandler}>
                     <FormHeading> Log In </FormHeading>
 
-                    <FormLabel htmlFor="email"> Email: </FormLabel> <br/>
-                    <FormInput name="email" type="text"  onChange={this.changeHandler} value={this.state.email} autoFocus/> <br/>
+                    <FormLabel htmlFor="email"> Email: </FormLabel> 
+                    <FormInput name="email" type="text"  onChange={this.changeHandler} value={this.state.email} autoFocus/> 
 
-                    <FormLabel htmlFor="password"> Password: </FormLabel> <br/>
+                    <FormLabel htmlFor="password"> Password: </FormLabel> 
                     <FormInput name="password" type="password"  onChange={this.changeHandler} value={this.state.password} />
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
 
-                    <FormButton> Log me in!  </FormButton>
+                    <ButtonContainer>
+                        <FormButton> Log me in!  </FormButton>
+                        <FormButton>Forgot Password?</FormButton>
+                    </ButtonContainer>
                 </Form>
             </FormContainer>
         )
@@ -81,6 +89,7 @@ const FormContainer = styled.div`
     width: 100vw;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 `
 
 const Form = styled.form`
@@ -102,6 +111,7 @@ const FormInput = styled.input`
 
 const FormLabel = styled.label`
     font-family: Playfair Display, serif;
+    margin-top: 20px; 
 `
 
 const FormHeading = styled.h2`
@@ -113,10 +123,15 @@ const FormHeading = styled.h2`
 const FormButton = styled(Button)`
     
     width: 33%;
-    margin: 0 auto;
+    margin: 40px auto;
 
     :hover {
-        background-color: teal;
+        background-color: rgb(2, 136, 194);
         color: white;
     }
+`
+
+const ButtonContainer = styled.div`
+    display: flex;
+    justify-content: space-around;
 `

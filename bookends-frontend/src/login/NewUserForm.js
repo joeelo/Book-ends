@@ -86,7 +86,7 @@ class NewUserForm extends Component {
                     <br/>
                     <br/>
 
-                    <Button> Sign me up!  </Button>
+                    <NewUserButton> Sign me up!  </NewUserButton>
                 </Form>
             </FormContainer>
         )
@@ -143,4 +143,14 @@ const ShowPasswordLabel = styled.label`
 
 const PasswordCheckbox = styled.input`
     display: inline-block;
+`
+
+const NewUserButton = styled(Button)`
+    margin: 0 auto;
+    width: 30%;
+
+    :hover {
+        background-color: rgb(2, 136, 194);
+        color: white;
+    }
 `
