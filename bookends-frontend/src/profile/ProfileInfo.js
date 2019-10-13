@@ -4,6 +4,7 @@ import UsersBook from "./UsersBook";
 import styled from "styled-components";
 import { Container } from "../styles/styledElements";
 import randomColorGenerator from "../styles/randomColorGenerator";
+import { Button } from "../styles/styledElements"
 
 class ProfileInfo extends Component {
 
@@ -59,12 +60,12 @@ class ProfileInfo extends Component {
                         <h2>{this.props.user.username}</h2>
                         <h2>{this.props.user.email}</h2>
                         <h2>Password: *********</h2>
-                        <Link to="/profile/edit"> <button> edit my info </button> </Link>
+                        <Link to="/profile/edit"> <EditProfileButton> edit my info </EditProfileButton> </Link>
 
                         <Link to={{
                             pathname: "/profile/change-password", 
                             state: {user: this.props.user}
-                        }}> <button> change password </button></Link> 
+                        }}> <Button> change password </Button></Link> 
                     </ContentContainer>
                     
                     <ContentContainer>
@@ -147,4 +148,10 @@ const BorderCircle = styled.div`
 const MyBooksHeading = styled.h2`
     padding: 0;
     margin: 0;
+`
+
+const EditProfileButton = styled(Button)`
+    :hover {
+        background-color: teal;
+    }
 `

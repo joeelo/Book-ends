@@ -21,7 +21,6 @@ class NewUserForm extends Component {
         try {
             const isValidInfo = this.validateEmail();
             if (!isValidInfo) {
-                console.log("not a valid email");
                 return false
             }
             const data = {
@@ -124,6 +123,7 @@ const Form = styled.form`
     flex-direction: column;
     margin-top: 10vh;
     padding: 25px;
+    max-width: 400px;
 `
 
 const FormInput = styled.input`

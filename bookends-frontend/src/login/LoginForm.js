@@ -107,12 +107,14 @@ const Form = styled.form`
     flex-direction: column;
     margin-top: 10vh;
     padding: 25px;
+    max-width: 400px;
 `
 
 const FormInput = styled.input`
     padding: 5px;
     font-size: 14px;
     font-family: lato, sans-serif;
+    justify-self: center;
 `
 
 const FormLabel = styled.label`
