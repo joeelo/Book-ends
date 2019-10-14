@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import UsersBook from "./UsersBook";
 import styled from "styled-components";
 import { Container } from "../styles/styledElements";
 import randomColorGenerator from "../styles/randomColorGenerator";
-import { Button } from "../styles/styledElements"
+import { Button } from "../styles/styledElements";
 
 class ProfileInfo extends Component {
 
@@ -14,10 +14,18 @@ class ProfileInfo extends Component {
     }
 
     componentDidMount() {
-        this.fetchAllUserBooks();
         const randomColor = randomColorGenerator();
+        this.fetchAllUserBooks();
         this.setState({backgroundColor: randomColor});
+        this.checkUser();
 
+    }
+
+    checkUser = () => {
+        if (this.props.user.id === "" || this.props.user.id === null) {
+            this.props.history.push("/");
+            console.log("cannot access page without a user")
+        }
     }
 
     fetchAllUserBooks = async () => {
@@ -82,7 +90,7 @@ class ProfileInfo extends Component {
     }
 }
 
-export default ProfileInfo
+export default withRouter(ProfileInfo);
 
 const ProfileContainer = styled(Container)`
     width: 100vw;
