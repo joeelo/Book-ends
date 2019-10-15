@@ -64,10 +64,10 @@ class ProfileInfo extends Component {
                         <BorderCircle style={{border: `3px solid ${this.state.backgroundColor}`}}>
                             <Image src="https://miro.medium.com/fit/c/256/256/2*YV7osFJW-MqQ4cqDsBIRPQ.jpeg"/>
                         </BorderCircle>
-                        <h2>{this.props.user.name}</h2>
-                        <h2>{this.props.user.username}</h2>
-                        <h2>{this.props.user.email}</h2>
-                        <h2>Password: *********</h2>
+                        <h3>Name: {this.props.user.name}</h3>
+                        <h3>username: {this.props.user.username}</h3>
+                        <h3>email: {this.props.user.email}</h3>
+                        <h3>Password: *********</h3>
                         <Link to="/profile/edit"> <EditProfileButton> edit my info </EditProfileButton> </Link>
 
                         <Link to={{

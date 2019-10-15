@@ -44,6 +44,7 @@ class App extends Component {
     user: {
       id: "",
       name: "", 
+      username: "",
       email: "",
     }
   }
@@ -70,6 +71,7 @@ class App extends Component {
         user: {
           id: userInfo._id,
           name: userInfo.name,
+          username: userInfo.username,
           email: userInfo.email,
         }
       })
