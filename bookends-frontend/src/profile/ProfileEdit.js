@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 import styled from "styled-components";
+import { Button } from "../styles/styledElements"
 
 class ProfileEdit extends Component {
 
@@ -57,20 +58,18 @@ class ProfileEdit extends Component {
         return (
             <div>
 
-                <FormHeading> Update profile info </FormHeading>
                 <FormContainer>
-
-
                     <Form onSubmit={this.submitHandler}>
-                        <FormLabel htmlFor="name"> Edit name  </FormLabel><br/>
-                        <FormInput name="name" type="text" onChange={this.changeHandler} placeholder={this.props.user.name} value={this.state.name}/><br/>
+                        <FormHeading> Update profile info </FormHeading>
+                        <FormLabel htmlFor="name"> Name  </FormLabel>
+                        <FormInput name="name" type="text" onChange={this.changeHandler} placeholder={this.props.user.name} value={this.state.name}/>
 
-                        <FormLabel htmlFor="username"> Edit username </FormLabel><br/>
-                        <FormInput name="username" type="text" onChange={this.changeHandler} value={this.state.username}/> <br/>
+                        <FormLabel htmlFor="username"> Username </FormLabel>
+                        <FormInput name="username" type="text" onChange={this.changeHandler} value={this.state.username}/>
                         
-                        <FormLabel htmlFor="email"> Edit Email </FormLabel> <br/>
+                        <FormLabel htmlFor="email"> Email </FormLabel>
                         <FormInput name="email" type="text"  onChange={this.changeHandler} value={this.state.email}/> <br/>
-                        <button> submit </button>
+                        <EditSubmit> Done editing! </EditSubmit>
                     </Form>
                 </FormContainer>
             </div>
@@ -97,12 +96,15 @@ const Form = styled.form`
     margin-top: 10vh;
     padding: 25px;
     max-width: 400px;
+    min-height: 350px;
+    justify-content: center;
 `
 
 const FormInput = styled.input`
     padding: 5px;
     font-size: 14px;
     font-family: lato, sans-serif;
+    margin-bottom: 20px;
 `
 
 const FormLabel = styled.label`
@@ -114,4 +116,15 @@ const FormHeading = styled.h2`
     font-size: 2em;
     font-family: Playfair Display, serif;
     text-align: center;
+`
+
+const EditSubmit = styled(Button)`
+    width: 33%;
+    margin: 0 auto;
+
+    :hover {
+        color: white;
+        background-color: rgb(0, 133, 255);
+    }
+
 `
