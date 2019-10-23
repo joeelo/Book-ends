@@ -37,7 +37,7 @@ class LoggedInNavBar extends Component {
                 <LeftContainer>
                     <Logo alt="My Reads logo" src="/images/myReadsLogo.png"/>
                     <Link to="/profile" > <HeaderButton> Profile </HeaderButton> </Link>
-                    <Link to={`/notes/${user.userName}`}> <HeaderButton> My notes </HeaderButton> </Link>
+                    <Link to={`/notes/${user.username}`}> <HeaderButton> My notes </HeaderButton> </Link>
                 </LeftContainer>
                 <RightContainer>
                     <BookSearchFrom updateSearchTerm={this.props.updateSearchTerm}/>

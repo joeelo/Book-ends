@@ -33,7 +33,6 @@ router.post("/book/id/:id", async (req, res) => {
         const response = await fetch(url);
         const json = await response.json();
         const foundBook = await Book.findOne({ "any.id": req.body.book });
-        console.log("why");
         if (foundBook) {
             const reviews = await foundBook.populate("reviews").execPopulate()
             return res.send({data: json.items[0], reviews: reviews});
@@ -89,7 +88,6 @@ router.put("/rating", async (req, res) => {
     try {
         const foundBook = await Book.findOne({ "any.id": req.body.book.id, user: req.body.user.id});
         const user = await User.findById(req.body.user.id);
-        // console.log(user)
         if (foundBook) {
             foundBook.rating = req.body.rating;
             await foundBook.save();

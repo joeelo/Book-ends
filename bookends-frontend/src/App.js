@@ -39,25 +39,26 @@ body {
 
 class App extends Component {
 
-  state = {
-    searchTerm: "",
-    user: {
-      id: "",
-      name: "", 
-      username: "",
-      email: "",
-    }
-  }
-
   // state = {
   //   searchTerm: "",
   //   user: {
-  //     id: "5d656a91ea12f507b1013a41", 
-  //     name: "Joe Lorenzo", 
-  //     email: "example@gmail.com",
-  //     username: "joeephus"
+  //     id: "",
+  //     name: "", 
+  //     username: "",
+  //     email: "",
   //   }
   // }
+
+  state = {
+    searchTerm: "",
+    user: {
+      "id": "5db0c20c99ef75048cd8106e",
+      "name": "Joe",
+      "username": "joeelo",
+      "email": "newemail@gmail.com",
+      "password": "Angel004",
+    }
+  }
 
   updateSearchTerm = (term) => {
     this.setState({

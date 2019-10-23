@@ -74,7 +74,7 @@ class NoteDeletePrompt extends Component {
         try {
             console.log(this.props);
             const id = this.props.noteId;
-            const url = `http://localhost:3000/notes/${id}`;
+            const url = `http://localhost:3000/notes/${username}/${id}`;
             const config = {
                 method: "DELETE",
                 headers: {

@@ -2,7 +2,6 @@ import React, { Component } from "react"
 import NoteInstance from "./NoteInstance";
 import styled from "styled-components";
 
-
 const NoteWrapper = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fill, 350px);
@@ -11,7 +10,6 @@ const NoteWrapper = styled.div`
     justify-content: space-around;
     margin: 0 auto;
 `
-
 
 class UserNotes extends Component {
 
@@ -24,10 +22,13 @@ class UserNotes extends Component {
     }
     
     fetchNotes = async () => {
+        //TODO : fix route problem note shows upon load after deletion before refresh
+
         const username = this.props.user.username
         const url = `http://localhost:3000/notes/${username}`
         const response = await fetch(url);
         const json = await response.json();
+        console.log(json);
         this.setState({
             notes: json
         })

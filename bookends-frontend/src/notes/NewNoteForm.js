@@ -34,7 +34,7 @@ class NewNoteForm extends Component {
             const json = await response.json();
             const newNoteUrl = json._id;
             console.log(data.user)
-            this.props.history.push(`/notes/${data.user.userName}`)
+            this.props.history.push(`/notes/${data.user.username}`)
         } 
         catch (error) {
             console.log(error);
@@ -60,8 +60,21 @@ class NewNoteForm extends Component {
 
                     <NoteForm onSubmit={this.submitHandler}>
 
-                        <NoteHeadingInput name="noteTitle" value={this.state.noteTitle} onChange={this.changeHandler} placeholder="Title..."/> <br/>
-                        <NoteContentInput name="noteContent" value={this.state.noteContent} onChange={this.changeHandler} placeholder="Speak your mind!"/> <br/>
+                        <NoteHeadingInput 
+                            name="noteTitle" 
+                            value={this.state.noteTitle} 
+                            onChange={this.changeHandler} 
+                            placeholder="Title..." 
+                            autoFocus={true}
+                        /> 
+                        <br/>
+                        <NoteContentInput 
+                            name="noteContent" 
+                            value={this.state.noteContent} 
+                            onChange={this.changeHandler} 
+                            placeholder="Speak your mind!"
+                        /> 
+                        <br/>
                         <Button> Post Note </Button>
 
                     </NoteForm>

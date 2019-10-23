@@ -5,6 +5,7 @@ const Note = require("../models/Note");
 
 router.get("/notes/:username", async (req, res) => {
     try {
+        const user = await User.findOne({username: req.params.username});
         const notes = await User.findOne({username: req.params.username})
         .populate("notes")
         .exec();
@@ -25,15 +26,14 @@ router.get("/notes/:id/view", async (req, res) => {
 
 router.post("/notes", async (req, res) => {
     const { user, title, content } = req.body;
-    const foundUser = await User.findOne({username: user.userName});
-    console.log("user", foundUser);
+    const foundUser = await User.findOne({username: user.username});
     try {
         const newNote = new Note();
         newNote.user = user.id, newNote.title = title, newNote.content = content;
         newNote.save();
         foundUser.notes.push(newNote);
         foundUser.save();
-        res.send(newNote);
+        res.send({noteObject: newNote, foundUserObject: foundUser});
     } catch (error) {
         res.status(400).send({message: "rejected"});
     }
@@ -42,7 +42,6 @@ router.post("/notes", async (req, res) => {
 router.patch("/notes/:id/edit", async (req, res) => {
     try {
         const { title, content } = req.body;
-        console.log(title, content); 
         const updatedNote = new Note();
         updatedNote.title = title, updatedNote.content = content;
         updatedNote._id = req.params.id // must set ID to keep from setting new ID, and must stay constant even though updated. 
@@ -53,10 +52,16 @@ router.patch("/notes/:id/edit", async (req, res) => {
     }
 })
 
-router.delete("/notes/:id", async (req, res) => {
+router.delete("/notes/:username/:id", async (req, res) => {
     try {
         const note = await Note.findById(req.params.id);
+        const user = await User.findOne({username: req.params.username});
+        const noteId = note._id.toString();
+        const filteredArray = user.notes.filter(userNote => userNote.toString() !== noteId);
+        console.log(`usernote ${user.notes.length} vs and then the ${filteredArray.length}`);
         note.remove();
+        user.notes = filteredArray;
+        await user.save();
         res.send({deletedNote: note});
     } catch (error) {
         res.send(error);

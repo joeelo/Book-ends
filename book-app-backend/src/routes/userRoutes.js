@@ -3,14 +3,6 @@ const router = express.Router();
 const User = require("../models/User");
 const Review = require("../models/Review");
 
-router.get("/user", async (req, res) => {
-    try {
-        res.send("get user by id");
-    } catch (error) {
-        res.status(400).send(error);
-    }
-})
-
 router.post("/users/sign-up", async (req, res) => {
     try {
         const user = await User.findOne({email: req.body.email, password: req.body.password});
@@ -55,8 +47,17 @@ router.get("/user/show/:id", async (req, res) => {
 })
 
 router.patch("/user/profile/edit", async (req, res) => {
+    const {id, name, email, username} = req.body;
+    const modifications = {};
+    modifications.name = name;
+    modifications.email = email;
+    modifications.username = username;
     try {
-        const { user } = req.body;
+        const user = await User.findOneAndUpdate(
+            id, 
+            { $set: modifications }, 
+            { new: true }
+        );
         res.send(user);
     } catch (error) {
         res.status(400).send(error);
