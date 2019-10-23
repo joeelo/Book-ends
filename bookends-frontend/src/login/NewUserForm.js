@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "../styles/styledElements";
+import { FormContainer, Form, FormInput, FormHeading } from "../styles/styledforms";
 import validator from "email-validator";
 
 class NewUserForm extends Component {
@@ -76,27 +77,49 @@ class NewUserForm extends Component {
             <FormContainer>
                 <Form onSubmit={this.submitHandler}>
                     <FormHeading>Sign Up</FormHeading>
-
-                    <FormLabel htmlFor="name"> Full Name: </FormLabel>
-                    <FormInput name="name" type="text" onChange={this.changeHandler} placeholder="Full Name Here" value={this.state.name} autoFocus/><br/>
-
-                    <FormLabel htmlFor="username"> User Name: </FormLabel>
-                    <FormInput name="username" type="text" onChange={this.changeHandler} placeholder="Username Here" value={this.state.username}/> <br/>
-                    
-                    <FormLabel htmlFor="email"> Email: </FormLabel> 
-                    <FormInput name="email" type="text"  onChange={this.changeHandler} placeholder="Email Here" value={this.state.email}/> <br/>
-
-                    <FormLabel htmlFor="password"> Password: </FormLabel>
-                    <FormInput name="password"  type={this.state.showPassword ? "text": "password"}  onChange={this.changeHandler} placeholder="Password Here" value={this.state.password}/>
+                    <FormInput 
+                        name="name" 
+                        type="text" 
+                        onChange={this.changeHandler} 
+                        placeholder="Full Name Here" 
+                        value={this.state.name} 
+                        autoFocus={true}
+                    />
+                    <FormInput 
+                        name="username" 
+                        type="text" 
+                        onChange={this.changeHandler}
+                        placeholder="Username Here" 
+                        value={this.state.username}
+                    />
+                    <FormInput 
+                        name="email" type="text"  
+                        onChange={this.changeHandler} 
+                        placeholder="Email Here" 
+                        value={this.state.email}
+                    />
+                    <FormInput 
+                        name="password"  
+                        type={this.state.showPassword ? "text": "password"}  
+                        onChange={this.changeHandler} placeholder="Password Here" 
+                        value={this.state.password}
+                    />
 
                     <ShowPasswordContainer>
-
-                    <PasswordCheckbox type="checkbox" onChange={this.showPassword}/><ShowPasswordLabel>Show password</ShowPasswordLabel> 
+                        <PasswordCheckbox 
+                            type="checkbox" 
+                            onChange={this.showPassword}
+                        />
+                        <ShowPasswordLabel>Show password</ShowPasswordLabel> 
                     </ShowPasswordContainer>
-                    <FormLabel htmlFor="confirmPassword"> Re-type Password: </FormLabel>
-                    <FormInput name="confirmPassword" type={this.state.showPassword ? "text": "password"} onChange={this.changeHandler} placeholder="retype password" value={this.state.confirmPassword}/>
-                    <br/>
-                    <br/>
+                    <RetypePasswordInput 
+                        name="confirmPassword" 
+                        type={this.state.showPassword ? "text": "password"} 
+                        onChange={this.changeHandler} placeholder="retype password" 
+                        value={this.state.confirmPassword}
+                    />
+                
+                
 
                     <NewUserButton> Sign me up!  </NewUserButton>
                 </Form>
@@ -107,43 +130,9 @@ class NewUserForm extends Component {
 
 export default withRouter(NewUserForm);
 
-const FormContainer = styled.div`
-    display: flex;
-    width: 100vw;
-    justify-content: center;
-    align-items: center;
-`
-
-const Form = styled.form`
-    width: 40%;
-    height: 40%;
-    background-color: antiquewhite;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    margin-top: 10vh;
-    padding: 25px;
-    max-width: 400px;
-`
-
-const FormInput = styled.input`
-    padding: 5px;
-    font-size: 14px;
-    font-family: lato, sans-serif;
-`
-
-const FormLabel = styled.label`
-    font-family: Playfair Display, serif;
-`
-
-const FormHeading = styled.h2`
-    font-size: 2em;
-    font-family: Playfair Display, serif;
-    text-align: center;
-`
-
 const ShowPasswordContainer = styled.div`
     display: flex;
+    padding-top: 5px;
 `
 
 const ShowPasswordLabel = styled.label`
@@ -159,11 +148,15 @@ const PasswordCheckbox = styled.input`
 `
 
 const NewUserButton = styled(Button)`
-    margin: 0 auto;
+    margin: 30px auto 0 auto;
     width: 30%;
 
     :hover {
-        background-color: rgb(2, 136, 194);
+        background-color: teal;
         color: white;
     }
+`
+
+const RetypePasswordInput = styled(FormInput)`
+    margin-top: 15px;
 `

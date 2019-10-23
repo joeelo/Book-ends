@@ -30,8 +30,52 @@ const NoteContentInput = styled.textarea`
     font-family: Lato, sans-serif;
 `
 
+const FormContainer = styled.div`
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+`
+
+const Form = styled.form`
+    width: 40%;
+    height: 40%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5vh;
+    padding: 25px;
+    max-width: 400px;
+`
+
+const FormInput = styled.input`
+    padding: 10px 5px;
+    font-size: 14px;
+    font-family: lato, sans-serif;
+    border: 0px;
+    border-bottom: 2px solid teal;
+    transition: .5s ease-in-out;
+    margin-top: 30px;
+    font-size: 16px;
+
+    :focus {
+        outline: none;
+        border-bottom: 2px solid #FF7561;
+    }
+`
+
+const FormHeading = styled.h2`
+    font-size: 2em;
+    font-family: Playfair Display, serif;
+    text-align: center;
+`
+
 export {
     NoteForm,
     NoteHeadingInput, 
-    NoteContentInput
+    NoteContentInput, 
+    FormContainer, 
+    Form, 
+    FormHeading,
+    FormInput
 }

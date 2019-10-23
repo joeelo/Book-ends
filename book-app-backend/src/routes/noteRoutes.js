@@ -58,7 +58,6 @@ router.delete("/notes/:username/:id", async (req, res) => {
         const user = await User.findOne({username: req.params.username});
         const noteId = note._id.toString();
         const filteredArray = user.notes.filter(userNote => userNote.toString() !== noteId);
-        console.log(`usernote ${user.notes.length} vs and then the ${filteredArray.length}`);
         note.remove();
         user.notes = filteredArray;
         await user.save();

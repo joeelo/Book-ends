@@ -28,6 +28,10 @@ const Button = styled.button`
     transition: .3s ease-in-out all;
     background-color: white;
     border: 1px solid black;
+
+    :hover {
+        box-shadow: 3px 3px 2px 2px #D3D3D3;
+    }
 `
 
 const Container = styled.div`

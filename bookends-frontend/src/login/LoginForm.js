@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "../styles/styledElements";
+import { FormContainer, Form, FormInput, FormHeading } from "../styles/styledforms";
 import validator from "email-validator";
 
 class LoginForm extends Component {
@@ -72,11 +73,22 @@ class LoginForm extends Component {
                 <Form onSubmit={this.submitHandler}>
                     <FormHeading> Log In </FormHeading>
 
-                    <FormLabel htmlFor="email"> Email: </FormLabel> 
-                    <FormInput name="email" type="text"  onChange={this.changeHandler} value={this.state.email} autoFocus/> 
+                    <FormInput 
+                        name="email" 
+                        type="text"  
+                        onChange={this.changeHandler} 
+                        value={this.state.email} 
+                        autoFocus={true}
+                        placeholder="Email"
+                    /> 
 
-                    <FormLabel htmlFor="password"> Password: </FormLabel> 
-                    <FormInput name="password" type="password"  onChange={this.changeHandler} value={this.state.password} />
+                    <FormInput 
+                        name="password" 
+                        type="password"  
+                        onChange={this.changeHandler} 
+                        value={this.state.password}
+                        placeholder="Password"
+                    />
 
                     <ButtonContainer>
                         <FormButton> Log me in!  </FormButton>
@@ -90,51 +102,13 @@ class LoginForm extends Component {
 
 export default withRouter(LoginForm);
 
-const FormContainer = styled.div`
-    display: flex;
-    width: 100vw;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-`
-
-const Form = styled.form`
-    width: 40%;
-    height: 40%;
-    background-color: antiquewhite;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    margin-top: 10vh;
-    padding: 25px;
-    max-width: 400px;
-`
-
-const FormInput = styled.input`
-    padding: 5px;
-    font-size: 14px;
-    font-family: lato, sans-serif;
-    justify-self: center;
-`
-
-const FormLabel = styled.label`
-    font-family: Playfair Display, serif;
-    margin-top: 20px; 
-`
-
-const FormHeading = styled.h2`
-    font-size: 2em;
-    font-family: Playfair Display, serif;
-    text-align: center;
-`
-
 const FormButton = styled(Button)`
     
     width: 33%;
     margin: 40px auto;
 
     :hover {
-        background-color: rgb(2, 136, 194);
+        background-color: teal;
         color: white;
     }
 `
