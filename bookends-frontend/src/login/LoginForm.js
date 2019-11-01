@@ -4,12 +4,14 @@ import styled from "styled-components";
 import { Button } from "../styles/styledElements";
 import { FormContainer, Form, FormInput, FormHeading } from "../styles/styledforms";
 import validator from "email-validator";
+import WrongInfoPrompt from "./WrongInfoPrompt";
 
 class LoginForm extends Component {
     
     state = {
         email: "", 
         password: "",
+        showPrompt: false
     }
 
     submitHandler = async (event) => {
@@ -36,9 +38,9 @@ class LoginForm extends Component {
             })
             .then(res => res.json())
             .then(user => {
-                console.log(user);
-                if (user.message) {
-                    console.log(user.message)
+                if (user.message === "wrong login info try again") {
+                    this.setState({showPrompt: true});
+                    return;
                 } else {
                     this.props.loginUser(user);
                     this.props.history.push("/profile");
@@ -67,9 +69,12 @@ class LoginForm extends Component {
         return true;
     }
 
+    closePrompt = () => this.setState({showPrompt: false});
+
     render() {
         return (
             <FormContainer>
+                { this.state.showPrompt ? <WrongInfoPrompt closePrompt={this.closePrompt}/> : null }
                 <Form onSubmit={this.submitHandler}>
                     <FormHeading> Log In </FormHeading>
 

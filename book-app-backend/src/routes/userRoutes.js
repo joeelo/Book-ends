@@ -6,6 +6,7 @@ const Review = require("../models/Review");
 router.post("/users/sign-up", async (req, res) => {
     try {
         const user = await User.findOne({email: req.body.email, password: req.body.password});
+        console.log(user);
         if (user) {
             res.send({message: "user already exists please check and try again"});
             return;
@@ -13,6 +14,7 @@ router.post("/users/sign-up", async (req, res) => {
             const newUser = new User();
             newUser.name = req.body.name, newUser.username = req.body.username, newUser.email = req.body.email, newUser.password = req.body.password;
             await newUser.save();
+            console.log(newUser);
             res.send(newUser)
         }
     } catch (error) {

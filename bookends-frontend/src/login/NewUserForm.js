@@ -44,13 +44,7 @@ class NewUserForm extends Component {
             .then(res => res.json())
             .then(user => {
                 this.props.loginUser(user);
-                // this.props.history.push("/profile");
-                if (user._id !== null) {
-
-                }
-                else {
-                    this.props.loginUser({error: "cannot find user"});
-                }
+                this.props.history.push("/profile");
             });
         } catch (error) {
             console.log(error);
