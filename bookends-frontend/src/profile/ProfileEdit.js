@@ -34,8 +34,8 @@ class ProfileEdit extends Component {
             const response = await fetch(url, config);
             const json = await response.json();
             this.props.updateUser(this.state)
-            // console.log(json);
             this.props.history.push("/profile");
+            return json;
         } catch (error) {
             console.log(error);
         }

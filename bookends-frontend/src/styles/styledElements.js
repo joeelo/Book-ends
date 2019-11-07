@@ -30,6 +30,7 @@ const Button = styled.button`
     border: 1px solid black;
 
     :hover {
+        transform: translateY(-2px);
         box-shadow: 3px 3px 2px 2px #D3D3D3;
     }
 `

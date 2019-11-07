@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import styled from "styled-components";
 
 export default class RatingSelectForm extends Component {
 
@@ -42,13 +43,13 @@ export default class RatingSelectForm extends Component {
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <label>
-                        <select value={this.state.selectValue} onChange={this.handleSelectChange}> 
+                        <SelectForm value={this.state.selectValue} onChange={this.handleSelectChange}> 
                             <option value="1"> 1 </option>
                             <option value="2"> 2 </option>
                             <option value="3"> 3 </option>
                             <option value="4"> 4 </option>
                             <option value="5"> 5 </option>
-                        </select>
+                        </SelectForm>
                         <button> submit </button>
                     </label>
 
@@ -57,3 +58,9 @@ export default class RatingSelectForm extends Component {
         )
     }
 }
+
+const SelectForm = styled.select`
+    height: 20px;
+    width: 60px;
+    margin-top: 20px;
+`

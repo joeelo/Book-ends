@@ -22,7 +22,7 @@ class NewUserForm extends Component {
         try {
             const isValidInfo = this.validateEmail();
             if (!isValidInfo) {
-                return false
+                return false;
             }
             const data = {
                 name: this.state.name,
