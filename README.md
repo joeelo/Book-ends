@@ -5,8 +5,8 @@
 
 ## Table of Contents
  - <a href="#general">General Info </a> 
- - <a href="technologies"> Technologies </a>
- - <a href="setup"> Setup </a>
+ - <a href="#technologies"> Technologies </a>
+ - <a href="#setup"> Setup </a>
  - <a href="#usage"> Usage </a>
 
 ## <a name="general"> General Info </a>
