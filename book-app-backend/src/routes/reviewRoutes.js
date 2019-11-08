@@ -11,7 +11,6 @@ router.post("/book/:bookId/reviews", async (req, res) => {
     try {
         const foundBook = await Book.findOne({"any.id": req.body.book.id, user: req.body.user.id});
         const user = await User.findOne({ _id: req.body.user.id });
-        console.log(user);
         const review = new Review();
         if (foundBook) {
             review.title = req.body.title, review.content = req.body.content, review.book = req.body.book.id, review.user = req.body.user.id;
@@ -36,7 +35,7 @@ router.post("/book/:bookId/reviews", async (req, res) => {
 router.post("/book/:id/user/reviews", async (req, res) => {
     try {
         const book = req.params.id;
-        console.log(req.params.id);
+        console.log("from user/reviews route", req.params.id);
     } catch (error) {
         console.log(error);
     }
