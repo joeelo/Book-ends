@@ -4,22 +4,21 @@
 ### An app to bring users together and epxress their thoughts. 
 
 ## Table of Contents
- - General Info 
- - Technologies
- - Setup 
- - Usage 
- - Updates 
+ - <a href="#general">General Info </a> 
+ - <a href="technologies"> Technologies </a>
+ - <a href="setup"> Setup </a>
+ - <a href="#usage"> Usage </a>
 
-### General Info 
+## <a name="general"> General Info </a>
 MYREADS was created to help bring users together through a love of books. There are infinite choices of literature out in the wild, and MYREADS helps sift through with user reviews, what's good in the market and all time time classics. Another main feature of of MYREADS is the note creation functionality. As we read, thoughts flow and they leave as fast as they come, so there will always be a button present to jot down thoughts as they appear and will remain forever encrypted for you. 
 
-## Technologies
+## <a name="technologies"> Technologies</a>
  - MYREADS uses React for a seamless and quick user experience.
  - The data is stored with MongoDB and uses Mongoose as an ODM (Object Document Mapper) for schema creation and information validation. 
  - All of the routes are done using Node + Express. 
  - Various NPM packages are also used in conjuction and can be found in npm_modules. 
 
-## Setup 
+## <a name="setup"> Setup </a>
 
  - If you haven't installed NPM 
     - https://www.npmjs.com/get-npm
@@ -48,7 +47,7 @@ MYREADS was created to help bring users together through a love of books. There 
 - IE: GOOGLE_BOOKS_API=API_KEY_HERE
 
 
-## Usage
+## <a name="usage"> Usage </a>
 - In order to use MYREADS you will need to create an account. This account needs to be a valid email address and have a password iwth more than 7 characters.
 - Search for books by using the search bar after logging in. 
 - Write a review on any books you enjoyed 
