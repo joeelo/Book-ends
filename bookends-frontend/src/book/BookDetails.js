@@ -119,6 +119,7 @@ class BookDetails extends Component {
                                     <section>{bookDescription} <ReadMoreButton onClick={this.renderBookDescription}>...less</ReadMoreButton></section>
                                 }
 
+                                <PlayfairHeading><u> Reviews for {book.volumeInfo.title} </u></PlayfairHeading>
                                 {this.renderReviews()}
                             </RightContainer>
                             
@@ -162,6 +163,8 @@ const LeftContainer = styled.div`
 const RightContainer = styled.div`
     display: flex;
     flex-direction: column;
+    width: 70%;
+    margin: 0 auto;
     padding-top: 25px;
     padding-left: 25px;
 `
