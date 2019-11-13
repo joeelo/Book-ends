@@ -70,11 +70,21 @@ class LoginForm extends Component {
     }
 
     closePrompt = () => this.setState({showPrompt: false});
+    clearInputs = () => this.setState({email: "", password: ""});
 
     render() {
         return (
             <FormContainer>
-                { this.state.showPrompt ? <WrongInfoPrompt closePrompt={this.closePrompt}/> : null }
+                { 
+                        this.state.showPrompt 
+                    ? 
+                        <WrongInfoPrompt 
+                            closePrompt={this.closePrompt} 
+                            clearInputs={this.clearInputs}
+                        /> 
+                    : 
+                        null 
+                }
                 <Form onSubmit={this.submitHandler}>
                     <FormHeading> Log In </FormHeading>
 
