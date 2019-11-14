@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+import styled from "styled-components";
+import { Button } from "../styles/styledElements";
 
 const clickHandler = (props) => {
     console.log(props.book);
@@ -20,12 +22,18 @@ const clickHandler = (props) => {
 }
 
 const AddReadBook = (props) => {
-
     return (
-        <div>
-            <button onClick={() => clickHandler(props)}> Read </button>
-        </div>
+            <AddBookButton onClick={() => clickHandler(props)}> Read </AddBookButton>
     )
 } 
 
-export default AddReadBook
+export default AddReadBook;
+
+const AddBookButton = styled(Button)`
+    width: 50%;
+
+    :hover {
+        background-color: teal;
+        color: white;
+    }
+`
