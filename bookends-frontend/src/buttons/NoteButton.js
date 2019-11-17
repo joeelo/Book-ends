@@ -2,12 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom"
 import styled from "styled-components";
 
-const NoteBtn = styled.div`
-    top: 20%;
-    right: 20px;
-    position: fixed;
-`
-
 const NoteButton = (props) => {
     return (
         <NoteBtn>
@@ -16,4 +10,10 @@ const NoteButton = (props) => {
     )
 }
 
-export default NoteButton
+export default NoteButton;
+
+const NoteBtn = styled.div`
+    top: 20%;
+    right: 20px;
+    position: fixed;
+`

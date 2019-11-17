@@ -50,8 +50,7 @@ router.post("/books", async (req, res) => {
         const user = await User.findOne({_id: req.body.user.id});
         if (foundBook) {
             foundBook.finished = true;
-            //TODO: fix issue with saving
-            foundBook.save();
+            await foundBook.save();
             res.send({message: "already saved to DB and user"});    
         } else {
             const { any, finished } = req.body;
@@ -82,7 +81,6 @@ router.patch("/book/:id", async (req, res) => {
         res.status(400).send(error);
     }
 })
-
 
 router.put("/rating", async (req, res) => {
     try {
