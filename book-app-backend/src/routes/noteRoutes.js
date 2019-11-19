@@ -6,6 +6,7 @@ const Note = require("../models/Note");
 router.get("/notes/:username", async (req, res) => {
     try {
         const user = await User.findOne({username: req.params.username});
+        console.log(req.params.username);
         const notes = await User.findOne({username: req.params.username})
         .populate("notes")
         .exec();

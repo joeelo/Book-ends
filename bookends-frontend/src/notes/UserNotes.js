@@ -22,13 +22,11 @@ class UserNotes extends Component {
     }
     
     fetchNotes = async () => {
-        //TODO : fix route problem note shows upon load after deletion before refresh
-
+        //TODO: fix route problem note shows upon load after deletion before refresh
         const username = this.props.user.username
         const url = `http://localhost:3000/notes/${username}`
         const response = await fetch(url);
         const json = await response.json();
-        console.log(json);
         this.setState({
             notes: json
         })

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "../styles/styledElements"
+import { FormContainer, Form, FormInput, FormHeading } from "../styles/styledforms";
 
 class ProfileEdit extends Component {
 
@@ -61,14 +62,28 @@ class ProfileEdit extends Component {
                 <FormContainer>
                     <Form onSubmit={this.submitHandler}>
                         <FormHeading> Update profile info </FormHeading>
-                        <FormLabel htmlFor="name"> Name  </FormLabel>
-                        <FormInput name="name" type="text" onChange={this.changeHandler} placeholder={this.props.user.name} value={this.state.name}/>
 
-                        <FormLabel htmlFor="username"> Username </FormLabel>
-                        <FormInput name="username" type="text" onChange={this.changeHandler} value={this.state.username}/>
+                        <FormInput 
+                            name="name" 
+                            type="text" 
+                            onChange={this.changeHandler} 
+                            placeholder={this.props.user.name} 
+                            value={this.state.name}
+                        />
+
+                        <FormInput 
+                            name="username" 
+                            type="text" 
+                            onChange={this.changeHandler} 
+                            value={this.state.username}
+                        />
                         
-                        <FormLabel htmlFor="email"> Email </FormLabel>
-                        <FormInput name="email" type="text"  onChange={this.changeHandler} value={this.state.email}/> <br/>
+                        <FormInput 
+                            name="email" 
+                            type="text"  
+                            onChange={this.changeHandler} 
+                            value={this.state.email}
+                        /> 
                         <EditSubmit> Done editing! </EditSubmit>
                     </Form>
                 </FormContainer>
@@ -79,48 +94,9 @@ class ProfileEdit extends Component {
 
 export default withRouter(ProfileEdit);
 
-const FormContainer = styled.div`
-    display: flex;
-    width: 100vw;
-    justify-content: center;
-    align-items: center;
-`
-
-const Form = styled.form`
-    width: 40%;
-    height: 40%;
-    background-color: antiquewhite;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    margin-top: 10vh;
-    padding: 25px;
-    max-width: 400px;
-    min-height: 350px;
-    justify-content: center;
-`
-
-const FormInput = styled.input`
-    padding: 5px;
-    font-size: 14px;
-    font-family: lato, sans-serif;
-    margin-bottom: 20px;
-`
-
-const FormLabel = styled.label`
-    font-family: Playfair Display, serif;
-    margin: 0;
-`
-
-const FormHeading = styled.h2`
-    font-size: 2em;
-    font-family: Playfair Display, serif;
-    text-align: center;
-`
-
 const EditSubmit = styled(Button)`
     width: 33%;
-    margin: 0 auto;
+    margin: 50px auto 0 auto;
 
     :hover {
         color: white;

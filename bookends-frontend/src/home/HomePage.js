@@ -1,6 +1,19 @@
 import React, { Component } from 'react'
 import styled, { keyframes } from "styled-components";
 
+class HomePage extends Component {
+
+    render() {
+        return (
+            <Wrapper>
+                <Logo alt="My Reads logo" src="/images/myReadsLogo.png"/>
+            </Wrapper>
+        )
+    }
+}
+
+export default HomePage 
+
 const fadeIn = keyframes`
     0% { opacity: 0 }
     20% { opacity: .2 }
@@ -23,16 +36,3 @@ const Logo = styled.img`
     width: 600px;
     animation: ${fadeIn} 1s linear;
 `
-
-class HomePage extends Component {
-
-    render() {
-        return (
-            <Wrapper>
-                <Logo alt="My Reads logo" src="/images/myReadsLogo.png"/>
-            </Wrapper>
-        )
-    }
-}
-
-export default HomePage 

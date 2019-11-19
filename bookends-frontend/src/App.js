@@ -22,11 +22,11 @@ import PasswordChangeForm from "./profile/PasswordChangeForm";
 
 const GlobalStyle = createGlobalStyle`
 
-body, html {
-  width: 100vw;
-}
+  body, html {
+    width: 100vw;
+  }
 
-body {
+  body {
     padding: 0; 
     margin: 0;
     @import url('https://fonts.googleapis.com/css?family=Lato|Playfair+Display&display=swap');
@@ -34,6 +34,11 @@ body {
     overflow-x: hidden;
     min-width: 100vw;
   }
+
+  a {
+    text-decoration: none;
+  }
+
 `
 
 
@@ -52,10 +57,10 @@ class App extends Component {
   state = {
     searchTerm: "",
     user: {
-      "id": "5db0c20c99ef75048cd8106e",
-      "name": "Joe",
-      "username": "joeelo",
-      "email": "newemail@gmail.com",
+      "id": "5dd0c1a81ef60305d12c2af4",
+      "name": "joe lorenzo",
+      "username": "joeelorenzo",
+      "email": "joeephus@gmail.com",
       "password": "Angel004",
     }
   }
