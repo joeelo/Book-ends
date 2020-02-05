@@ -1,4 +1,4 @@
-import React, {Fragment, Component} from 'react';
+import React, { Component } from 'react';
 import { Route, Switch} from "react-router-dom";
 import './App.css';
 import { createGlobalStyle } from "styled-components";
@@ -24,6 +24,7 @@ const GlobalStyle = createGlobalStyle`
 
   body, html {
     width: 100vw;
+    height: 100vh;
   }
 
   body {
@@ -32,11 +33,16 @@ const GlobalStyle = createGlobalStyle`
     @import url('https://fonts.googleapis.com/css?family=Lato|Playfair+Display&display=swap');
     font-family: 'Lato', sans-serif;
     overflow-x: hidden;
-    min-width: 100vw;
+    box-sizing: border-box;
+    position: absolute;
   }
 
   a {
     text-decoration: none;
+  }
+
+  button, a {
+    cursor: pointer;
   }
 
 `
@@ -57,9 +63,9 @@ class App extends Component {
   state = {
     searchTerm: "",
     user: {
-      "id": "5dd0c1a81ef60305d12c2af4",
-      "name": "joe lorenzo",
-      "username": "joeelorenzo",
+      "id": "5e38e1898b65a410f4b324c4",
+      "name": "joe",
+      "username": "lorenzo",
       "email": "joeephus@gmail.com",
       "password": "Angel004",
     }
@@ -106,10 +112,9 @@ class App extends Component {
   logoutUser = () => this.setState({user: {}})
 
   render() {
-    console.log(this.state.user);
     return (
 
-      <Fragment>
+      <>
   
         <div className="App">
           <GlobalStyle />
@@ -144,7 +149,7 @@ class App extends Component {
           <Route exact path="/notes/:id/view" component={NoteView}/>
           <Route exact path="/notes/:id/edit" component={NoteEditForm}/>
         </Switch>
-      </Fragment>
+      </>
 
     );
   }

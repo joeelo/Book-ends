@@ -42,6 +42,10 @@ const Container = styled.div`
     align-items: center;
     margin: 0 auto;
     padding: 10px;
+
+    @media screen and (max-width: 768px) {
+        width: 100vw;
+    }
 `
 
 const NoteHeading = styled.h1`

@@ -8,6 +8,7 @@ class BookContainer extends Component {
     }
 
     componentDidMount() {
+        console.log(this.props.searchTerm);
         this.fetchBooks();
     }
 
@@ -36,7 +37,7 @@ class BookContainer extends Component {
     renderBooks = () => {
         try { 
             const books = this.state.books.map((book, index) => (
-                    <BookThumbnail key={index} book={book} />
+                <BookThumbnail key={index} book={book} />
             ))
             return books
         } catch (error) {

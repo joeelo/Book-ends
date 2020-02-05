@@ -8,6 +8,11 @@ const Wrapper = styled.div`
     justify-content: space-between;
     height: 70px;
     align-items: center;
+    max-width: 1200px; 
+
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+    }
 `
 
 const RightContainer = styled.div`
