@@ -6,7 +6,7 @@ class HomePage extends Component {
     render() {
         return (
             <Wrapper>
-                <Logo alt="My Reads logo" src="/images/myReadsLogo.png"/>
+                {/* <Logo alt="My Reads logo" src="/images/myReadsLogo.png"/> */}
             </Wrapper>
         )
     }
