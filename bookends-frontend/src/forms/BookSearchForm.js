@@ -7,11 +7,9 @@ const BookSearchForm = (props) => {
 	const [ title, setTitle ] = useState("");
 	const [ books, setBooks ] = useState([]);
 
-	
-
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		props.updateSearchTerm(this.state.title);
+		props.updateSearchTerm(title);
 		props.history.push("/books/view");
 	}
 
