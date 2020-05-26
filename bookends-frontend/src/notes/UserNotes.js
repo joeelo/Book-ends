@@ -1,35 +1,31 @@
-import React, { Component } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import NoteInstance from "./NoteInstance";
 import styled from "styled-components";
 import ErrorBoundary from '../errors/ErrorMessage';
+import { UserContext } from '../context/UserContext';
 
-class UserNotes extends Component {
+const UserNotes = (props) => {
 
-	state = {
-		notes: []
-	}
-
-	componentDidMount() {
-		this.fetchNotes();
-	}
+	const [ notes, setNotes ] = useState(null);
+	const { user } = useContext(UserContext);
 	
-	fetchNotes = async () => {
+	const fetchNotes = async () => {
 		//TODO: fix route problem note shows upon load after deletion before refresh
 		try {
-			const username = this.props.user.username
-			const url = `http://localhost:3000/notes/${username}`
+			const username = user.username
+			const url = `http://localhost:3000/notes/${username}`;
 			const response = await fetch(url);
 			const json = await response.json();
 			if ( json.message ) {
 				throw (json);
 			}
-			this.setState({ notes: json })
+			setNotes(json);
 		} catch (error) {
 			console.log(error);
 		}
 	}
 
-	generateRandomColor = () => {
+	const generateRandomColor = () => {
 			const r = 255 - ((Math.random() + 1) * 60);
 			const g = 255 - ((Math.random() + 1) * 60);
 			const b = 255 - ((Math.random() + 1) * 60);
@@ -38,25 +34,29 @@ class UserNotes extends Component {
 			return colors;
 	}
 
-	renderNotes = () => {
-		const username = this.props.user.username;
-		const notes = this.state.notes.map((note) => {
-			let randomColor = this.generateRandomColor();
+	const renderNotes = () => {
+		const username = user.username;
+		const mappedNotes = notes.map((note) => {
+			let randomColor = generateRandomColor();
 			return <NoteInstance key={note._id} note={note} randomColor={randomColor} username={username}/>
 		})
-		return notes;
-		
+		return mappedNotes;
 	}
 
-	render() {
-		return (
-			<ErrorBoundary>
-				<NoteWrapper>
-					{this.renderNotes()}
-				</NoteWrapper>
-			</ErrorBoundary>
-		)
-	}
+	useEffect(() => {
+		if (notes) return; 
+		fetchNotes();
+	}, [notes])
+
+	if (!notes) return <></>
+	return (
+		<ErrorBoundary>
+			<NoteWrapper>
+				{renderNotes()}
+			</NoteWrapper>
+		</ErrorBoundary>
+	)
+	
 }
 
 export default UserNotes;

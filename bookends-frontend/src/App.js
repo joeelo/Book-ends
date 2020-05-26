@@ -20,33 +20,12 @@ import ProfileEdit from "./profile/ProfileEdit";
 import PasswordChangeForm from "./profile/PasswordChangeForm";
 import { GlobalStyle } from './styles/globalStyles';
 
-const App = () => {
-
-
-  // state = {
-  //   searchTerm: "",
-  //   user: {
-  //     id: "",
-  //     name: "", 
-  //     username: "",
-  //     email: "",
-  //   }
-  // }
-
-  const user = {
-    user: {
-      "id": "5e38e1898b65a410f4b324c4",
-      "name": "joe",
-      "username": "lorenzo",
-      "email": "joeephus@gmail.com",
-      "password": "Angel004",
-    }
-  }
+const App = (props) => {
 
   return (
     <>
       <GlobalStyle />
-      <UserProvider value={user}>
+      <UserProvider>
       {/* <div className="App">
 
         {this.state.user.id !== undefined && this.state.user.id !== "" ?

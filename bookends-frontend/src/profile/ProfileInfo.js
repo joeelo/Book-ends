@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Container } from '../styles/styledElements';
 import randomColorGenerator from '../styles/randomColorGenerator';
 import { Button } from '../styles/styledElements';
-import UserContext from '../context/UserContext';
+import { UserContext } from '../context/UserContext';
 
 const ProfileInfo = (props) => {
   const [books, setBooks] = useState(null);
@@ -46,9 +46,8 @@ const ProfileInfo = (props) => {
 		backgroundColor
 	}
 
-	console.log(user.name);
+  console.log('user: ', user);
 
-	if (!props.user.name) return <></>;
   return (
     <ProfileContainer>
       <Header style={style}>

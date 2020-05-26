@@ -1,8 +1,41 @@
-import React, { createContext } from 'react';
+import React, { useState, createContext } from 'react';
 
-const UserContext = React.createContext();
+export const UserContext = createContext();
 
-export const UserProvider = UserContext.Provider; 
-export const UserConsumer = UserContext.Consumer; 
+export const UserProvider = (props) => {
+    const initialUser = {
+      "id": "5e38e1898b65a410f4b324c4",
+      "name": "joe",
+      "username": "lorenzo",
+      "email": "joeephus@gmail.com",
+      "password": "Angel004",
+    }
+  
 
-export default UserContext; 
+  const [ user, setUser ] = useState(initialUser); 
+
+  const updateUser = (user) => {
+    const newUserInfo = {
+      id: initialUser.id, 
+      name: user.name, 
+      username: user.username, 
+      email: user.email, 
+      password: initialUser.id
+    }; 
+
+    setUser(newUserInfo);
+  } 
+
+  return (
+    <UserContext.Provider 
+      value={{
+        user, 
+        updateUser
+      }}
+    >
+      {props.children}
+    </UserContext.Provider>
+  )
+}
+
+
