@@ -5,11 +5,10 @@ const Note = require("../models/Note");
 
 router.get("/notes/:username", async (req, res) => {
     try {
-        const user = await User.findOne({username: req.params.username});
-        console.log(req.params.username);
         const notes = await User.findOne({username: req.params.username})
         .populate("notes")
         .exec();
+        console.log("NOTES:", notes);
         res.send(notes.notes);
     } catch (error) {
         res.status(400).send({message: error});
@@ -44,7 +43,8 @@ router.patch("/notes/:id/edit", async (req, res) => {
     try {
         const { title, content } = req.body;
         const updatedNote = new Note();
-        updatedNote.title = title, updatedNote.content = content;
+        updatedNote.title = title;
+        updatedNote.content = content;
         updatedNote._id = req.params.id // must set ID to keep from setting new ID, and must stay constant even though updated. 
         const note = await Note.findOneAndUpdate({_id: req.params.id}, updatedNote, {upsert: true, useFindAndModify: false});
         res.send(note);
