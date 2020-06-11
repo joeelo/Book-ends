@@ -38,7 +38,6 @@ router.post("/book/:bookId/reviews", async (req, res) => {
 router.post("/book/:id/user/reviews", async (req, res) => {
 	try {
 		const book = req.params.id;
-		console.log("from user/reviews route", req.params.id);
 	} catch (error) {
 		console.log(error);
 	}

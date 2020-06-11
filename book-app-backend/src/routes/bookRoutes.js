@@ -9,8 +9,10 @@ const fetch = require("node-fetch");
 router.get("/book/:bookTitle", async (req, res) => {
     try {
         const book = req.params.bookTitle;
-        const url = `https://www.googleapis.com/books/v1/volumes?q=${book}&key=${process.env.GOOGLE_BOOKS_API}`;
+        const url = `https://www.googleapis.com/books/v1/volumes?q=${book}&key=${process.env.GOOGLE_BOOKS_API}&country=US`;
         const response = await fetch(url);
+        console.log(url);
+        console.log('RESPONSE: ', response);
         const json = await response.json();
         res.send(json.items);
     } catch (error) {

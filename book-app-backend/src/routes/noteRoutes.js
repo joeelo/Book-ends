@@ -8,7 +8,6 @@ router.get("/notes/:username", async (req, res) => {
         const notes = await User.findOne({username: req.params.username})
         .populate("notes")
         .exec();
-        console.log("NOTES:", notes);
         res.send(notes.notes);
     } catch (error) {
         res.status(400).send({message: error});
