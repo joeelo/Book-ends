@@ -1,16 +1,16 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 
 export const UserContext = createContext();
 
 export const UserProvider = (props) => {
-    const initialUser = {
-      "id": "5e38e1898b65a410f4b324c4",
-      "name": "joe",
-      "username": "lorenzo",
-      "email": "joeephus@gmail.com",
-      "password": "Angel004",
-    }
-  
+
+  const initialUser = {
+    "id": "5e38e1898b65a410f4b324c4",
+    "name": "joe",
+    "username": "lorenzo",
+    "email": "joeephus@gmail.com",
+    "password": "Angel004",
+  }
 
   const [ user, setUser ] = useState(initialUser); 
 
@@ -22,9 +22,12 @@ export const UserProvider = (props) => {
       email: user.email, 
       password: initialUser.id
     }; 
-
     setUser(newUserInfo);
   } 
+
+  useEffect(() => {
+    console.log('app rendered');
+  }, [user])
 
   return (
     <UserContext.Provider 

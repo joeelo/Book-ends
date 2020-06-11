@@ -12,7 +12,6 @@ const LoggedInNavBar = (props) => {
 
 	return (
 		<>
-
 			<Menu>
 				<HamburgerMenu 
 					src='/images/icons8-menu.svg' 
@@ -37,6 +36,12 @@ const LoggedInNavBar = (props) => {
 }
 
 export default LoggedInNavBar;
+
+LoggedInNavBar.defaultProps = {
+	updateSearchTerm: () => {}, 
+	user: {}, 
+	logoutUser: () => {}
+}
 
 const NavBarContainer = styled.div`
 	display: flex;

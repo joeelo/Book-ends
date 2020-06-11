@@ -1,57 +1,44 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
+import { withRouter } from 'react-router-dom';
 import BookThumbnail from "./BookThumbnail";
 
-class BookContainer extends Component {
+const BookContainer = (props) => {
 
-    state = {
-        books: []
-    }
+	const [ books, setBooks ] = useState(null);
 
-    componentDidMount() {
-        console.log(this.props.searchTerm);
-        this.fetchBooks();
-    }
+	const fetchBooks = async () => {
+			const bookSearchTerm = props.match.params.title; 
+			try {
+					const url = `http://localhost:3000/book/theoldmanandthesea`;
+					const response = await fetch(url);
+					console.log(response);
+					const json = await response.json();
+					if (json) {
+						setBooks(json);
+					} else {
+						setBooks([]);
+					}
+			} catch (error) {
+					console.log(error);
+			}
+	}
 
-    componentDidUpdate(prevProps, prevState) {
-        if (prevProps.searchTerm !== this.props.searchTerm) {
-            this.fetchBooks();
-        }
-    }
+	useEffect(() => {
+		if (books) return; 
+			fetchBooks();
+	}, [books, props.match.params.title]);
 
-    fetchBooks = async () => {
-        try {
-            const book = this.props.searchTerm.replace(" ", "+");
-            const url = `http://localhost:3000/book/${book}`;
-            const response = await fetch(url);
-            const json = await response.json();
-            this.setState({
-                books: json
-            })
-        } catch (error) {
-            this.setState({
-                books: []
-            })
-        }
-    }
-
-    renderBooks = () => {
-        try { 
-            const books = this.state.books.map((book, index) => (
-                <BookThumbnail key={index} book={book} />
-            ))
-            return books
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    render() {
-        return (
-            <div>
-                {this.renderBooks()}
-            </div>
-        )
-    }
+	if (!books) return <></>
+	return (
+		<>
+				{ books.map((book, index) => <BookThumbnail key={index} book={book} />) }
+		</>
+	)
+	
 }
 
-export default BookContainer 
+export default withRouter(BookContainer);
+
+BookContainer.defaultProps = {
+	searchTerm: ''
+}

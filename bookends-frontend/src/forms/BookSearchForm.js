@@ -9,29 +9,31 @@ const BookSearchForm = (props) => {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		props.updateSearchTerm(title);
-		props.history.push("/books/view");
+		props.history.push(`/books/search/${title}`);
 	}
 
 	return (
-		<div>
-			<FormContainer onSubmit={handleSubmit} autoComplete="off"> 
-				<MagButton> 
-					{/* <MagnifyingGlassImg alt="magnifying glass icon" src="/images/magnifyingGlass.png"/>  */}
-				</MagButton>
-				<SearchBar 
-						name="title" v
-						alue={title} 
-						onChange={(event) => setTitle(event.target.value)} 
-						placeholder="search for your book"
-				/>
-			</FormContainer>
-		</div>
+		<FormContainer onSubmit={handleSubmit} autoComplete="off"> 
+			<MagButton> 
+				{/* <MagnifyingGlassImg alt="magnifying glass icon" src="/images/magnifyingGlass.png"/>  */}
+			</MagButton>
+			<SearchBar 
+					name="title" 
+					value={title} 
+					onChange={(event) => setTitle(event.target.value)} 
+					placeholder="search for your book"
+			/>
+		</FormContainer>
 	)
 }
 
 
 export default withRouter(BookSearchForm);
+
+BookSearchForm.defaultProps = {
+	history: {},
+
+}
 
 const FormContainer = styled.form`
 	margin: 0 auto;

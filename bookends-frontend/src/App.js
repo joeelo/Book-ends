@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Route, Switch } from "react-router-dom";
-import { UserProvider } from './context/UserContext';
+import { UserContext } from './context/UserContext';
 import HomePage from "./home/HomePage";
 import BookContainer from "./book/BookContainer";
 import BookDetails from './book/BookDetails';
@@ -22,25 +22,22 @@ import { GlobalStyle } from './styles/globalStyles';
 
 const App = (props) => {
 
+  const { user } = useContext(UserContext);
+
   return (
     <>
       <GlobalStyle />
-      <UserProvider>
-      {/* <div className="App">
+      <div className="App">
 
-        {this.state.user.id !== undefined && this.state.user.id !== "" ?
-            <LoggedInNavBar user={this.state.user} updateSearchTerm={this.updateSearchTerm} logoutUser={this.logoutUser}/>
+        {!!user.id && user.id !== "" ?
+            <LoggedInNavBar user={user} />
           : 
             <NotLoggedInNavBar />
         } 
         
-        {this.state.user.id !== undefined && this.state.user.id !== "" ?
-            <NoteButton/>
-          : 
-            null
-        } 
+        { !!user.id && user.id !== "" && <NoteButton/> } 
         
-      </div> */}
+      </div>
 
       <Switch>
         <Route exact path="/" component={HomePage}/>
@@ -49,7 +46,7 @@ const App = (props) => {
         <Route exact path="/profile" render={() => <Profile />} />
         <Route exact path="/profile/edit" render={(props) => <ProfileEdit />}/> 
         <Route exact path="/profile/change-password" render={(props) => <PasswordChangeForm />}/>
-        <Route exact path="/books/view" render={(props) => <BookContainer />}/>
+        <Route exact path="/books/search/:title" render={(props) => <BookContainer />}/>
         <Route exact path="/book/:id" render={ (props) => <BookDetails />}/>
         <Route exact path="/book/:id/reviews"  />
         <Route exact path="/review/list/:username" render={() => <UserBookList />}/>
@@ -58,7 +55,6 @@ const App = (props) => {
         <Route exact path="/notes/:id/view" component={NoteView}/>
         <Route exact path="/notes/:id/edit" component={NoteEditForm}/>
       </Switch>
-      </UserProvider>
     </>
 
   );
