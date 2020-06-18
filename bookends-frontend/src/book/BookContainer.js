@@ -9,7 +9,7 @@ const BookContainer = (props) => {
 	const fetchBooks = async () => {
 			const bookSearchTerm = props.match.params.title; 
 			try {
-					const url = `http://localhost:3000/book/theoldmanandthesea`;
+					const url = `http://localhost:3000/book/${props.match.params.title}`;
 					const response = await fetch(url);
 					console.log(response);
 					const json = await response.json();

@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import styled from "styled-components";
+import { UserContext } from '../context/UserContext';
 
 export default class RatingSelectForm extends Component {
 
     state = {
-        user: {id: this.props.user.id},
         selectValue: 1
     }
 
@@ -13,6 +13,7 @@ export default class RatingSelectForm extends Component {
     }
 
     handleSubmit = async (event) => {
+        const user = this.context; 
         event.preventDefault();
         try {
             const data = {

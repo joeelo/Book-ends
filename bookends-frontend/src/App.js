@@ -40,14 +40,14 @@ const App = (props) => {
       </div>
 
       <Switch>
-        <Route exact path="/" component={HomePage}/>
+        <Route exact path="/" component={ HomePage }/>
         <Route exact path="/sign-up" render={() => <NewUserForm />} />
         <Route exact path="/login" render={() => <LoginForm/>}/>
-        <Route exact path="/profile" render={() => <Profile />} />
+        <Route exact path="/profile" component={ Profile } />
         <Route exact path="/profile/edit" render={(props) => <ProfileEdit />}/> 
         <Route exact path="/profile/change-password" render={(props) => <PasswordChangeForm />}/>
-        <Route exact path="/books/search/:title" render={(props) => <BookContainer />}/>
-        <Route exact path="/book/:id" render={ (props) => <BookDetails />}/>
+        <Route exact path="/books/search/:title" component={ BookContainer }/>
+        <Route exact path="/book/:id" component={ BookDetails }/>
         <Route exact path="/book/:id/reviews"  />
         <Route exact path="/review/list/:username" render={() => <UserBookList />}/>
         <Route exact path="/note" render={(props) => <NewNoteForm />}/>

@@ -32,7 +32,6 @@ export default withRouter(BookSearchForm);
 
 BookSearchForm.defaultProps = {
 	history: {},
-
 }
 
 const FormContainer = styled.form`

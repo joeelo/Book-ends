@@ -5,6 +5,7 @@ import AddReadBook from "../buttons/AddReadBook";
 import UsersBookReview from "../review/UsersBookReview";
 import { PlayfairHeading, Button } from "../styles/styledElements";
 import styled from "styled-components";
+import { UserContext } from '../context/UserContext';
 
 class BookDetails extends Component {
 
@@ -30,7 +31,7 @@ class BookDetails extends Component {
 
     fetchBookById = async () => {
         try {
-            const bookId = this.props.props.location.pathname.replace("/book/", "")
+            const bookId = this.props.location.pathname.replace("/book/", "")
             const data = {
                 user: this.props.user,
                 book: bookId
@@ -55,14 +56,16 @@ class BookDetails extends Component {
     }
 
     hasUsersBookReviewed = () => {   
-        if (this.state.reviews !== undefined) {
-            return this.state.reviews.forEach(review => {
-                if (review.user === this.props.user.id) {
-                    this.setState({hasReviewed: true});
-                    this.setState({userReview: review});
-                }
-            })
-        } 
+        const user = this.context;
+        console.log('USER: ', user);
+        // if (this.state.reviews !== undefined) {
+        //     return this.state.reviews.forEach(review => {
+        //         if (review.user === user.id) {
+        //             this.setState({hasReviewed: true});
+        //             this.setState({userReview: review});
+        //         }
+        //     })
+        // } 
     }
 
     renderReviews = () => {
