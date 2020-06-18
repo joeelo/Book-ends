@@ -68,20 +68,19 @@ router.post("/books", async (req, res) => {
 })
 
 router.patch("/book/:id", async (req, res) => {
-    try {
-        const book = await Book.findOne({_id: req.params.id}, (err, book) => {
-            book.set(req.body)
-
-            book.save((err, newbook) => {
-                if (err) {
-                    res.send(err);
-                }
-                res.send(newBook);
-            })
-        })
-    } catch (error) {
-        res.status(400).send(error);
-    }
+	try {
+		const book = await Book.findOne({_id: req.params.id}, (err, book) => {
+			book.set(req.body);
+			book.save((err, newbook) => {
+				if (err) {
+					res.send(err);
+				}
+					res.send(newBook);
+				})
+		})
+	} catch (error) {
+			res.status(400).send(error);
+	}
 })
 
 router.put("/rating", async (req, res) => {
